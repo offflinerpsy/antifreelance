@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WebPortfolio from '../components/WebPortfolio.astro';
+import AboutMe from '../components/AboutMe.astro';
+---
+
+<Layout 
+  title="Портфолио и Обо мне | BotStudio" 
+  description="15+ лет опыта в веб-разработке. Создание сайтов, интернет-магазинов и сложных корпоративных порталов. Top Rated на Upwork."
+>
+  <div class="portfolio-page">
+    <!-- Hero Section for Portfolio -->
+    <section class="port-hero">
+      <div class="port-hero-content">
+        <h1 class="port-title reveal-text">
+          <span class="line">Создаю цифровые</span>
+          <span class="line accent">шедевры</span>
+        </h1>
+        <p class="port-subtitle reveal-fade">Веб-разработка, дизайн и автоматизация бизнеса с опытом более 15 лет.</p>
+      </div>
+      
+      <div class="scroll-indicator">
+        <div class="mouse"></div>
+        <span>Скролльте вниз</span>
+      </div>
+    </section>
+
+    <!-- About Me Section (Integrated) -->
+    <AboutMe />
+
+    <!-- Web Portfolio Grid (High-end) -->
+    <WebPortfolio />
+
+  </div>
+</Layout>
+
+<style>
+  .portfolio-page {
+    background: var(--black);
+    min-height: 100vh;
+    color: var(--white);
+    overflow: hidden;
+  }
+
+  .port-hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .port-hero-content {
+    max-width: 1000px;
+    z-index: 2;
+  }
+
+  .port-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 0.9;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .port-title .line {
+    display: block;
+    overflow: hidden;
+  }
+
+  .port-title .accent {
+    color: var(--orange);
+  }
+
+  .port-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.5;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .mouse {
+    width: 24px;
+    height: 36px;
+    border: 2px solid var(--white);
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .mouse::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 6px;
+    background: var(--white);
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+  }
+
+  @keyframes scroll {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 10px); opacity: 0; }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hero Animations
+    const tl = gsap.timeline();
+    
+    tl.fromTo('.port-title .line', 
+      { y: 100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power4.out' }
+    )
+    .fromTo('.port-subtitle',
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
+      '-=0.5'
+    )
+    .fromTo('.scroll-indicator',
+      { opacity: 0 },
+      { opacity: 0.5, duration: 1 },
+      '-=0.3'
+    );
+  });
+</script>
