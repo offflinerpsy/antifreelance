@@ -1,4 +1,126 @@
 ---
+import TelegramChat from './TelegramChat.astro';
+
+const botCases = [
+  {
+    theme: 'dark',
+    botName: 'BeautyBot',
+    botStatus: 'бот',
+    messages: [
+      { type: 'bot', text: 'Привет! Я AI-ассистент салона. Чем могу помочь?', time: '10:00' },
+      { type: 'user', text: 'Хочу записаться на стрижку', time: '10:01' },
+      { type: 'bot', text: 'Отлично! К какому мастеру?', time: '10:01' },
+      { type: 'user', text: 'К Анне, на завтра', time: '10:02' },
+      { type: 'bot', text: 'У Анны есть окна завтра в 12:00 и 15:30. Какое время удобнее?', time: '10:02' },
+      { type: 'user', text: '15:30', time: '10:03' },
+      { type: 'bot', text: 'Записала вас к Анне на завтра в 15:30. Ждем вас!', time: '10:03' }
+    ]
+  },
+  {
+    theme: 'light',
+    botName: 'E-com Support',
+    botStatus: 'бот',
+    messages: [
+      { type: 'user', text: 'Где мой заказ #12345?', time: '14:20' },
+      { type: 'bot', text: 'Секунду, проверяю... Ваш заказ передан в курьерскую службу СДЭК. Ожидаемая дата доставки: завтра до 18:00. Трек-номер: 123456789.', time: '14:20' },
+      { type: 'user', text: 'А как оформить возврат?', time: '14:21' },
+      { type: 'bot', text: 'Возврат можно оформить в течение 14 дней. Вам нужно заполнить форму по ссылке и отнести товар в ближайший пункт выдачи.', time: '14:21' }
+    ]
+  },
+  {
+    theme: 'blue',
+    botName: 'Fitness AI',
+    botStatus: 'бот',
+    messages: [
+      { type: 'bot', text: 'Доброе утро! Напоминаю, что сегодня в 19:00 у вас тренировка по йоге.', time: '09:00' },
+      { type: 'user', text: 'Ой, я не смогу прийти. Можно отменить?', time: '09:15' },
+      { type: 'bot', text: 'Без проблем. Тренировка отменена. Хотите записаться на другой день?', time: '09:15' },
+      { type: 'user', text: 'Да, на пятницу', time: '09:16' },
+      { type: 'bot', text: 'В пятницу есть места на 18:00 и 20:00. Записать?', time: '09:16' }
+    ]
+  },
+  {
+    theme: 'green',
+    botName: 'MedClinic Bot',
+    botStatus: 'бот',
+    messages: [
+      { type: 'user', text: 'Здравствуйте, мне нужно сдать анализы крови', time: '11:30' },
+      { type: 'bot', text: 'Здравствуйте! Какие именно анализы вас интересуют? (Общий, биохимия, гормоны и т.д.)', time: '11:30' },
+      { type: 'user', text: 'Общий и биохимия', time: '11:31' },
+      { type: 'bot', text: 'Стоимость комплекса: 2500₽. Сдать можно завтра с 8:00 до 11:00 натощак. Записать вас?', time: '11:31' }
+    ]
+  },
+  {
+    theme: 'purple',
+    botName: 'Real Estate AI',
+    botStatus: 'бот',
+    messages: [
+      { type: 'bot', text: 'Привет! Я помогу подобрать квартиру. Какой район вас интересует?', time: '16:40' },
+      { type: 'user', text: 'Центр или Петроградка, до 15 млн', time: '16:45' },
+      { type: 'bot', text: 'Понял. Ищу варианты... Нашел 12 подходящих квартир. Отправить подборку?', time: '16:45' },
+      { type: 'user', text: 'Давай', time: '16:46' },
+      { type: 'bot', text: 'Отправил PDF-файл с планировками и ценами. Если что-то понравится — пишите, организую просмотр!', time: '16:46' }
+    ]
+  },
+  {
+    theme: 'dark',
+    botName: 'AutoService Bot',
+    botStatus: 'бот',
+    messages: [
+      { type: 'user', text: 'Сколько стоит замена масла на Kia Rio?', time: '12:10' },
+      { type: 'bot', text: 'Замена масла на Kia Rio стоит от 800₽ (работа). Масло и фильтры можно купить у нас или привезти свои. Записать вас на сервис?', time: '12:10' },
+      { type: 'user', text: 'Да, на субботу утро', time: '12:11' },
+      { type: 'bot', text: 'В субботу есть свободное время в 09:00 и 10:30. Какое бронируем?', time: '12:11' }
+    ]
+  },
+  {
+    theme: 'light',
+    botName: 'Delivery Tracker',
+    botStatus: 'бот',
+    messages: [
+      { type: 'bot', text: 'Ваш заказ #9988 собран и передан курьеру. Ожидайте доставку сегодня с 14:00 до 16:00.', time: '13:00' },
+      { type: 'user', text: 'А можно изменить адрес доставки?', time: '13:05' },
+      { type: 'bot', text: 'Да, напишите новый адрес прямо сюда, и я передам его курьеру.', time: '13:05' },
+      { type: 'user', text: 'ул. Ленина 15, кв 44', time: '13:06' },
+      { type: 'bot', text: 'Адрес успешно изменен! Курьер предупрежден.', time: '13:06' }
+    ]
+  },
+  {
+    theme: 'blue',
+    botName: 'HR Assistant',
+    botStatus: 'бот',
+    messages: [
+      { type: 'bot', text: 'Привет! Я HR-бот компании. Вижу, ты откликнулся на вакансию "Менеджер по продажам". Готов пройти небольшое интервью?', time: '10:00' },
+      { type: 'user', text: 'Да, готов', time: '10:05' },
+      { type: 'bot', text: 'Отлично! Первый вопрос: какой у тебя опыт в B2B продажах?', time: '10:05' },
+      { type: 'user', text: 'Около 3 лет, продавал SaaS решения', time: '10:06' },
+      { type: 'bot', text: 'Супер. А какой был средний чек?', time: '10:06' }
+    ]
+  },
+  {
+    theme: 'green',
+    botName: 'EcoShop Bot',
+    botStatus: 'бот',
+    messages: [
+      { type: 'user', text: 'У вас есть бамбуковые зубные щетки?', time: '15:20' },
+      { type: 'bot', text: 'Да, в наличии 3 вида бамбуковых щеток: мягкие, средние и жесткие. Цена от 150₽. Показать каталог?', time: '15:20' },
+      { type: 'user', text: 'Покажи', time: '15:21' },
+      { type: 'bot', text: 'Отправляю каталог... [Файл: brushes.pdf]. Для заказа просто напишите артикул.', time: '15:21' }
+    ]
+  },
+  {
+    theme: 'purple',
+    botName: 'Event Ticket Bot',
+    botStatus: 'бот',
+    messages: [
+      { type: 'bot', text: 'Привет! Я помогу купить билеты на концерт. Какой город?', time: '18:00' },
+      { type: 'user', text: 'Москва', time: '18:01' },
+      { type: 'bot', text: 'В Москве концерт пройдет 25 октября в клубе Base. Осталось 45 билетов на танцпол (2500₽) и 12 VIP (5000₽). Какие берем?', time: '18:01' },
+      { type: 'user', text: 'Два на танцпол', time: '18:02' },
+      { type: 'bot', text: 'Отлично. Итого 5000₽. Оплатить можно по ссылке: [Ссылка на оплату]. После оплаты билеты придут прямо в этот чат.', time: '18:02' }
+    ]
+  }
+];
 ---
 <section class="portfolio-section" id="portfolio">
   <div class="section-num reveal">03 — Портфолио</div>
@@ -6,20 +128,25 @@
   
   <div class="portfolio-container">
     
-    <!-- Case 1 -->
+    <!-- Telegram Bots Slider -->
     <div class="portfolio-case">
       <div class="case-info reveal">
-        <h3 class="case-title">AI-Бот для Салона Красоты</h3>
-        <p class="case-desc">Полная автоматизация записи клиентов. Бот консультирует по услугам, подбирает свободное время, записывает в CRM и отправляет напоминания за сутки.</p>
+        <h3 class="case-title">AI-Боты для бизнеса</h3>
+        <p class="case-desc">Листайте вправо, чтобы посмотреть примеры интерфейсов и сценариев работы наших ботов в Telegram. Мы создаем решения под любой дизайн и логику.</p>
         <div class="case-stats">
           <div class="stat-item">
-            <span class="stat-val">+40%</span>
-            <span class="stat-label">Конверсия в запись</span>
+            <span class="stat-val">50+</span>
+            <span class="stat-label">Реализованных ботов</span>
           </div>
           <div class="stat-item">
-            <span class="stat-val">24/7</span>
-            <span class="stat-label">Прием заявок</span>
+            <span class="stat-val">100%</span>
+            <span class="stat-label">Кастомизация</span>
           </div>
+        </div>
+        
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn" aria-label="Назад">←</button>
+          <button class="slider-btn next-btn" aria-label="Вперед">→</button>
         </div>
       </div>
       
@@ -27,66 +154,53 @@
         <div class="device-frame phone-frame">
           <div class="device-notch"></div>
           <div class="device-screen">
-            <!-- Контент, который будет скроллиться -->
-            <div class="scroll-content" data-scroll-speed="1.5">
-              <div class="placeholder-media">
-                <div class="placeholder-text">
-                  <span>Место для твоего скриншота/видео #1</span>
-                  <small>(Подготовь вертикальное видео или длинный скриншот чата)</small>
+            
+            <!-- Slider Container -->
+            <div class="phone-slider">
+              {botCases.map((bot) => (
+                <div class="phone-slide">
+                  <TelegramChat 
+                    theme={bot.theme as any} 
+                    botName={bot.botName} 
+                    botStatus={bot.botStatus} 
+                    messages={bot.messages as any} 
+                  />
                 </div>
-                <!-- Имитация длинного контента для демонстрации скролла -->
-                <div class="mock-chat">
-                  <div class="msg bot">Привет! Я AI-ассистент салона. Чем могу помочь?</div>
-                  <div class="msg user">Хочу записаться на стрижку</div>
-                  <div class="msg bot">Отлично! К какому мастеру?</div>
-                  <div class="msg user">К Анне, на завтра</div>
-                  <div class="msg bot">У Анны есть окна завтра в 12:00 и 15:30. Какое время удобнее?</div>
-                  <div class="msg user">15:30</div>
-                  <div class="msg bot">Записала вас к Анне на завтра в 15:30. Ждем вас!</div>
-                  <div class="msg bot">За день до визита я пришлю напоминание.</div>
-                </div>
-              </div>
+              ))}
             </div>
+
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Case 2 -->
-    <div class="portfolio-case reverse">
+    <!-- Web Development Grid -->
+    <div class="portfolio-case reverse web-dev-case">
       <div class="case-info reveal">
-        <h3 class="case-title">Бот-поддержка для E-commerce</h3>
-        <p class="case-desc">Интеллектуальный агент, обученный на базе знаний магазина (1000+ товаров). Отвечает на вопросы о наличии, размерах, доставке и возвратах.</p>
+        <h3 class="case-title">Веб-разработка</h3>
+        <p class="case-desc">Помимо ботов, мы создаем современные, быстрые и конверсионные веб-сайты. От лендингов до сложных корпоративных порталов.</p>
         <div class="case-stats">
           <div class="stat-item">
-            <span class="stat-val">-60%</span>
-            <span class="stat-label">Нагрузка на саппорт</span>
+            <span class="stat-val">15+</span>
+            <span class="stat-label">Лет опыта</span>
           </div>
           <div class="stat-item">
-            <span class="stat-val">< 1 сек</span>
-            <span class="stat-label">Время ответа</span>
+            <span class="stat-val">Astro</span>
+            <span class="stat-label">Современный стек</span>
           </div>
         </div>
       </div>
       
-      <div class="case-visual reveal">
-        <div class="device-frame phone-frame">
-          <div class="device-notch"></div>
-          <div class="device-screen">
-            <div class="scroll-content" data-scroll-speed="1.5">
-              <div class="placeholder-media bg-alt">
-                <div class="placeholder-text">
-                  <span>Место для твоего скриншота/видео #2</span>
-                  <small>(Замени этот блок на тег &lt;video autoplay loop muted playsinline&gt;)</small>
-                </div>
-                <div class="mock-chat">
-                  <div class="msg user">Где мой заказ #12345?</div>
-                  <div class="msg bot">Секунду, проверяю... Ваш заказ передан в курьерскую службу СДЭК. Ожидаемая дата доставки: завтра до 18:00. Трек-номер: 123456789.</div>
-                  <div class="msg user">А как оформить возврат?</div>
-                  <div class="msg bot">Возврат можно оформить в течение 14 дней. Вам нужно заполнить форму по ссылке [ссылка] и отнести товар в ближайший пункт выдачи.</div>
-                </div>
-              </div>
-            </div>
+      <div class="case-visual reveal web-visual">
+        <div class="web-grid">
+          <div class="web-item">
+            <img src="/assets/portfolio/web1.jpg" alt="Web Project 1" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/portfolio/web2.png" alt="Web Project 2" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/portfolio/web3.png" alt="Web Project 3" loading="lazy" />
           </div>
         </div>
       </div>
@@ -146,6 +260,7 @@
   .case-stats {
     display: flex;
     gap: 32px;
+    margin-bottom: 32px;
   }
 
   .stat-item {
@@ -166,6 +281,30 @@
     color: rgba(255,255,255,0.5);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+
+  /* Slider Controls */
+  .slider-controls {
+    display: flex;
+    gap: 16px;
+  }
+  .slider-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider-btn:hover {
+    background: var(--orange);
+    border-color: var(--orange);
   }
 
   .case-visual {
@@ -191,10 +330,6 @@
     transition: transform 0.5s ease;
   }
   
-  .portfolio-case.reverse .device-frame {
-    transform: rotateY(5deg) rotateX(5deg);
-  }
-
   .device-frame:hover {
     transform: rotateY(0) rotateX(0) translateY(-10px);
   }
@@ -209,7 +344,7 @@
     background: #222;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    z-index: 10;
+    z-index: 100;
   }
 
   .device-screen {
@@ -217,78 +352,61 @@
     height: 100%;
     background: #0a0a0a;
     position: relative;
-    overflow: hidden; /* Скрываем всё, что выходит за пределы экрана */
+    overflow: hidden;
   }
 
-  .scroll-content {
-    width: 100%;
-    /* Высота больше экрана, чтобы было куда скроллить */
-    height: 150%; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    will-change: transform;
-  }
-
-  /* Placeholder Styles */
-  .placeholder-media {
+  /* Phone Slider */
+  .phone-slider {
+    display: flex;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255,94,0,0.1), rgba(221,245,22,0.1));
-    display: flex;
-    flex-direction: column;
-    padding: 40px 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scroll-behavior: smooth;
   }
-  
-  .placeholder-media.bg-alt {
-    background: linear-gradient(135deg, rgba(221,245,22,0.1), rgba(255,94,0,0.1));
+  .phone-slider::-webkit-scrollbar {
+    display: none;
   }
-
-  .placeholder-text {
-    text-align: center;
-    margin-bottom: 40px;
-    margin-top: 20px;
-  }
-
-  .placeholder-text span {
-    display: block;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    color: var(--white);
-    margin-bottom: 8px;
+  .phone-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
   }
 
-  .placeholder-text small {
-    color: rgba(255,255,255,0.5);
-    font-size: 0.8rem;
+  /* Web Dev Grid */
+  .web-visual {
+    width: 100%;
   }
-
-  .mock-chat {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  .web-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
   }
-
-  .msg {
-    padding: 12px 16px;
+  .web-item {
     border-radius: 16px;
-    font-size: 0.85rem;
-    line-height: 1.4;
-    max-width: 85%;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    aspect-ratio: 16/9;
   }
-
-  .msg.bot {
-    background: rgba(255,255,255,0.1);
-    color: var(--white);
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
+  .web-item:first-child {
+    grid-column: span 2;
+    aspect-ratio: 21/9;
   }
-
-  .msg.user {
-    background: var(--orange);
-    color: var(--white);
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
+  .web-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--orange);
+    z-index: 2;
+  }
+  .web-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 
   @media (max-width: 992px) {
@@ -300,6 +418,9 @@
     .case-stats {
       justify-content: center;
     }
+    .slider-controls {
+      justify-content: center;
+    }
     .device-frame {
       transform: none !important;
     }
@@ -307,31 +428,20 @@
 </style>
 
 <script>
-  // GSAP ScrollTrigger logic for Scroll-Linked Frames
   document.addEventListener('DOMContentLoaded', () => {
-    // @ts-ignore
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      // @ts-ignore
-      gsap.registerPlugin(ScrollTrigger);
+    const slider = document.querySelector('.phone-slider');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
 
-      const cases = document.querySelectorAll('.portfolio-case');
-      
-      cases.forEach((caseEl) => {
-        const scrollContent = caseEl.querySelector('.scroll-content');
-        if (!scrollContent) return;
+    if (slider && prevBtn && nextBtn) {
+      const slideWidth = slider.clientWidth;
 
-        // Анимируем контент внутри телефона при скролле секции
-        // @ts-ignore
-        gsap.to(scrollContent, {
-          yPercent: -30, // Прокручиваем контент вверх на 30% от его высоты
-          ease: "none",
-          scrollTrigger: {
-            trigger: caseEl,
-            start: "top bottom", // Начинаем, когда верх секции достигает низа окна
-            end: "bottom top",   // Заканчиваем, когда низ секции достигает верха окна
-            scrub: 1             // Плавная привязка к скроллу (1 сек задержка для плавности)
-          }
-        });
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+      });
+
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
       });
     }
   });
