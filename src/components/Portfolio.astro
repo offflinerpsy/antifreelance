@@ -176,82 +176,6 @@ const botCases = [
       </div>
     </div>
 
-    <!-- Web Development Grid -->
-    <div class="portfolio-case reverse web-dev-case">
-      <div class="case-info reveal">
-        <h3 class="case-title">Веб-разработка</h3>
-        <p class="case-desc">Помимо ботов, мы создаем современные, быстрые и конверсионные веб-сайты. От лендингов до сложных корпоративных порталов.</p>
-        <div class="case-stats">
-          <div class="stat-item">
-            <span class="stat-val">15+</span>
-            <span class="stat-label">Лет опыта</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-val">Astro</span>
-            <span class="stat-label">Современный стек</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="case-visual reveal web-visual">
-        <div class="web-grid">
-          <div class="web-item">
-            <img src="/assets/web/D1_Website_Home_Page-1.jpg" alt="Web Project 1" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/web/D1_Website_Home_Page-2.jpg" alt="Web Project 2" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/web/D1_Website_Home_Page-3.jpg" alt="Web Project 3" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/web/Home (4).png" alt="Web Project 4" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/web/home_pk.png" alt="Web Project 5" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/web/image_2024-03-04_10-56-29.png" alt="Web Project 6" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Upwork Grid -->
-    <div class="portfolio-case upwork-case">
-      <div class="case-info reveal">
-        <h3 class="case-title">Upwork <span class="accent">Top Rated</span></h3>
-        <p class="case-desc">Успешный опыт работы на международной фриланс-бирже Upwork. Десятки довольных клиентов со всего мира, 100% Job Success Score и статус Top Rated.</p>
-        <div class="case-stats">
-          <div class="stat-item">
-            <span class="stat-val">100%</span>
-            <span class="stat-label">Job Success</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-val">Top</span>
-            <span class="stat-label">Rated</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="case-visual reveal web-visual">
-        <div class="web-grid upwork-grid">
-          <div class="web-item">
-            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (1).png" alt="Upwork Review 1" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (2).png" alt="Upwork Review 2" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (3).png" alt="Upwork Review 3" loading="lazy" />
-          </div>
-          <div class="web-item">
-            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (4).png" alt="Upwork Review 4" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -420,49 +344,6 @@ const botCases = [
     width: 100%;
     height: 100%;
     scroll-snap-align: start;
-  }
-
-  /* Web Dev Grid */
-  .web-visual {
-    width: 100%;
-  }
-  .web-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    width: 100%;
-  }
-  .upwork-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .web-item {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    aspect-ratio: 16/9;
-  }
-  .web-item:first-child {
-    grid-column: span 2;
-    aspect-ratio: 21/9;
-  }
-  .upwork-grid .web-item {
-    aspect-ratio: auto;
-  }
-  .upwork-grid .web-item:first-child {
-    grid-column: span 1;
-    aspect-ratio: auto;
-  }
-  .web-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    border-color: var(--orange);
-    z-index: 2;
-  }
-  .web-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
   }
 
   @media (max-width: 992px) {
