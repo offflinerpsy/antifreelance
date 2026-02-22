@@ -7,13 +7,11 @@ const botCases = [
     botName: 'BeautyBot',
     botStatus: 'бот',
     messages: [
-      { type: 'bot', text: 'Привет! Я AI-ассистент салона. Чем могу помочь?', time: '10:00' },
-      { type: 'user', text: 'Хочу записаться на стрижку', time: '10:01' },
-      { type: 'bot', text: 'Отлично! К какому мастеру?', time: '10:01' },
-      { type: 'user', text: 'К Анне, на завтра', time: '10:02' },
-      { type: 'bot', text: 'У Анны есть окна завтра в 12:00 и 15:30. Какое время удобнее?', time: '10:02' },
-      { type: 'user', text: '15:30', time: '10:03' },
-      { type: 'bot', text: 'Записала вас к Анне на завтра в 15:30. Ждем вас!', time: '10:03' }
+      { type: 'bot', text: 'Привет! Я AI-ассистент салона красоты. Чем могу помочь?', time: '10:00', buttons: [[{text: '💇‍♀️ Записаться'}, {text: '💰 Прайс-лист'}], [{text: '📍 Как добраться'}]] },
+      { type: 'user', text: 'Прайс-лист', time: '10:01' },
+      { type: 'bot', text: 'Наши основные услуги:\n\n✂️ Стрижка женская — от 2000₽\n💅 Маникюр с покрытием — от 1800₽\n💆‍♀️ Окрашивание — от 4500₽\n\nХотите записаться?', time: '10:01', buttons: [[{text: '📅 Выбрать время'}, {text: '👩‍🎨 Выбрать мастера'}]] },
+      { type: 'user', text: 'Выбрать мастера', time: '10:02' },
+      { type: 'bot', text: 'Выберите специалиста:', time: '10:02', buttons: [[{text: 'Анна (Топ-стилист)'}], [{text: 'Мария (Стилист)'}], [{text: 'Елена (Мастер маникюра)'}]] }
     ]
   },
   {
@@ -21,10 +19,11 @@ const botCases = [
     botName: 'E-com Support',
     botStatus: 'бот',
     messages: [
-      { type: 'user', text: 'Где мой заказ #12345?', time: '14:20' },
-      { type: 'bot', text: 'Секунду, проверяю... Ваш заказ передан в курьерскую службу СДЭК. Ожидаемая дата доставки: завтра до 18:00. Трек-номер: 123456789.', time: '14:20' },
-      { type: 'user', text: 'А как оформить возврат?', time: '14:21' },
-      { type: 'bot', text: 'Возврат можно оформить в течение 14 дней. Вам нужно заполнить форму по ссылке и отнести товар в ближайший пункт выдачи.', time: '14:21' }
+      { type: 'bot', text: 'Добро пожаловать в магазин электроники! Выберите действие:', time: '14:15', buttons: [[{text: '📦 Мои заказы'}, {text: '🔍 Каталог'}], [{text: '🎧 Поддержка'}]] },
+      { type: 'user', text: 'Мои заказы', time: '14:20' },
+      { type: 'bot', text: 'У вас один активный заказ:\n\n📦 Заказ #12345\n📱 Смартфон iPhone 15 Pro\n🚚 Статус: В пути\n\nОжидаемая дата доставки: завтра до 18:00.', time: '14:20', buttons: [[{text: '📍 Отследить на карте'}], [{text: '❌ Отменить заказ'}, {text: '↩️ Возврат'}]] },
+      { type: 'user', text: 'Возврат', time: '14:21' },
+      { type: 'bot', text: 'Возврат можно оформить в течение 14 дней. Нажмите кнопку ниже, чтобы заполнить форму.', time: '14:21', buttons: [[{text: '📝 Форма возврата', url: 'https://example.com'}]] }
     ]
   },
   {
@@ -32,11 +31,11 @@ const botCases = [
     botName: 'Fitness AI',
     botStatus: 'бот',
     messages: [
-      { type: 'bot', text: 'Доброе утро! Напоминаю, что сегодня в 19:00 у вас тренировка по йоге.', time: '09:00' },
-      { type: 'user', text: 'Ой, я не смогу прийти. Можно отменить?', time: '09:15' },
-      { type: 'bot', text: 'Без проблем. Тренировка отменена. Хотите записаться на другой день?', time: '09:15' },
-      { type: 'user', text: 'Да, на пятницу', time: '09:16' },
-      { type: 'bot', text: 'В пятницу есть места на 18:00 и 20:00. Записать?', time: '09:16' }
+      { type: 'bot', text: 'Доброе утро! Напоминаю, что сегодня в 19:00 у вас тренировка по йоге.', time: '09:00', buttons: [[{text: '✅ Подтверждаю'}, {text: '❌ Отменить'}]] },
+      { type: 'user', text: 'Отменить', time: '09:15' },
+      { type: 'bot', text: 'Без проблем. Тренировка отменена. Хотите записаться на другой день?', time: '09:15', buttons: [[{text: '📅 Расписание на неделю'}]] },
+      { type: 'user', text: 'Расписание на неделю', time: '09:16' },
+      { type: 'bot', text: 'Свободные окна на этой неделе:\n\nСреда: 18:00, 20:00\nПятница: 10:00, 19:00\nСуббота: 12:00', time: '09:16', buttons: [[{text: 'Среда 18:00'}, {text: 'Среда 20:00'}], [{text: 'Пятница 19:00'}]] }
     ]
   },
   {
@@ -44,10 +43,11 @@ const botCases = [
     botName: 'MedClinic Bot',
     botStatus: 'бот',
     messages: [
-      { type: 'user', text: 'Здравствуйте, мне нужно сдать анализы крови', time: '11:30' },
-      { type: 'bot', text: 'Здравствуйте! Какие именно анализы вас интересуют? (Общий, биохимия, гормоны и т.д.)', time: '11:30' },
-      { type: 'user', text: 'Общий и биохимия', time: '11:31' },
-      { type: 'bot', text: 'Стоимость комплекса: 2500₽. Сдать можно завтра с 8:00 до 11:00 натощак. Записать вас?', time: '11:31' }
+      { type: 'bot', text: 'Здравствуйте! Я виртуальный помощник клиники "Здоровье".', time: '11:25', buttons: [[{text: '🩺 Запись к врачу'}, {text: '🧪 Анализы'}], [{text: '📄 Результаты'}, {text: '❓ Вопрос'}]] },
+      { type: 'user', text: 'Анализы', time: '11:30' },
+      { type: 'bot', text: 'Какие именно анализы вас интересуют?', time: '11:30', buttons: [[{text: '🩸 Общий анализ крови'}], [{text: '🧬 Биохимия'}], [{text: '🦠 Гормоны'}]] },
+      { type: 'user', text: 'Общий анализ крови', time: '11:31' },
+      { type: 'bot', text: 'Стоимость: 800₽.\nСрок готовности: 1 день.\nСдать можно ежедневно с 8:00 до 11:00 натощак.', time: '11:31', buttons: [[{text: '💳 Оплатить онлайн'}, {text: '🏥 Адреса клиник'}]] }
     ]
   },
   {
@@ -55,11 +55,11 @@ const botCases = [
     botName: 'Real Estate AI',
     botStatus: 'бот',
     messages: [
-      { type: 'bot', text: 'Привет! Я помогу подобрать квартиру. Какой район вас интересует?', time: '16:40' },
-      { type: 'user', text: 'Центр или Петроградка, до 15 млн', time: '16:45' },
-      { type: 'bot', text: 'Понял. Ищу варианты... Нашел 12 подходящих квартир. Отправить подборку?', time: '16:45' },
-      { type: 'user', text: 'Давай', time: '16:46' },
-      { type: 'bot', text: 'Отправил PDF-файл с планировками и ценами. Если что-то понравится — пишите, организую просмотр!', time: '16:46' }
+      { type: 'bot', text: 'Привет! Я помогу подобрать квартиру мечты. С чего начнем?', time: '16:40', buttons: [[{text: '🏢 Новостройки'}, {text: '🏠 Вторичка'}], [{text: '💰 Ипотека'}]] },
+      { type: 'user', text: 'Новостройки', time: '16:45' },
+      { type: 'bot', text: 'Отлично! Какой бюджет рассматриваем?', time: '16:45', buttons: [[{text: 'До 10 млн'}, {text: '10-15 млн'}], [{text: '15-25 млн'}, {text: 'От 25 млн'}]] },
+      { type: 'user', text: '10-15 млн', time: '16:46' },
+      { type: 'bot', text: 'Нашел 12 подходящих ЖК в этом бюджете. Отправить подборку с планировками?', time: '16:46', buttons: [[{text: '📥 Скачать PDF'}, {text: '👀 Посмотреть в боте'}]] }
     ]
   },
   {
@@ -67,10 +67,11 @@ const botCases = [
     botName: 'AutoService Bot',
     botStatus: 'бот',
     messages: [
-      { type: 'user', text: 'Сколько стоит замена масла на Kia Rio?', time: '12:10' },
-      { type: 'bot', text: 'Замена масла на Kia Rio стоит от 800₽ (работа). Масло и фильтры можно купить у нас или привезти свои. Записать вас на сервис?', time: '12:10' },
-      { type: 'user', text: 'Да, на субботу утро', time: '12:11' },
-      { type: 'bot', text: 'В субботу есть свободное время в 09:00 и 10:30. Какое бронируем?', time: '12:11' }
+      { type: 'bot', text: 'Автосервис "Drive". Выберите нужную услугу:', time: '12:05', buttons: [[{text: '🔧 ТО и ремонт'}, {text: '🚗 Шиномонтаж'}], [{text: '🧼 Мойка'}, {text: '📞 Связь с мастером'}]] },
+      { type: 'user', text: 'ТО и ремонт', time: '12:10' },
+      { type: 'bot', text: 'Что именно нужно сделать?', time: '12:10', buttons: [[{text: '🛢 Замена масла'}, {text: '🛑 Колодки'}], [{text: '⚙️ Диагностика ходовой'}]] },
+      { type: 'user', text: 'Замена масла', time: '12:11' },
+      { type: 'bot', text: 'Замена масла стоит от 800₽ (работа). Масло и фильтры можно купить у нас или привезти свои. Записать вас?', time: '12:11', buttons: [[{text: '📅 Выбрать дату'}]] }
     ]
   },
   {
@@ -78,11 +79,11 @@ const botCases = [
     botName: 'Delivery Tracker',
     botStatus: 'бот',
     messages: [
-      { type: 'bot', text: 'Ваш заказ #9988 собран и передан курьеру. Ожидайте доставку сегодня с 14:00 до 16:00.', time: '13:00' },
-      { type: 'user', text: 'А можно изменить адрес доставки?', time: '13:05' },
-      { type: 'bot', text: 'Да, напишите новый адрес прямо сюда, и я передам его курьеру.', time: '13:05' },
+      { type: 'bot', text: 'Ваш заказ #9988 собран и передан курьеру. Ожидайте доставку сегодня с 14:00 до 16:00.', time: '13:00', buttons: [[{text: '📍 Где курьер?'}, {text: '📞 Позвонить курьеру'}], [{text: '✏️ Изменить адрес'}]] },
+      { type: 'user', text: 'Изменить адрес', time: '13:05' },
+      { type: 'bot', text: 'Напишите новый адрес прямо сюда, и я передам его курьеру.', time: '13:05' },
       { type: 'user', text: 'ул. Ленина 15, кв 44', time: '13:06' },
-      { type: 'bot', text: 'Адрес успешно изменен! Курьер предупрежден.', time: '13:06' }
+      { type: 'bot', text: 'Адрес успешно изменен! Курьер предупрежден.', time: '13:06', buttons: [[{text: '👍 Спасибо'}]] }
     ]
   },
   {
@@ -90,11 +91,11 @@ const botCases = [
     botName: 'HR Assistant',
     botStatus: 'бот',
     messages: [
-      { type: 'bot', text: 'Привет! Я HR-бот компании. Вижу, ты откликнулся на вакансию "Менеджер по продажам". Готов пройти небольшое интервью?', time: '10:00' },
-      { type: 'user', text: 'Да, готов', time: '10:05' },
-      { type: 'bot', text: 'Отлично! Первый вопрос: какой у тебя опыт в B2B продажах?', time: '10:05' },
-      { type: 'user', text: 'Около 3 лет, продавал SaaS решения', time: '10:06' },
-      { type: 'bot', text: 'Супер. А какой был средний чек?', time: '10:06' }
+      { type: 'bot', text: 'Привет! Я HR-бот компании. Вижу, ты откликнулся на вакансию "Менеджер по продажам". Готов пройти небольшое интервью?', time: '10:00', buttons: [[{text: '🚀 Начать интервью'}, {text: '⏰ Позже'}]] },
+      { type: 'user', text: 'Начать интервью', time: '10:05' },
+      { type: 'bot', text: 'Отлично! Первый вопрос: какой у тебя опыт в B2B продажах?', time: '10:05', buttons: [[{text: 'Менее 1 года'}, {text: '1-3 года'}], [{text: 'Более 3 лет'}]] },
+      { type: 'user', text: '1-3 года', time: '10:06' },
+      { type: 'bot', text: 'Супер. А какой был средний чек?', time: '10:06', buttons: [[{text: 'До 100 тыс.'}, {text: '100-500 тыс.'}], [{text: 'Более 500 тыс.'}]] }
     ]
   },
   {
@@ -102,10 +103,11 @@ const botCases = [
     botName: 'EcoShop Bot',
     botStatus: 'бот',
     messages: [
-      { type: 'user', text: 'У вас есть бамбуковые зубные щетки?', time: '15:20' },
-      { type: 'bot', text: 'Да, в наличии 3 вида бамбуковых щеток: мягкие, средние и жесткие. Цена от 150₽. Показать каталог?', time: '15:20' },
-      { type: 'user', text: 'Покажи', time: '15:21' },
-      { type: 'bot', text: 'Отправляю каталог... [Файл: brushes.pdf]. Для заказа просто напишите артикул.', time: '15:21' }
+      { type: 'bot', text: 'Добро пожаловать в эко-маркет! Что ищете?', time: '15:15', buttons: [[{text: '🌿 Косметика'}, {text: '🏠 Для дома'}], [{text: '♻️ Zero Waste'}]] },
+      { type: 'user', text: 'Zero Waste', time: '15:20' },
+      { type: 'bot', text: 'В категории Zero Waste популярны бамбуковые зубные щетки. В наличии 3 вида: мягкие, средние и жесткие. Цена от 150₽.', time: '15:20', buttons: [[{text: '🛒 Добавить в корзину'}, {text: '👀 Посмотреть фото'}]] },
+      { type: 'user', text: 'Посмотреть фото', time: '15:21' },
+      { type: 'bot', text: 'Отправляю каталог... [Файл: brushes.pdf]. Для заказа просто нажмите кнопку.', time: '15:21', buttons: [[{text: '🛍 Оформить заказ'}]] }
     ]
   },
   {
@@ -113,11 +115,11 @@ const botCases = [
     botName: 'Event Ticket Bot',
     botStatus: 'бот',
     messages: [
-      { type: 'bot', text: 'Привет! Я помогу купить билеты на концерт. Какой город?', time: '18:00' },
+      { type: 'bot', text: 'Привет! Я помогу купить билеты на концерт. Какой город?', time: '18:00', buttons: [[{text: 'Москва'}, {text: 'Санкт-Петербург'}], [{text: 'Казань'}, {text: 'Екатеринбург'}]] },
       { type: 'user', text: 'Москва', time: '18:01' },
-      { type: 'bot', text: 'В Москве концерт пройдет 25 октября в клубе Base. Осталось 45 билетов на танцпол (2500₽) и 12 VIP (5000₽). Какие берем?', time: '18:01' },
-      { type: 'user', text: 'Два на танцпол', time: '18:02' },
-      { type: 'bot', text: 'Отлично. Итого 5000₽. Оплатить можно по ссылке: [Ссылка на оплату]. После оплаты билеты придут прямо в этот чат.', time: '18:02' }
+      { type: 'bot', text: 'В Москве концерт пройдет 25 октября в клубе Base. Осталось 45 билетов на танцпол (2500₽) и 12 VIP (5000₽). Какие берем?', time: '18:01', buttons: [[{text: '💃 Танцпол (2500₽)'}, {text: '👑 VIP (5000₽)'}]] },
+      { type: 'user', text: 'Танцпол (2500₽)', time: '18:02' },
+      { type: 'bot', text: 'Отлично. Итого 2500₽. Оплатить можно по ссылке ниже. После оплаты билеты придут прямо в этот чат.', time: '18:02', buttons: [[{text: '💳 Оплатить 2500₽', url: 'https://pay.example.com'}]] }
     ]
   }
 ];
@@ -194,13 +196,57 @@ const botCases = [
       <div class="case-visual reveal web-visual">
         <div class="web-grid">
           <div class="web-item">
-            <img src="/assets/portfolio/web1.jpg" alt="Web Project 1" loading="lazy" />
+            <img src="/assets/web/D1_Website_Home_Page-1.jpg" alt="Web Project 1" loading="lazy" />
           </div>
           <div class="web-item">
-            <img src="/assets/portfolio/web2.png" alt="Web Project 2" loading="lazy" />
+            <img src="/assets/web/D1_Website_Home_Page-2.jpg" alt="Web Project 2" loading="lazy" />
           </div>
           <div class="web-item">
-            <img src="/assets/portfolio/web3.png" alt="Web Project 3" loading="lazy" />
+            <img src="/assets/web/D1_Website_Home_Page-3.jpg" alt="Web Project 3" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/web/Home (4).png" alt="Web Project 4" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/web/home_pk.png" alt="Web Project 5" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/web/image_2024-03-04_10-56-29.png" alt="Web Project 6" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upwork Grid -->
+    <div class="portfolio-case upwork-case">
+      <div class="case-info reveal">
+        <h3 class="case-title">Upwork <span class="accent">Top Rated</span></h3>
+        <p class="case-desc">Успешный опыт работы на международной фриланс-бирже Upwork. Десятки довольных клиентов со всего мира, 100% Job Success Score и статус Top Rated.</p>
+        <div class="case-stats">
+          <div class="stat-item">
+            <span class="stat-val">100%</span>
+            <span class="stat-label">Job Success</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">Top</span>
+            <span class="stat-label">Rated</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="case-visual reveal web-visual">
+        <div class="web-grid upwork-grid">
+          <div class="web-item">
+            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (1).png" alt="Upwork Review 1" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (2).png" alt="Upwork Review 2" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (3).png" alt="Upwork Review 3" loading="lazy" />
+          </div>
+          <div class="web-item">
+            <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (4).png" alt="Upwork Review 4" loading="lazy" />
           </div>
         </div>
       </div>
@@ -386,6 +432,9 @@ const botCases = [
     gap: 16px;
     width: 100%;
   }
+  .upwork-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .web-item {
     border-radius: 16px;
     overflow: hidden;
@@ -396,6 +445,13 @@ const botCases = [
   .web-item:first-child {
     grid-column: span 2;
     aspect-ratio: 21/9;
+  }
+  .upwork-grid .web-item {
+    aspect-ratio: auto;
+  }
+  .upwork-grid .web-item:first-child {
+    grid-column: span 1;
+    aspect-ratio: auto;
   }
   .web-item:hover {
     transform: translateY(-5px) scale(1.02);

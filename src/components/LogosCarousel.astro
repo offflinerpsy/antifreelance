@@ -1,0 +1,129 @@
+---
+const logos = [
+  { src: '/assets/logos/anthropic.png', alt: 'Anthropic' },
+  { src: '/assets/logos/claude.png', alt: 'Claude' },
+  { src: '/assets/logos/gemini.png', alt: 'Gemini' },
+  { src: '/assets/logos/github.png', alt: 'GitHub' },
+  { src: '/assets/logos/groq.png', alt: 'Groq' },
+  { src: '/assets/logos/meta.png', alt: 'Meta' },
+  { src: '/assets/logos/microsoft.png', alt: 'Microsoft' },
+  { src: '/assets/logos/mistral.png', alt: 'Mistral' },
+  { src: '/assets/logos/ollama.png', alt: 'Ollama' },
+  { src: '/assets/logos/openai.png', alt: 'OpenAI' },
+  { src: '/assets/logos/qwen.png', alt: 'Qwen' },
+];
+---
+
+<section class="logos-section">
+  <div class="logos-container">
+    <div class="logos-track">
+      {logos.map((logo) => (
+        <div class="logo-item">
+          <img src={logo.src} alt={logo.alt} loading="lazy" />
+        </div>
+      ))}
+      {/* Duplicate for infinite scroll */}
+      {logos.map((logo) => (
+        <div class="logo-item">
+          <img src={logo.src} alt={logo.alt} loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .logos-section {
+    padding: 40px 0;
+    background: var(--black);
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Glassmorphic fade edges */
+  .logos-section::before,
+  .logos-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .logos-section::before {
+    left: 0;
+    background: linear-gradient(to right, var(--black) 0%, transparent 100%);
+  }
+
+  .logos-section::after {
+    right: 0;
+    background: linear-gradient(to left, var(--black) 0%, transparent 100%);
+  }
+
+  .logos-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .logos-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+
+  .logos-track:hover {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.3s ease;
+  }
+
+  .logo-item:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+  }
+
+  .logo-item img {
+    max-height: 100%;
+    max-width: 150px;
+    object-fit: contain;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 30px)); /* -50% of total width minus half gap */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .logos-track {
+      gap: 40px;
+    }
+    .logo-item {
+      height: 40px;
+    }
+    .logo-item img {
+      max-width: 100px;
+    }
+    .logos-section::before,
+    .logos-section::after {
+      width: 50px;
+    }
+  }
+</style>
