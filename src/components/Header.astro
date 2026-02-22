@@ -1,0 +1,272 @@
+---
+---
+<header id="main-header">
+  <div class="header-inner">
+    <div class="nav-logo">BotStudio</div>
+    <nav class="nav-links hide-mobile">
+      <a href="/#features">Возможности</a>
+      <a href="/#cases">Кейсы</a>
+      <a href="/knowledge">База знаний</a>
+      <a href="/#reviews">Отзывы</a>
+    </nav>
+    <a href="https://t.me/Gypno_Man" class="btn-primary header-btn hide-mobile">Написать</a>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-toggle hide-desktop" aria-label="Открыть меню">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12" class="line-mid"></line>
+        <line x1="3" y1="6" x2="21" y2="6" class="line-top"></line>
+        <line x1="3" y1="18" x2="21" y2="18" class="line-bot"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay">
+    <nav class="mobile-nav">
+      <a href="/#features" class="mobile-link">Возможности</a>
+      <a href="/#cases" class="mobile-link">Кейсы</a>
+      <a href="/knowledge" class="mobile-link">База знаний</a>
+      <a href="/#reviews" class="mobile-link">Отзывы</a>
+      <a href="https://t.me/Gypno_Man" class="btn-primary mobile-btn">Написать @Gypno_Man</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    z-index: 100;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 101;
+  }
+
+  /* Scrolled state */
+  header.scrolled {
+    top: 10px;
+    width: 80%;
+    max-width: 800px;
+  }
+  header.scrolled .header-inner {
+    padding: 8px 20px;
+    background: rgba(18, 18, 18, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  header.scrolled .nav-logo {
+    font-size: 22px;
+  }
+  header.scrolled .header-btn {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    transition: font-size 0.4s ease;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover {
+    opacity: 1;
+    color: var(--lime);
+  }
+
+  .header-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+
+  /* Mobile Toggle Button */
+  .mobile-toggle {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 102;
+  }
+  .mobile-toggle svg {
+    transition: transform 0.3s ease;
+  }
+  .mobile-toggle .line-top,
+  .mobile-toggle .line-mid,
+  .mobile-toggle .line-bot {
+    transition: all 0.3s ease;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+  }
+
+  /* Mobile Overlay */
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--black);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 6vw, 32px);
+    width: 100%;
+    padding: 0 20px;
+  }
+  .mobile-link {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateY(20px);
+    text-align: center;
+  }
+  .mobile-btn {
+    margin-top: clamp(20px, 5vw, 32px);
+    opacity: 0;
+    transform: translateY(20px);
+    background: var(--white);
+    color: var(--black);
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Menu Open State */
+  body.menu-open {
+    overflow: hidden;
+  }
+  body.menu-open .mobile-overlay {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  body.menu-open .header-inner {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  body.menu-open .mobile-toggle .line-top {
+    transform: translateY(6px) rotate(45deg);
+  }
+  body.menu-open .mobile-toggle .line-mid {
+    opacity: 0;
+  }
+  body.menu-open .mobile-toggle .line-bot {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    header { width: 95%; top: 10px; }
+    header.scrolled { width: 95%; top: 10px; }
+    .header-inner { padding: 10px 20px; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('main-header');
+    const toggle = document.querySelector('.mobile-toggle');
+    const links = document.querySelectorAll('.mobile-link, .mobile-btn');
+    let isMenuOpen = false;
+
+    // Scroll effect
+    document.addEventListener('scroll', () => {
+      if (window.scrollY > 50 && !isMenuOpen) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Menu Toggle
+    toggle?.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      document.body.classList.toggle('menu-open');
+      
+      if (isMenuOpen) {
+        header?.classList.remove('scrolled');
+        // @ts-ignore
+        gsap.to(links, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: 'power3.out',
+          delay: 0.2
+        });
+      } else {
+        // @ts-ignore
+        gsap.to(links, {
+          opacity: 0,
+          y: 20,
+          duration: 0.3,
+          stagger: 0.05,
+          ease: 'power2.in'
+        });
+        if (window.scrollY > 50) header?.classList.add('scrolled');
+      }
+    });
+
+    // Close menu on link click
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        isMenuOpen = false;
+        document.body.classList.remove('menu-open');
+        // @ts-ignore
+        gsap.set(links, { opacity: 0, y: 20 });
+        if (window.scrollY > 50) header?.classList.add('scrolled');
+      });
+    });
+  });
+</script>

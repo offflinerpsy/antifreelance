@@ -1,0 +1,83 @@
+---
+const cases = [
+  { icon: "💇", title: "Салон красоты", desc: "Бот принимает запись и напоминает о визите 24/7. Количество записей выросло на 40%." },
+  { icon: "🔧", title: "Автосервис", desc: "После запуска бота — ноль пропущенных обращений, даже ночью и в выходные." },
+  { icon: "✂️", title: "Барбершоп", desc: "База подписчиков за 2 месяца. Рассылки конвертируют с конверсией 35%." },
+  { icon: "🍽️", title: "Ресторан / Кафе", desc: "Бронирование столиков и предзаказ меню без участия хостес. Увеличение чека на 15%." },
+  { icon: "🏥", title: "Мед. клиника", desc: "Запись к врачам, ответы на частые вопросы, сбор анализов. Снижение нагрузки на регистратуру." },
+  { icon: "🏋️", title: "Фитнес-клуб", desc: "Продление абонементов, расписание групповых занятий и заморозка карт в один клик." },
+  { icon: "🏠", title: "Недвижимость", desc: "Квалификация лидов, подбор объектов по параметрам и запись на просмотр." },
+  { icon: "📦", title: "Доставка", desc: "Отслеживание статуса заказа, оформление возвратов и сбор отзывов." }
+];
+---
+<section class="cases-section" id="cases">
+  <div class="section-num reveal">02 — Малый бизнес</div>
+  <h2 class="section-big-title reveal">Кому подходит<br><span class="accent">AI-ассистент</span></h2>
+  
+  <div class="cases-grid reveal">
+    {cases.map((c) => (
+      <div class="case-item">
+        <div class="ci-icon">{c.icon}</div>
+        <div class="ci-title">{c.title}</div>
+        <div class="ci-desc">{c.desc}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .cases-section {
+    background: var(--black);
+    padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 40px);
+  }
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 280px), 1fr));
+    gap: clamp(12px, 3vw, 16px);
+    max-width: 1200px;
+  }
+  .case-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: clamp(24px, 4vw, 32px);
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .case-item:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    transform: translateY(-4px);
+  }
+  .ci-icon {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 20px;
+    filter: grayscale(100%) brightness(200%);
+    transition: filter 0.3s;
+  }
+  .case-item:hover .ci-icon {
+    filter: grayscale(0%) brightness(100%);
+  }
+  .ci-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .ci-desc {
+    font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.3s;
+  }
+  .case-item:hover .ci-desc {
+    color: rgba(255,255,255,0.9);
+  }
+
+  @media (max-width: 768px) {
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

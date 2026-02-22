@@ -1,0 +1,124 @@
+---
+const reviews = [
+  { name: "Алексей, Автосервис", text: "Сделали бота за 3 дня. Теперь клиенты записываются ночью, пока мы спим. Конверсия выросла на 30%!" },
+  { name: "Мария, Салон красоты", text: "Раньше администратор не успевал отвечать в Instagram. Бот забрал 80% рутины на себя." },
+  { name: "Игорь, Барбершоп", text: "Отличная замена менеджеру. Бот сам напоминает о стрижке через месяц. Возвращаемость клиентов +45%." },
+  { name: "Елена, Ресторан", text: "Бронирование столиков теперь полностью автоматизировано. Никаких накладок и путаницы." },
+  { name: "Дмитрий, Фитнес-клуб", text: "Клиенты сами продлевают абонементы через бота. Выручка выросла, затраты на колл-центр упали." },
+  { name: "Ольга, Мед. клиника", text: "Бот собирает первичный анамнез до приема. Врачи в восторге, экономит кучу времени." },
+  { name: "Сергей, Недвижимость", text: "AI-ассистент квалифицирует лидов лучше стажеров. Передает брокерам только горячих клиентов." },
+  { name: "Анна, Доставка цветов", text: "В праздники бот спас нас от коллапса. Обработал 500+ заказов за день без единой ошибки." },
+  { name: "Виктор, СТО", text: "Интеграция с нашей CRM работает как часы. Все заявки сразу падают в воронку." },
+  { name: "Наталья, Кофейня", text: "Запустили предзаказ кофе через бота. Очереди по утрам исчезли, выручка выросла." }
+];
+
+// Split into two rows for marquee
+const row1 = reviews.slice(0, 5);
+const row2 = reviews.slice(5, 10);
+---
+<section class="reviews-section" id="reviews">
+  <div class="section-num reveal">03 — Отзывы</div>
+  <h2 class="section-big-title reveal">Что говорят<br><span class="accent">клиенты</span></h2>
+  
+  <div class="marquee-container reveal">
+    <div class="marquee-track track-left">
+      {[...row1, ...row1].map((r) => (
+        <div class="review-card">
+          <div class="r-stars">★★★★★</div>
+          <p class="r-text">"{r.text}"</p>
+          <div class="r-author">— {r.name}</div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="marquee-track track-right">
+      {[...row2, ...row2].map((r) => (
+        <div class="review-card">
+          <div class="r-stars">★★★★★</div>
+          <p class="r-text">"{r.text}"</p>
+          <div class="r-author">— {r.name}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    background: var(--white);
+    color: var(--black);
+    padding: clamp(60px, 10vw, 100px) 0;
+    overflow: hidden;
+  }
+  .reviews-section .section-num,
+  .reviews-section .section-big-title {
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+  .reviews-section .section-num { color: var(--orange); }
+  .reviews-section .section-big-title { color: var(--black); }
+  .reviews-section .section-big-title .accent { color: var(--orange); }
+
+  .marquee-container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 24px);
+    margin-top: clamp(40px, 8vw, 60px);
+  }
+  
+  .marquee-track {
+    display: flex;
+    gap: clamp(16px, 3vw, 24px);
+    width: max-content;
+  }
+  
+  .track-left {
+    animation: scrollLeft 40s linear infinite;
+  }
+  .track-right {
+    animation: scrollRight 40s linear infinite;
+    transform: translateX(-50%);
+  }
+  
+  @keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scrollRight {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  .review-card {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(24px, 4vw, 32px);
+    border-radius: 20px;
+    width: clamp(280px, 80vw, 400px);
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .r-stars {
+    color: var(--lime);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+  .r-text {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
+  .r-author {
+    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .track-left { animation-duration: 30s; }
+    .track-right { animation-duration: 30s; }
+  }
+</style>

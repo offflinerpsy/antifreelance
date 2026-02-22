@@ -1,0 +1,83 @@
+---
+---
+<section class="cta-wrap">
+  <div class="cta-bg-num">@BOT</div>
+  <h2>Хватит<br>терять<br><span class="w">клиентов</span></h2>
+  <a href="https://t.me/Gypno_Man" class="btn-primary btn-cta-big">Написать @Gypno_Man ↗</a>
+  <div class="cta-sub">Консультация бесплатно · Ответ в течение часа · 15 лет опыта</div>
+</section>
+
+<style>
+  .cta-wrap {
+    background: linear-gradient(135deg, #FF5E00 0%, #FF7A29 100%);
+    padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 40px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg-num {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px, 25vw, 300px);
+    color: rgba(0,0,0,0.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+  }
+  .cta-wrap h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto clamp(30px, 5vw, 40px);
+    position: relative;
+    z-index: 2;
+  }
+  .cta-wrap h2 .w { color: var(--white); }
+  
+  .btn-cta-big {
+    padding: clamp(16px, 3vw, 20px) clamp(32px, 5vw, 48px);
+    font-size: clamp(16px, 2vw, 18px);
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+  }
+  
+  .cta-sub {
+    color: rgba(0,0,0,0.6);
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    margin-top: clamp(16px, 3vw, 24px);
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .btn-cta-big {
+      width: auto;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // @ts-ignore
+    gsap.to('.cta-bg-num', {
+      y: '-15%',
+      ease: 'none',
+      // @ts-ignore
+      scrollTrigger: { trigger: '.cta-wrap', scrub: 1 }
+    });
+  });
+</script>
