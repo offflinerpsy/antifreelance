@@ -1,11 +1,22 @@
 ---
 const webProjects = [
-  { src: '/assets/web/D1_Website_Home_Page-1.jpg', alt: 'Web Project 1', title: 'Корпоративный портал', category: 'Web Development' },
-  { src: '/assets/web/D1_Website_Home_Page-2.jpg', alt: 'Web Project 2', title: 'Интернет-магазин', category: 'E-commerce' },
-  { src: '/assets/web/D1_Website_Home_Page-3.jpg', alt: 'Web Project 3', title: 'Лендинг', category: 'Landing Page' },
-  { src: '/assets/web/Home (4).png', alt: 'Web Project 4', title: 'Сайт-визитка', category: 'Corporate' },
-  { src: '/assets/web/home_pk.png', alt: 'Web Project 5', title: 'Многостраничный сайт', category: 'Web Development' },
-  { src: '/assets/web/image_2024-03-04_10-56-29.png', alt: 'Web Project 6', title: 'Сложный интерфейс', category: 'UI/UX Design' },
+  { src: '/assets/web/D1_Website_Home_Page-1.jpg', alt: 'Корпоративный портал', title: 'Корпоративный портал', category: 'Web Development', size: 'large' },
+  { src: '/assets/web/D1_Website_Home_Page-2.jpg', alt: 'Интернет-магазин', title: 'Интернет-магазин', category: 'E-commerce', size: 'tall' },
+  { src: '/assets/web/D1_Website_Home_Page-3.jpg', alt: 'Лендинг', title: 'Лендинг', category: 'Landing Page', size: 'small' },
+  { src: '/assets/web/Home (4).png', alt: 'Сайт-визитка', title: 'Сайт-визитка', category: 'Corporate', size: 'small' },
+  { src: '/assets/web/home_pk.png', alt: 'Многостраничный сайт', title: 'Многостраничный сайт', category: 'Web Development', size: 'wide' },
+  { src: '/assets/web/image_2024-03-04_10-56-29.png', alt: 'Сложный интерфейс', title: 'Сложный интерфейс', category: 'UI/UX Design', size: 'small' },
+  { src: '/assets/web/image_2024-03-04_10-41-30.png', alt: 'Интерфейс приложения', title: 'Интерфейс приложения', category: 'UI/UX Design', size: 'tall' },
+  { src: '/assets/web/card (2).png', alt: 'Карточка товара', title: 'Карточка товара', category: 'E-commerce', size: 'small' },
+  { src: '/assets/web/configurator - 1 (2).png', alt: 'Конфигуратор', title: 'Конфигуратор', category: 'Web App', size: 'large' },
+  { src: '/assets/web/product (2).png', alt: 'Продукт', title: 'Продукт', category: 'E-commerce', size: 'small' },
+  { src: '/assets/web/главная.png', alt: 'Главная страница', title: 'Главная страница', category: 'Web Design', size: 'wide' },
+  { src: '/assets/web/Метры,_макет_главной_страницы_30_07_2024.png', alt: 'Макет недвижимости', title: 'Макет недвижимости', category: 'Real Estate', size: 'small' },
+  { src: '/assets/web/Питание_по назначению врача_1920_1.png', alt: 'Медицинский портал', title: 'Медицинский портал', category: 'Healthcare', size: 'tall' },
+  { src: '/assets/web/проекты.png', alt: 'Проекты', title: 'Проекты', category: 'Portfolio', size: 'small' },
+  { src: '/assets/web/сontacts.png', alt: 'Контакты', title: 'Контакты', category: 'Corporate', size: 'large' },
+  { src: '/assets/web/Снимок экрана 2025-11-23 в 23.22.15.png', alt: 'Скриншот проекта', title: 'Скриншот проекта', category: 'Web App', size: 'small' },
+  { src: '/assets/web/IMG_4035.JPG', alt: 'Мобильный интерфейс', title: 'Мобильный интерфейс', category: 'Mobile Design', size: 'tall' }
 ];
 
 const upworkReviews = [
@@ -25,8 +36,8 @@ const upworkReviews = [
 
     <!-- Web Projects Grid -->
     <div class="projects-grid">
-      {webProjects.map((project, index) => (
-        <div class={`project-card project-${index + 1}`}>
+      {webProjects.map((project) => (
+        <div class={`project-card size-${project.size}`}>
           <div class="project-image-wrapper">
             <img src={project.src} alt={project.alt} loading="lazy" class="project-img" />
             <div class="project-overlay">
@@ -141,6 +152,8 @@ const upworkReviews = [
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 300px;
+    grid-auto-flow: dense;
     gap: 24px;
     margin-bottom: clamp(80px, 15vw, 150px);
   }
@@ -155,21 +168,21 @@ const upworkReviews = [
     opacity: 0;
   }
 
-  /* Complex Grid Layout */
-  .project-1 { grid-column: span 8; grid-row: span 2; aspect-ratio: 16/9; }
-  .project-2 { grid-column: span 4; grid-row: span 1; aspect-ratio: 4/3; }
-  .project-3 { grid-column: span 4; grid-row: span 1; aspect-ratio: 4/3; }
-  .project-4 { grid-column: span 4; grid-row: span 2; aspect-ratio: 3/4; }
-  .project-5 { grid-column: span 8; grid-row: span 1; aspect-ratio: 21/9; }
-  .project-6 { grid-column: span 8; grid-row: span 1; aspect-ratio: 21/9; }
+  /* Tetris Grid Sizes */
+  .size-large { grid-column: span 8; grid-row: span 2; }
+  .size-wide  { grid-column: span 8; grid-row: span 1; }
+  .size-tall  { grid-column: span 4; grid-row: span 2; }
+  .size-small { grid-column: span 4; grid-row: span 1; }
 
   @media (max-width: 1024px) {
-    .project-1, .project-4, .project-5, .project-6 { grid-column: span 12; aspect-ratio: 16/9; }
-    .project-2, .project-3 { grid-column: span 6; aspect-ratio: 4/3; }
+    .projects-grid { grid-auto-rows: 250px; }
+    .size-large, .size-wide { grid-column: span 12; }
+    .size-tall, .size-small { grid-column: span 6; }
   }
 
   @media (max-width: 768px) {
-    .project-card { grid-column: span 12 !important; aspect-ratio: 16/9 !important; }
+    .projects-grid { grid-auto-rows: 300px; display: flex; flex-direction: column; }
+    .project-card { width: 100%; height: 300px; }
   }
 
   .project-image-wrapper {
@@ -185,6 +198,10 @@ const upworkReviews = [
     object-fit: cover;
     object-position: top;
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .size-tall .project-img {
+    object-position: center;
   }
 
   .project-overlay {
