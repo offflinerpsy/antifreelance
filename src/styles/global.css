@@ -86,6 +86,7 @@ body {
 .no-js .hero-bottom,
 .no-js .hero-meta,
 .no-js .char { opacity: 1; transform: none; }
+.no-js .invert { clip-path: none; }
 
 /* Section Titles */
 .section-num {
