@@ -84,7 +84,8 @@ body {
 .no-js .line2,
 .no-js .line3,
 .no-js .hero-bottom,
-.no-js .hero-meta { opacity: 1; transform: none; }
+.no-js .hero-meta,
+.no-js .char { opacity: 1; transform: none; }
 
 /* Section Titles */
 .section-num {

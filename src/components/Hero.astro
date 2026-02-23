@@ -1,17 +1,17 @@
 ---
 ---
 <section class="hero">
-  <div class="hero-bg-text">BOT AI BOT AI</div>
+  <div class="hero-bg-text" aria-hidden="true">BOT AI BOT AI</div>
   <div class="hero-meta">
     <!-- RU: AI-автоматизация для бизнеса · 2026 -->
     <div class="hero-tag">AI Automation for Business · 2026</div>
     <div class="hero-author">@Gypno_Man</div>
   </div>
   <!-- RU: Устали терять клиентов? -->
-  <h1 id="hero-title">
-    <span class="line1">Tired of</span><br>
-    <span class="line2"><span class="invert">losing</span></span><br>
-    <span class="line3">customers?</span>
+  <h1 id="hero-title" aria-label="Tired of losing customers?">
+    <span class="line line1" data-text="Tired of">Tired of</span>
+    <span class="line line2"><span class="invert" data-text="losing">losing</span></span>
+    <span class="line line3" data-text="customers?">customers?</span>
   </h1>
   <div class="hero-bottom">
     <!-- RU: Telegram-бот отвечает мгновенно, работает 24/7 и стоит в 4–8 раз дешевле менеджера. Запуск за 2–3 дня. -->
@@ -20,7 +20,7 @@
     </p>
     <div class="hero-stats-row">
       <!-- RU: лет опыта | ботов | без выходных -->
-      <div class="h-stat"><div class="h-stat-n">15</div><div class="h-stat-l">years of experience</div></div>
+      <div class="h-stat"><div class="h-stat-n" data-count="15">15</div><div class="h-stat-l">years of experience</div></div>
       <div class="h-stat"><div class="h-stat-n">50+</div><div class="h-stat-l">bots built</div></div>
       <div class="h-stat"><div class="h-stat-n">24/7</div><div class="h-stat-l">always on</div></div>
     </div>
@@ -65,6 +65,7 @@
     margin-bottom: 20px;
     flex-wrap: wrap;
     gap: 16px;
+    opacity: 0;
   }
   .hero-tag {
     font-size: clamp(10px, 2vw, 12px);
@@ -100,11 +101,26 @@
     z-index: 2;
     max-width: 1200px;
     text-transform: uppercase;
+    /* 3D perspective for character rotation */
+    perspective: 1000px;
   }
-  /* Hide hero elements until GSAP animates them in */
-  .line1, .line2, .line3 { opacity: 0; }
-  .hero-bottom { opacity: 0; }
-  .hero-meta { opacity: 0; }
+
+  /* Each line is a block */
+  .hero h1 .line {
+    display: block;
+    overflow: hidden;
+  }
+
+  /* Individual characters (injected by JS) */
+  .hero h1 .char {
+    display: inline-block;
+    opacity: 0;
+    transform-origin: 50% 100%;
+    /* Enable 3D transforms */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
   .hero h1 .invert {
     color: var(--white);
     display: inline-block;
@@ -112,8 +128,15 @@
     padding: 0 12px;
     line-height: 1;
     margin: 4px 0;
+    overflow: hidden;
+    /* perspectivе for .invert children */
+    perspective: 800px;
+  }
+  .hero h1 .invert .char {
+    color: var(--white);
   }
 
+  /* Bottom section */
   .hero-bottom {
     position: relative;
     z-index: 2;
@@ -125,6 +148,7 @@
     flex-wrap: wrap;
     gap: 24px;
     margin-top: clamp(20px, 5vw, 32px);
+    opacity: 0;
   }
   .hero-desc {
     font-size: clamp(0.9rem, 2vw, 1rem);
@@ -141,7 +165,14 @@
     color: var(--black);
     line-height: 1;
   }
-  .h-stat-l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,0,0,0.6); margin-top: 2px; font-weight: 600; }
+  .h-stat-l {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(0,0,0,0.6);
+    margin-top: 2px;
+    font-weight: 600;
+  }
   .hero-cta {
     display: flex;
     align-items: center;
@@ -167,26 +198,140 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // ─── Custom SplitText (no plugin needed) ───
+    // Wraps each character in a <span class="char"> for animation
+    function splitTextToChars(el) {
+      const text = el.textContent || '';
+      el.textContent = '';
+      const chars = [];
+      for (const char of text) {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char === ' ' ? '\u00A0' : char; // non-breaking space for spaces
+        span.style.display = 'inline-block';
+        el.appendChild(span);
+        chars.push(span);
+      }
+      return chars;
+    }
+
+    // Split all lines into characters
+    const line1 = document.querySelector('.line1');
+    const invertEl = document.querySelector('.hero h1 .invert');
+    const line3 = document.querySelector('.line3');
+    
+    let allChars = [];
+    let line1Chars = [], line2Chars = [], line3Chars = [];
+
+    if (line1) {
+      // line1 has text directly: "Tired of"
+      line1Chars = splitTextToChars(line1);
+    }
+    if (invertEl) {
+      // line2 is inside .invert: "losing"
+      line2Chars = splitTextToChars(invertEl);
+    }
+    if (line3) {
+      // line3: "customers?"
+      line3Chars = splitTextToChars(line3);
+    }
+
+    allChars = [...line1Chars, ...line2Chars, ...line3Chars];
+
+    // ─── Detect motion preference ───
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      // No fancy animation — just show everything
+      allChars.forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
+      const meta = document.querySelector('.hero-meta');
+      const bottom = document.querySelector('.hero-bottom');
+      if (meta) meta.style.opacity = '1';
+      if (bottom) bottom.style.opacity = '1';
+      return;
+    }
+
     // @ts-ignore
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
-      // Desktop animations — use .set() + .to() instead of .from() to prevent flash
+      // ─── DESKTOP: Cinematic character-by-character reveal ───
+      
+      // Set initial state for chars: rotated, translated, invisible
       // @ts-ignore
-      gsap.set('.line1, .line2, .line3', { y: 120, opacity: 0 });
+      gsap.set(line1Chars, { 
+        rotationX: -90, 
+        y: 80, 
+        opacity: 0,
+        transformOrigin: '50% 100%'
+      });
       // @ts-ignore
-      gsap.set('.hero-bottom', { y: 30, opacity: 0 });
+      gsap.set(line2Chars, { 
+        rotationX: 90, 
+        y: -60, 
+        opacity: 0,
+        scaleY: 0.3,
+        transformOrigin: '50% 0%'
+      });
       // @ts-ignore
-      gsap.set('.hero-meta', { y: -20, opacity: 0 });
+      gsap.set(line3Chars, { 
+        rotationX: -90, 
+        y: 80, 
+        opacity: 0,
+        transformOrigin: '50% 100%'
+      });
 
       // @ts-ignore
-      const tl = gsap.timeline();
-      tl.to('.line1', { y: 0, opacity: 1, duration: 0.7, ease: 'power4.out' }, 0.1)
-        .to('.line2', { y: 0, opacity: 1, duration: 0.7, ease: 'power4.out' }, 0.25)
-        .to('.line3', { y: 0, opacity: 1, duration: 0.7, ease: 'power4.out' }, 0.4)
-        .to('.hero-bottom', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.7)
-        .to('.hero-meta', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.1);
+      gsap.set('.hero-bottom', { y: 40, opacity: 0 });
+      // @ts-ignore
+      gsap.set('.hero-meta', { y: -30, opacity: 0 });
 
+      // @ts-ignore
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+      // Meta bar fades in first
+      tl.to('.hero-meta', { opacity: 1, y: 0, duration: 0.6 }, 0);
+
+      // Line 1: "Tired of" — characters flip in from below, one by one
+      tl.to(line1Chars, {
+        rotationX: 0,
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.04,
+        ease: 'back.out(2)',
+      }, 0.2);
+
+      // Line 2 "LOSING" (inverted) — characters drop in from top with scale
+      tl.to(line2Chars, {
+        rotationX: 0,
+        y: 0,
+        opacity: 1,
+        scaleY: 1,
+        duration: 0.7,
+        stagger: 0.05,
+        ease: 'elastic.out(1, 0.5)',
+      }, 0.6);
+
+      // Line 3: "customers?" — same flip from below, slightly delayed
+      tl.to(line3Chars, {
+        rotationX: 0,
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.03,
+        ease: 'back.out(1.7)',
+      }, 0.9);
+
+      // Bottom bar (desc, stats, CTA) — slides up
+      tl.to('.hero-bottom', {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power2.out'
+      }, 1.4);
+
+      // Parallax on scroll for background text
       // @ts-ignore
       gsap.to('.hero-bg-text', {
         y: '-20%',
@@ -197,19 +342,43 @@
     });
 
     mm.add("(max-width: 767px)", () => {
-      // Mobile animations (lighter) — use .set() + .to()
+      // ─── MOBILE: Lighter but still impressive character animation ───
+      
       // @ts-ignore
-      gsap.set('.line1, .line2, .line3', { y: 50, opacity: 0 });
+      gsap.set(line1Chars, { y: 40, opacity: 0, rotationX: -45 });
+      // @ts-ignore
+      gsap.set(line2Chars, { y: -30, opacity: 0, rotationX: 45 });
+      // @ts-ignore
+      gsap.set(line3Chars, { y: 40, opacity: 0, rotationX: -45 });
       // @ts-ignore
       gsap.set('.hero-bottom', { y: 20, opacity: 0 });
       // @ts-ignore
       gsap.set('.hero-meta', { opacity: 0 });
 
       // @ts-ignore
-      const tl = gsap.timeline();
-      tl.to('.line1, .line2, .line3', { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }, 0.1)
-        .to('.hero-bottom', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.5)
-        .to('.hero-meta', { opacity: 1, duration: 0.5 }, 0.1);
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.to('.hero-meta', { opacity: 1, duration: 0.4 }, 0);
+
+      tl.to(line1Chars, {
+        y: 0, opacity: 1, rotationX: 0,
+        duration: 0.5, stagger: 0.03
+      }, 0.15);
+
+      tl.to(line2Chars, {
+        y: 0, opacity: 1, rotationX: 0,
+        duration: 0.5, stagger: 0.04,
+        ease: 'back.out(1.5)'
+      }, 0.4);
+
+      tl.to(line3Chars, {
+        y: 0, opacity: 1, rotationX: 0,
+        duration: 0.5, stagger: 0.03
+      }, 0.6);
+
+      tl.to('.hero-bottom', {
+        opacity: 1, y: 0, duration: 0.5
+      }, 0.9);
     });
   });
 </script>
