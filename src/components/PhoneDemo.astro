@@ -1,0 +1,688 @@
+---
+/* RU:
+  Анимированный макет смартфона, демонстрирующий AI-бота в действии:
+  1. Экран чата — пользователь пишет, бот отвечает
+  2. Экран календаря — сканер ищет свободную дату
+  3. Подтверждение — бронирование подтверждено
+  Бесконечный цикл на GSAP.
+*/
+---
+
+<section class="phone-section" id="demo">
+  <!-- RU: 03 — Демо / Посмотрите, как это работает -->
+  <div class="phone-layout">
+    <div class="phone-text">
+      <div class="section-num reveal">03 — Live Demo</div>
+      <h2 class="section-big-title reveal">See how it<br><span class="accent">actually works</span></h2>
+      <p class="phone-subtitle reveal">Your AI assistant handles the entire booking flow — from first message to confirmed appointment. No human needed.</p>
+    </div>
+    <div class="phone-device-wrap reveal">
+      <div class="phone-glow"></div>
+      <div class="phone-device" id="phone-device">
+        <!-- Status bar -->
+        <div class="ph-statusbar">
+          <span class="ph-time">9:41</span>
+          <div class="ph-notch"></div>
+          <div class="ph-icons">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="17" y="4" width="5" height="16" rx="1"/><rect x="11" y="8" width="5" height="12" rx="1"/><rect x="5" y="12" width="5" height="8" rx="1"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><rect x="21" y="10" width="2" height="4" rx="0.5"/><rect x="4" y="8" width="10" height="8" rx="1" fill="currentColor"/></svg>
+          </div>
+        </div>
+
+        <!-- Screen container -->
+        <div class="ph-screens">
+
+          <!-- SCREEN 1: Chat -->
+          <div class="ph-screen" id="ph-chat">
+            <div class="ph-chat-header">
+              <div class="ph-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><circle cx="12" cy="5" r="4"/></svg>
+              </div>
+              <div>
+                <div class="ph-chat-name">BotStudio AI</div>
+                <div class="ph-chat-status">Online</div>
+              </div>
+            </div>
+            <div class="ph-chat-body">
+              <div class="ph-msg ph-msg-user" id="ph-msg-user">
+                I need to book a haircut for Saturday
+              </div>
+              <div class="ph-msg ph-msg-bot" id="ph-msg-bot">
+                <span class="ph-typing" id="ph-typing">
+                  <span></span><span></span><span></span>
+                </span>
+                <span class="ph-bot-text" id="ph-bot-text">Got it! Let me find available slots for Saturday...</span>
+              </div>
+            </div>
+            <div class="ph-chat-input">
+              <div class="ph-input-bar">Type a message...</div>
+              <div class="ph-send-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 2: Calendar -->
+          <div class="ph-screen" id="ph-calendar">
+            <div class="ph-cal-header">
+              <span class="ph-cal-title">October 2026</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="ph-cal-days">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+            <div class="ph-cal-grid" id="ph-cal-grid">
+              <!-- Row 1: 28 29 30 1 2 3 4 -->
+              <span class="ph-day ph-day-muted">28</span>
+              <span class="ph-day ph-day-muted">29</span>
+              <span class="ph-day ph-day-muted">30</span>
+              <span class="ph-day">1</span>
+              <span class="ph-day">2</span>
+              <span class="ph-day" id="ph-day-target">3</span>
+              <span class="ph-day">4</span>
+              <!-- Row 2: 5 6 7 8 9 10 11 -->
+              <span class="ph-day">5</span>
+              <span class="ph-day">6</span>
+              <span class="ph-day">7</span>
+              <span class="ph-day">8</span>
+              <span class="ph-day">9</span>
+              <span class="ph-day">10</span>
+              <span class="ph-day">11</span>
+              <!-- Row 3: 12 13 14 15 16 17 18 -->
+              <span class="ph-day">12</span>
+              <span class="ph-day">13</span>
+              <span class="ph-day">14</span>
+              <span class="ph-day">15</span>
+              <span class="ph-day">16</span>
+              <span class="ph-day">17</span>
+              <span class="ph-day">18</span>
+            </div>
+            <!-- Scanner line -->
+            <div class="ph-scanner" id="ph-scanner"></div>
+            <!-- Time slots -->
+            <div class="ph-slots" id="ph-slots">
+              <div class="ph-slot-label">Available on Sat, Oct 3</div>
+              <div class="ph-slot" id="ph-slot-1">
+                <span class="ph-slot-time">10:00 AM</span>
+                <span class="ph-slot-tag">Available</span>
+              </div>
+              <div class="ph-slot" id="ph-slot-2">
+                <span class="ph-slot-time">2:30 PM</span>
+                <span class="ph-slot-tag">Available</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 3: Confirmation -->
+          <div class="ph-screen" id="ph-confirm">
+            <div class="ph-confirm-card" id="ph-confirm-card">
+              <div class="ph-confirm-icon" id="ph-confirm-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </div>
+              <div class="ph-confirm-title">Booked!</div>
+              <div class="ph-confirm-detail">
+                <div class="ph-confirm-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Saturday, Oct 3
+                </div>
+                <div class="ph-confirm-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  10:00 AM
+                </div>
+                <div class="ph-confirm-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Beauty Salon &middot; downtown
+                </div>
+              </div>
+              <div class="ph-confirm-btn">View in Calendar</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Home indicator -->
+        <div class="ph-home-ind"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ═══ SECTION ═══ */
+  .phone-section {
+    background: var(--black);
+    padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 40px);
+    overflow: hidden;
+  }
+  .phone-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .phone-subtitle {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    max-width: 440px;
+  }
+
+  @media (max-width: 900px) {
+    .phone-layout {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .phone-subtitle { margin: 0 auto; }
+    .phone-device-wrap { justify-self: center; }
+  }
+
+  /* ═══ PHONE DEVICE ═══ */
+  .phone-device-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .phone-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    height: 360px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,94,0,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .phone-device {
+    position: relative;
+    width: 280px;
+    height: 580px;
+    background: #1a1a1a;
+    border-radius: 40px;
+    border: 3px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.05),
+      0 25px 60px rgba(0,0,0,0.6),
+      0 0 80px rgba(255,94,0,0.08);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Status bar */
+  .ph-statusbar {
+    height: 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 20px 8px;
+    background: #1a1a1a;
+    position: relative;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+  .ph-time {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .ph-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 28px;
+    background: #000;
+    border-radius: 0 0 18px 18px;
+  }
+  .ph-icons {
+    display: flex;
+    gap: 4px;
+    color: var(--white);
+    opacity: 0.7;
+  }
+
+  /* ═══ SCREENS CONTAINER ═══ */
+  .ph-screens {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+  }
+  .ph-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  #ph-chat { opacity: 1; } /* Default visible */
+
+  /* ═══ CHAT SCREEN ═══ */
+  .ph-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #1a1a1a;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ph-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .ph-chat-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .ph-chat-status {
+    font-size: 10px;
+    color: var(--lime);
+    font-weight: 500;
+  }
+  .ph-chat-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px 14px 16px;
+    gap: 12px;
+  }
+
+  /* Messages */
+  .ph-msg {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  .ph-msg-user {
+    align-self: flex-end;
+    background: var(--orange);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .ph-msg-bot {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    border-bottom-left-radius: 4px;
+  }
+  .ph-bot-text { display: none; }
+
+  /* Typing dots */
+  .ph-typing {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    height: 18px;
+  }
+  .ph-typing span {
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    animation: typingBounce 1.2s infinite;
+  }
+  .ph-typing span:nth-child(2) { animation-delay: 0.15s; }
+  .ph-typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes typingBounce {
+    0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Chat input */
+  .ph-chat-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #1a1a1a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .ph-input-bar {
+    flex: 1;
+    height: 36px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+  .ph-send-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  /* ═══ CALENDAR SCREEN ═══ */
+  #ph-calendar {
+    background: #111;
+  }
+  .ph-cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ph-cal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .ph-cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 10px 12px 4px;
+    gap: 0;
+  }
+  .ph-cal-days span {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+  .ph-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 6px 12px;
+    gap: 4px;
+    position: relative;
+  }
+  .ph-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+  .ph-day-muted {
+    color: rgba(255,255,255,0.15);
+  }
+  #ph-day-target {
+    position: relative;
+  }
+
+  /* Scanner */
+  .ph-scanner {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 105px; /* adjusted to align with calendar grid */
+    height: 2px;
+    background: var(--orange);
+    box-shadow: 0 0 12px rgba(255,94,0,0.6), 0 0 30px rgba(255,94,0,0.2);
+    border-radius: 2px;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* Time slots */
+  .ph-slots {
+    padding: 12px 16px;
+    opacity: 0;
+  }
+  .ph-slot-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .ph-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+  }
+  .ph-slot-time {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .ph-slot-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--lime);
+    background: rgba(221,245,22,0.1);
+    padding: 3px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ═══ CONFIRMATION SCREEN ═══ */
+  #ph-confirm {
+    background: #111;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .ph-confirm-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  .ph-confirm-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,94,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .ph-confirm-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    margin-bottom: 16px;
+  }
+  .ph-confirm-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .ph-confirm-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+  .ph-confirm-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--orange);
+    color: #fff;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Home indicator */
+  .ph-home-ind {
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    flex-shrink: 0;
+  }
+  .ph-home-ind::after {
+    content: '';
+    width: 100px;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 600px) {
+    .phone-device {
+      width: 240px;
+      height: 500px;
+      border-radius: 32px;
+    }
+    .ph-notch { width: 80px; height: 24px; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof gsap === 'undefined') return;
+
+    // Helper: promisified gsap.to
+    function anim(target, props, opts) {
+      return new Promise(function (resolve) {
+        gsap.to(target, Object.assign({}, props, opts, { onComplete: resolve }));
+      });
+    }
+    function setImm(target, props) {
+      gsap.set(target, props);
+    }
+    function wait(sec) {
+      return new Promise(function (r) { setTimeout(r, sec * 1000); });
+    }
+
+    var running = true;
+
+    async function loop() {
+      while (running) {
+        // ─── RESET ───
+        setImm('#ph-chat', { opacity: 1, x: '0%' });
+        setImm('#ph-calendar', { opacity: 0, x: '100%' });
+        setImm('#ph-confirm', { opacity: 0 });
+        setImm('#ph-msg-user', { opacity: 0, y: 10, scale: 0.95 });
+        setImm('#ph-msg-bot', { opacity: 0, y: 10, scale: 0.95 });
+        setImm('#ph-typing', { display: 'inline-flex' });
+        setImm('#ph-bot-text', { display: 'none' });
+        setImm('#ph-scanner', { opacity: 0, y: 0 });
+        setImm('#ph-day-target', { background: 'transparent', color: 'rgba(255,255,255,0.7)', scale: 1 });
+        setImm('#ph-slots', { opacity: 0, y: 10 });
+        setImm('#ph-slot-1', { background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.06)' });
+        setImm('#ph-confirm-card', { opacity: 0, scale: 0.85, y: 20 });
+
+        await wait(0.6);
+
+        // ─── 1. USER MESSAGE ───
+        await anim('#ph-msg-user', { opacity: 1, y: 0, scale: 1 }, { duration: 0.4, ease: 'back.out(1.7)' });
+        await wait(0.8);
+
+        // ─── 2. BOT TYPING → REPLY ───
+        await anim('#ph-msg-bot', { opacity: 1, y: 0, scale: 1 }, { duration: 0.4, ease: 'back.out(1.7)' });
+        await wait(1.2);
+        // Switch typing dots to actual text
+        setImm('#ph-typing', { display: 'none' });
+        setImm('#ph-bot-text', { display: 'inline' });
+        await wait(1.5);
+
+        // ─── 3. TRANSITION: Chat → Calendar ───
+        await Promise.all([
+          anim('#ph-chat', { x: '-100%', opacity: 0 }, { duration: 0.5, ease: 'power2.inOut' }),
+          anim('#ph-calendar', { x: '0%', opacity: 1 }, { duration: 0.5, ease: 'power2.inOut' })
+        ]);
+        await wait(0.3);
+
+        // ─── 4. SCANNER SWEEP ───
+        await anim('#ph-scanner', { opacity: 1 }, { duration: 0.15 });
+        await anim('#ph-scanner', { y: 110 }, { duration: 1.0, ease: 'none' });
+        await anim('#ph-scanner', { opacity: 0 }, { duration: 0.15 });
+
+        // ─── 5. HIGHLIGHT TARGET DATE ───
+        await anim('#ph-day-target', {
+          background: 'var(--orange)',
+          color: '#fff',
+          scale: 1.25
+        }, { duration: 0.3, ease: 'back.out(2)' });
+        await wait(0.3);
+
+        // ─── 6. SHOW TIME SLOTS ───
+        await anim('#ph-slots', { opacity: 1, y: 0 }, { duration: 0.4, ease: 'power2.out' });
+        await wait(0.5);
+
+        // ─── 7. TAP FIRST SLOT ───
+        await anim('#ph-slot-1', { scale: 0.95 }, { duration: 0.08 });
+        await anim('#ph-slot-1', {
+          scale: 1,
+          background: 'var(--orange)',
+          borderColor: 'var(--orange)'
+        }, { duration: 0.2, ease: 'back.out(1.5)' });
+        await wait(0.6);
+
+        // ─── 8. TRANSITION: Calendar → Confirmation ───
+        await anim('#ph-calendar', { opacity: 0 }, { duration: 0.3 });
+        setImm('#ph-confirm', { opacity: 1 });
+        await anim('#ph-confirm-card', { opacity: 1, scale: 1, y: 0 }, { duration: 0.5, ease: 'back.out(1.7)' });
+
+        // ─── 9. HOLD ───
+        await wait(3.0);
+
+        // ─── 10. FADE OUT → LOOP ───
+        await anim('#ph-confirm', { opacity: 0 }, { duration: 0.4 });
+      }
+    }
+
+    // Only start when phone is visible on screen
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.create({
+        trigger: '#phone-device',
+        start: 'top 90%',
+        once: true,
+        onEnter: function () { loop(); }
+      });
+    } else {
+      loop();
+    }
+  });
+</script>
