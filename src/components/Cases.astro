@@ -154,7 +154,7 @@ const cases = [
     border-radius: 20px;
     padding: clamp(24px, 3vw, 36px);
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
     /* GSAP will animate opacity/y in */
     opacity: 0;
     transform: translateY(48px);
@@ -173,10 +173,12 @@ const cases = [
   }
   /* Even cards get lime accent */
   .case-item:nth-child(even)::before { background: var(--lime); }
-  .case-item:hover::before { clip-path: circle(160% at 0% 100%); }
+  .case-item:hover::before,
+  .case-item:active::before { clip-path: circle(160% at 0% 100%); }
 
   /* Card border pulse on hover */
-  .case-item:hover {
+  .case-item:hover,
+  .case-item:active {
     border-color: transparent;
   }
 
@@ -194,7 +196,8 @@ const cases = [
     transition: color 0.52s, transform 0.52s;
     user-select: none;
   }
-  .case-item:hover .ci-num {
+  .case-item:hover .ci-num,
+  .case-item:active .ci-num {
     color: rgba(0,0,0,0.08);
     transform: scale(1.05) translateY(-6px);
   }
@@ -211,7 +214,8 @@ const cases = [
     transition: color 0.3s, transform 0.4s;
     flex-shrink: 0;
   }
-  .case-item:hover .ci-icon {
+  .case-item:hover .ci-icon,
+  .case-item:active .ci-icon {
     color: var(--black);
     transform: scale(1.15);
   }
@@ -233,7 +237,8 @@ const cases = [
     z-index: 1;
     transition: color 0.3s;
   }
-  .case-item:hover .ci-title { color: var(--black); }
+  .case-item:hover .ci-title,
+  .case-item:active .ci-title { color: var(--black); }
 
   /* Featured card: bigger title */
   .ci-featured .ci-title {
@@ -249,7 +254,8 @@ const cases = [
     z-index: 1;
     transition: color 0.3s;
   }
-  .case-item:hover .ci-desc { color: rgba(0,0,0,0.75); }
+  .case-item:hover .ci-desc,
+  .case-item:active .ci-desc { color: rgba(0,0,0,0.75); }
 
   /* Featured card: larger desc */
   .ci-featured .ci-desc {

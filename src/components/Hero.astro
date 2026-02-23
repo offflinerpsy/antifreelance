@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vh, 80px);
+    padding: clamp(100px, 14vh, 140px) clamp(20px, 5vw, 60px) clamp(40px, 6vh, 80px);
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, #FF5E00 0%, #FF7A29 100%);
@@ -113,7 +113,7 @@
   /* ═══ H1: THE BIG TEXT ═══ */
   .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 17vw, 22rem);
+    font-size: clamp(3.5rem, 13vw, 14rem);
     line-height: 0.88;
     letter-spacing: -0.02em;
     color: var(--black);
@@ -125,8 +125,8 @@
   }
   .hero h1 .line {
     display: block;
-    /* NO overflow:hidden — it clips character rotation animations */
     padding-bottom: 4px;
+    visibility: hidden; /* Prevent flash of raw text before GSAP char-split */
   }
 
   /* Individual characters (injected by JS) */
@@ -229,9 +229,11 @@
   document.addEventListener("DOMContentLoaded", function () {
     // ─── Guard: bail if GSAP CDN failed to load ───
     if (typeof gsap === 'undefined') {
-      // Fallback: just show everything without animation
       document.querySelectorAll('.hero-meta, .hero-bottom').forEach(function(el) {
         el.style.opacity = '1';
+      });
+      document.querySelectorAll('.hero h1 .line').forEach(function(el) {
+        el.style.visibility = 'visible';
       });
       var inv = document.querySelector('.hero h1 .invert');
       if (inv) inv.style.clipPath = 'inset(0 0 0 0)';
@@ -265,6 +267,9 @@
     var c3 = line3El ? splitChars(line3El) : [];
     var allChars = c1.concat(c2, c3);
 
+    // Reveal line containers now that chars are split (hidden in CSS to prevent FOUT)
+    document.querySelectorAll('.hero h1 .line').forEach(function(el) { el.style.visibility = 'visible'; });
+
     // ─── Counter animation helper ───
     function animateCounters() {
       document.querySelectorAll('.h-stat-n[data-count]').forEach(function(el) {
@@ -294,9 +299,9 @@
     // ═══════════════════════════════════════════
     mm.add("(min-width: 768px)", function() {
       // Initial states — characters invisible and rotated
-      gsap.set(c1, { rotateY: 90, x: 40, opacity: 0, transformOrigin: '0% 50%' });
+      gsap.set(c1, { rotateY: 90, opacity: 0, transformOrigin: '0% 50%' });
       gsap.set(c2, { rotateX: -90, y: 60, opacity: 0, transformOrigin: '50% 0%' });
-      gsap.set(c3, { rotateY: -90, x: -40, opacity: 0, transformOrigin: '100% 50%' });
+      gsap.set(c3, { rotateY: -90, opacity: 0, transformOrigin: '100% 50%' });
       gsap.set('.hero-bottom', { y: 60, opacity: 0 });
       gsap.set('.hero-meta', { y: -20, opacity: 0 });
 
@@ -311,7 +316,7 @@
 
       // 0.3s — "TIRED OF" — airport departure board flip
       tl.to(c1, {
-        rotateY: 0, x: 0, opacity: 1,
+        rotateY: 0, opacity: 1,
         duration: 1.0,
         stagger: { each: 0.06, ease: 'power2.in' },
         ease: 'back.out(1.4)',
@@ -334,7 +339,7 @@
 
       // 1.5s — "CUSTOMERS?" — chars rotate in from right
       tl.to(c3, {
-        rotateY: 0, x: 0, opacity: 1,
+        rotateY: 0, opacity: 1,
         duration: 1.0,
         stagger: { each: 0.04, ease: 'power1.in' },
         ease: 'back.out(1.7)',

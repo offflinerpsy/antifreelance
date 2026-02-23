@@ -137,9 +137,11 @@ import CTA from '../components/CTA.astro';
     padding: clamp(24px, 5vw, 36px);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     transition: border-color 0.3s, transform 0.3s, background 0.3s;
   }
-  .feat-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .feat-card:hover,
+  .feat-card:active { border-color: var(--orange); transform: translateY(-4px); }
   .feat-card.bg-orange { background: var(--orange); border-color: var(--orange); }
   .feat-card.bg-lime { background: var(--lime); color: var(--black); border-color: var(--lime); }
   .feat-card.bg-white { background: var(--white); color: var(--black); border-color: var(--white); }
