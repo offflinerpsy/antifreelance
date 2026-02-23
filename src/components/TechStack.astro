@@ -1,0 +1,123 @@
+---
+const techStack = [
+  { name: 'OpenAI', icon: '/assets/tech/openai.svg' },
+  { name: 'Gemini', icon: '/assets/tech/gemini.svg' },
+  { name: 'Claude', icon: '/assets/tech/claude.svg' },
+  { name: '1C', icon: '/assets/tech/1c.svg' },
+  { name: 'Bitrix24', icon: '/assets/tech/bitrix24.svg' },
+  { name: 'amoCRM', icon: '/assets/tech/amocrm.svg' },
+  { name: 'YClients', icon: '/assets/tech/yclients.svg' },
+  { name: 'Google Calendar', icon: '/assets/tech/google-calendar.svg' },
+  { name: 'WordPress', icon: '/assets/tech/wordpress.svg' },
+  { name: 'MODX', icon: '/assets/tech/modx.svg' },
+];
+---
+
+<section class="tech-stack-section">
+  <div class="container">
+    <div class="carousel-container">
+      <div class="carousel-track">
+        {techStack.map((tech) => (
+          <div class="tech-item">
+            <img src={tech.icon} alt={tech.name} class="tech-icon" loading="lazy" />
+            <span class="tech-name">{tech.name}</span>
+          </div>
+        ))}
+        {/* Duplicate for infinite scroll */}
+        {techStack.map((tech) => (
+          <div class="tech-item">
+            <img src={tech.icon} alt={tech.name} class="tech-icon" loading="lazy" />
+            <span class="tech-name">{tech.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-stack-section {
+    padding: 40px 0;
+    background: var(--black);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
+    animation: scrollTech 30s linear infinite;
+  }
+
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+    filter: grayscale(100%) opacity(0.5);
+  }
+
+  .tech-item:hover {
+    filter: grayscale(0%) opacity(1);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--orange);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(255, 107, 0, 0.1);
+  }
+
+  .tech-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .tech-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  @keyframes scrollTech {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 30px)); } /* -50% of total width minus half the gap */
+  }
+
+  @media (max-width: 768px) {
+    .tech-item {
+      padding: 10px 20px;
+    }
+    .tech-name {
+      font-size: 0.9rem;
+    }
+    .carousel-track {
+      gap: 40px;
+    }
+    @keyframes scrollTech {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 20px)); }
+    }
+  }
+</style>
