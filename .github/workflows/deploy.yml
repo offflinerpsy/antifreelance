@@ -1,0 +1,97 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro project
+        run: npm run build
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 89.23.96.192 >> ~/.ssh/known_hosts
+
+      - name: Setup Nginx on server (idempotent)
+        run: |
+          ssh -i ~/.ssh/id_rsa root@89.23.96.192 << 'EOF'
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get update -qq
+            apt-get install -y -qq nginx
+            systemctl enable nginx
+            systemctl start nginx
+            mkdir -p /var/www/antifreelance
+          EOF
+
+      - name: Deploy static files
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            ./dist/ root@89.23.96.192:/var/www/antifreelance/
+
+      - name: Configure Nginx site
+        run: |
+          ssh -i ~/.ssh/id_rsa root@89.23.96.192 << 'EOF'
+            cat > /etc/nginx/sites-available/antifreelance << 'NGINX'
+server {
+    listen 80;
+    server_name 89.23.96.192;
+
+    root /var/www/antifreelance;
+    index index.html;
+
+    # Gzip compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml image/svg+xml;
+    gzip_min_length 1000;
+
+    # Cache static assets
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|webp|woff2|woff)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    location / {
+        try_files $uri $uri/ $uri.html /index.html;
+    }
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+}
+NGINX
+
+            ln -sf /etc/nginx/sites-available/antifreelance /etc/nginx/sites-enabled/antifreelance
+            rm -f /etc/nginx/sites-enabled/default
+            nginx -t && systemctl reload nginx
+          EOF
+
+      - name: Health check
+        run: |
+          sleep 3
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://89.23.96.192)
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Health check failed with status $STATUS"
+            exit 1
+          fi
+          echo "Site is live at http://89.23.96.192"
