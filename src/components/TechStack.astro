@@ -1,8 +1,16 @@
 ---
 const techStack = [
-  { name: 'OpenAI', icon: '/assets/tech/openai.svg' },
-  { name: 'Gemini', icon: '/assets/tech/gemini.svg' },
-  { name: 'Claude', icon: '/assets/tech/claude.svg' },
+  { name: 'Anthropic', icon: '/assets/logos/anthropic.png' },
+  { name: 'Claude', icon: '/assets/logos/claude.png' },
+  { name: 'Gemini', icon: '/assets/logos/gemini.png' },
+  { name: 'GitHub', icon: '/assets/logos/github.png' },
+  { name: 'Groq', icon: '/assets/logos/groq.png' },
+  { name: 'Meta', icon: '/assets/logos/meta.png' },
+  { name: 'Microsoft', icon: '/assets/logos/microsoft.png' },
+  { name: 'Mistral', icon: '/assets/logos/mistral.png' },
+  { name: 'Ollama', icon: '/assets/logos/ollama.png' },
+  { name: 'OpenAI', icon: '/assets/logos/openai.png' },
+  { name: 'Qwen', icon: '/assets/logos/qwen.png' },
   { name: '1C', icon: '/assets/tech/1c.svg' },
   { name: 'Bitrix24', icon: '/assets/tech/bitrix24.svg' },
   { name: 'amoCRM', icon: '/assets/tech/amocrm.svg' },
@@ -71,9 +79,6 @@ const techStack = [
     align-items: center;
     gap: 12px;
     padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 100px;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: default;
     filter: grayscale(100%) opacity(0.5);
@@ -81,10 +86,6 @@ const techStack = [
 
   .tech-item:hover {
     filter: grayscale(0%) opacity(1);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--orange);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(255, 107, 0, 0.1);
   }
 
   .tech-icon {
