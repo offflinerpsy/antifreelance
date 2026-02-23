@@ -101,6 +101,10 @@
     max-width: 1200px;
     text-transform: uppercase;
   }
+  /* Hide hero elements until GSAP animates them in */
+  .line1, .line2, .line3 { opacity: 0; }
+  .hero-bottom { opacity: 0; }
+  .hero-meta { opacity: 0; }
   .hero h1 .invert {
     color: var(--white);
     display: inline-block;
@@ -167,14 +171,21 @@
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
-      // Desktop animations
+      // Desktop animations — use .set() + .to() instead of .from() to prevent flash
+      // @ts-ignore
+      gsap.set('.line1, .line2, .line3', { y: 120, opacity: 0 });
+      // @ts-ignore
+      gsap.set('.hero-bottom', { y: 30, opacity: 0 });
+      // @ts-ignore
+      gsap.set('.hero-meta', { y: -20, opacity: 0 });
+
       // @ts-ignore
       const tl = gsap.timeline();
-      tl.from('.line1', { y: 120, opacity: 0, duration: 0.7, ease: 'power4.out' }, 0.1)
-        .from('.line2', { y: 120, opacity: 0, duration: 0.7, ease: 'power4.out' }, 0.25)
-        .from('.line3', { y: 120, opacity: 0, duration: 0.7, ease: 'power4.out' }, 0.4)
-        .from('.hero-bottom', { opacity: 0, y: 30, duration: 0.6, ease: 'power2.out' }, 0.7)
-        .from('.hero-meta', { opacity: 0, y: -20, duration: 0.5, ease: 'power2.out' }, 0.1);
+      tl.to('.line1', { y: 0, opacity: 1, duration: 0.7, ease: 'power4.out' }, 0.1)
+        .to('.line2', { y: 0, opacity: 1, duration: 0.7, ease: 'power4.out' }, 0.25)
+        .to('.line3', { y: 0, opacity: 1, duration: 0.7, ease: 'power4.out' }, 0.4)
+        .to('.hero-bottom', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.7)
+        .to('.hero-meta', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.1);
 
       // @ts-ignore
       gsap.to('.hero-bg-text', {
@@ -186,14 +197,19 @@
     });
 
     mm.add("(max-width: 767px)", () => {
-      // Mobile animations (lighter)
+      // Mobile animations (lighter) — use .set() + .to()
+      // @ts-ignore
+      gsap.set('.line1, .line2, .line3', { y: 50, opacity: 0 });
+      // @ts-ignore
+      gsap.set('.hero-bottom', { y: 20, opacity: 0 });
+      // @ts-ignore
+      gsap.set('.hero-meta', { opacity: 0 });
+
       // @ts-ignore
       const tl = gsap.timeline();
-      tl.from('.line1, .line2, .line3', { y: 50, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out' }, 0.1)
-        .from('.hero-bottom', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, 0.5)
-        .from('.hero-meta', { opacity: 0, duration: 0.5 }, 0.1);
-        
-      // Disable heavy parallax on mobile to save battery and prevent jank
+      tl.to('.line1, .line2, .line3', { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' }, 0.1)
+        .to('.hero-bottom', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.5)
+        .to('.hero-meta', { opacity: 1, duration: 0.5 }, 0.1);
     });
   });
 </script>

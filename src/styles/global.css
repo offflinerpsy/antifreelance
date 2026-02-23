@@ -78,8 +78,13 @@ body {
   .reveal { opacity: 1; transform: none; }
 }
 
-/* JS fallback — show reveals if GSAP fails to load */
-.no-js .reveal { opacity: 1; transform: none; }
+/* JS fallback — show content if GSAP fails to load */
+.no-js .reveal,
+.no-js .line1,
+.no-js .line2,
+.no-js .line3,
+.no-js .hero-bottom,
+.no-js .hero-meta { opacity: 1; transform: none; }
 
 /* Section Titles */
 .section-num {
