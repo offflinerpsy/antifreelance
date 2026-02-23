@@ -252,17 +252,6 @@
     var c3 = line3El ? splitChars(line3El) : [];
     var allChars = c1.concat(c2, c3);
 
-    // ─── Reduced-motion safety ───
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      allChars.forEach(function(c) { c.style.opacity = '1'; c.style.transform = 'none'; });
-      var invR = document.querySelector('.hero h1 .invert');
-      if (invR) invR.style.clipPath = 'inset(0 0 0 0)';
-      document.querySelectorAll('.hero-meta, .hero-bottom').forEach(function(el) {
-        el.style.opacity = '1';
-      });
-      return;
-    }
-
     // ─── Counter animation helper ───
     function animateCounters() {
       document.querySelectorAll('.h-stat-n[data-count]').forEach(function(el) {

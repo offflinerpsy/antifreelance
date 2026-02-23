@@ -67,17 +67,6 @@ body {
   box-shadow: 0 2px 8px rgba(221, 245, 22, 0.2);
 }
 
-/* Respect reduced-motion preference */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  .reveal { opacity: 1; transform: none; }
-}
-
 /* JS fallback — show content if GSAP fails to load */
 .no-js .reveal,
 .no-js .line1,
