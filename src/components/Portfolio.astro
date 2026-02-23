@@ -1,154 +1,164 @@
 ---
 import TelegramChat from './TelegramChat.astro';
 
+/*
+  RU: Original Russian bot conversations preserved as reference.
+  See git history for full Russian versions.
+*/
 const botCases = [
   {
     theme: 'dark',
     botName: 'BeautyBot',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Привет! Я AI-ассистент салона красоты. Чем могу помочь?', time: '10:00', buttons: [[{text: '💇‍♀️ Записаться'}, {text: '💰 Прайс-лист'}], [{text: '📍 Как добраться'}]] },
-      { type: 'user', text: 'Прайс-лист', time: '10:01' },
-      { type: 'bot', text: 'Наши основные услуги:\n\n✂️ Стрижка женская — от 2000₽\n💅 Маникюр с покрытием — от 1800₽\n💆‍♀️ Окрашивание — от 4500₽\n\nХотите записаться?', time: '10:01', buttons: [[{text: '📅 Выбрать время'}, {text: '👩‍🎨 Выбрать мастера'}]] },
-      { type: 'user', text: 'Выбрать мастера', time: '10:02' },
-      { type: 'bot', text: 'Выберите специалиста:', time: '10:02', buttons: [[{text: 'Анна (Топ-стилист)'}], [{text: 'Мария (Стилист)'}], [{text: 'Елена (Мастер маникюра)'}]] }
+      { type: 'bot', text: 'Hi! I\'m the beauty salon AI assistant. How can I help?', time: '10:00', buttons: [[{text: '💇‍♀️ Book Now'}, {text: '💰 Price List'}], [{text: '📍 Directions'}]] },
+      { type: 'user', text: 'Price List', time: '10:01' },
+      { type: 'bot', text: 'Our main services:\n\n✂️ Women\'s Haircut — from $60\n💅 Manicure w/ Gel — from $45\n💆‍♀️ Hair Coloring — from $120\n\nWould you like to book?', time: '10:01', buttons: [[{text: '📅 Pick a Time'}, {text: '👩‍🎨 Choose Stylist'}]] },
+      { type: 'user', text: 'Choose Stylist', time: '10:02' },
+      { type: 'bot', text: 'Select a specialist:', time: '10:02', buttons: [[{text: 'Anna (Senior Stylist)'}], [{text: 'Maria (Stylist)'}], [{text: 'Elena (Nail Artist)'}]] }
     ]
   },
   {
     theme: 'light',
     botName: 'E-com Support',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Добро пожаловать в магазин электроники! Выберите действие:', time: '14:15', buttons: [[{text: '📦 Мои заказы'}, {text: '🔍 Каталог'}], [{text: '🎧 Поддержка'}]] },
-      { type: 'user', text: 'Мои заказы', time: '14:20' },
-      { type: 'bot', text: 'У вас один активный заказ:\n\n📦 Заказ #12345\n📱 Смартфон iPhone 15 Pro\n🚚 Статус: В пути\n\nОжидаемая дата доставки: завтра до 18:00.', time: '14:20', buttons: [[{text: '📍 Отследить на карте'}], [{text: '❌ Отменить заказ'}, {text: '↩️ Возврат'}]] },
-      { type: 'user', text: 'Возврат', time: '14:21' },
-      { type: 'bot', text: 'Возврат можно оформить в течение 14 дней. Нажмите кнопку ниже, чтобы заполнить форму.', time: '14:21', buttons: [[{text: '📝 Форма возврата', url: 'https://example.com'}]] }
+      { type: 'bot', text: 'Welcome to the electronics store! Choose an action:', time: '14:15', buttons: [[{text: '📦 My Orders'}, {text: '🔍 Catalog'}], [{text: '🎧 Support'}]] },
+      { type: 'user', text: 'My Orders', time: '14:20' },
+      { type: 'bot', text: 'You have one active order:\n\n📦 Order #12345\n📱 iPhone 15 Pro\n🚚 Status: In Transit\n\nEstimated delivery: tomorrow by 6 PM.', time: '14:20', buttons: [[{text: '📍 Track on Map'}], [{text: '❌ Cancel Order'}, {text: '↩️ Return'}]] },
+      { type: 'user', text: 'Return', time: '14:21' },
+      { type: 'bot', text: 'Returns can be filed within 14 days. Click the button below to fill out the form.', time: '14:21', buttons: [[{text: '📝 Return Form', url: 'https://example.com'}]] }
     ]
   },
   {
     theme: 'blue',
     botName: 'Fitness AI',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Доброе утро! Напоминаю, что сегодня в 19:00 у вас тренировка по йоге.', time: '09:00', buttons: [[{text: '✅ Подтверждаю'}, {text: '❌ Отменить'}]] },
-      { type: 'user', text: 'Отменить', time: '09:15' },
-      { type: 'bot', text: 'Без проблем. Тренировка отменена. Хотите записаться на другой день?', time: '09:15', buttons: [[{text: '📅 Расписание на неделю'}]] },
-      { type: 'user', text: 'Расписание на неделю', time: '09:16' },
-      { type: 'bot', text: 'Свободные окна на этой неделе:\n\nСреда: 18:00, 20:00\nПятница: 10:00, 19:00\nСуббота: 12:00', time: '09:16', buttons: [[{text: 'Среда 18:00'}, {text: 'Среда 20:00'}], [{text: 'Пятница 19:00'}]] }
+      { type: 'bot', text: 'Good morning! Reminder: you have a yoga session at 7 PM today.', time: '09:00', buttons: [[{text: '✅ Confirm'}, {text: '❌ Cancel'}]] },
+      { type: 'user', text: 'Cancel', time: '09:15' },
+      { type: 'bot', text: 'No problem. Session canceled. Want to reschedule?', time: '09:15', buttons: [[{text: '📅 Weekly Schedule'}]] },
+      { type: 'user', text: 'Weekly Schedule', time: '09:16' },
+      { type: 'bot', text: 'Available slots this week:\n\nWednesday: 6 PM, 8 PM\nFriday: 10 AM, 7 PM\nSaturday: 12 PM', time: '09:16', buttons: [[{text: 'Wed 6 PM'}, {text: 'Wed 8 PM'}], [{text: 'Fri 7 PM'}]] }
     ]
   },
   {
     theme: 'green',
     botName: 'MedClinic Bot',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Здравствуйте! Я виртуальный помощник клиники "Здоровье".', time: '11:25', buttons: [[{text: '🩺 Запись к врачу'}, {text: '🧪 Анализы'}], [{text: '📄 Результаты'}, {text: '❓ Вопрос'}]] },
-      { type: 'user', text: 'Анализы', time: '11:30' },
-      { type: 'bot', text: 'Какие именно анализы вас интересуют?', time: '11:30', buttons: [[{text: '🩸 Общий анализ крови'}], [{text: '🧬 Биохимия'}], [{text: '🦠 Гормоны'}]] },
-      { type: 'user', text: 'Общий анализ крови', time: '11:31' },
-      { type: 'bot', text: 'Стоимость: 800₽.\nСрок готовности: 1 день.\nСдать можно ежедневно с 8:00 до 11:00 натощак.', time: '11:31', buttons: [[{text: '💳 Оплатить онлайн'}, {text: '🏥 Адреса клиник'}]] }
+      { type: 'bot', text: 'Hello! I\'m the virtual assistant at HealthFirst Clinic.', time: '11:25', buttons: [[{text: '🩺 Book a Doctor'}, {text: '🧪 Lab Tests'}], [{text: '📄 Results'}, {text: '❓ Question'}]] },
+      { type: 'user', text: 'Lab Tests', time: '11:30' },
+      { type: 'bot', text: 'Which tests are you interested in?', time: '11:30', buttons: [[{text: '🩸 Complete Blood Count'}], [{text: '🧬 Biochemistry'}], [{text: '🦠 Hormones'}]] },
+      { type: 'user', text: 'Complete Blood Count', time: '11:31' },
+      { type: 'bot', text: 'Cost: $25.\nTurnaround: 1 day.\nAvailable daily 8 AM–11 AM, fasting required.', time: '11:31', buttons: [[{text: '💳 Pay Online'}, {text: '🏥 Clinic Locations'}]] }
     ]
   },
   {
     theme: 'purple',
     botName: 'Real Estate AI',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Привет! Я помогу подобрать квартиру мечты. С чего начнем?', time: '16:40', buttons: [[{text: '🏢 Новостройки'}, {text: '🏠 Вторичка'}], [{text: '💰 Ипотека'}]] },
-      { type: 'user', text: 'Новостройки', time: '16:45' },
-      { type: 'bot', text: 'Отлично! Какой бюджет рассматриваем?', time: '16:45', buttons: [[{text: 'До 10 млн'}, {text: '10-15 млн'}], [{text: '15-25 млн'}, {text: 'От 25 млн'}]] },
-      { type: 'user', text: '10-15 млн', time: '16:46' },
-      { type: 'bot', text: 'Нашел 12 подходящих ЖК в этом бюджете. Отправить подборку с планировками?', time: '16:46', buttons: [[{text: '📥 Скачать PDF'}, {text: '👀 Посмотреть в боте'}]] }
+      { type: 'bot', text: 'Hi! I\'ll help you find your dream apartment. Where do we start?', time: '16:40', buttons: [[{text: '🏢 New Builds'}, {text: '🏠 Resale'}], [{text: '💰 Mortgage'}]] },
+      { type: 'user', text: 'New Builds', time: '16:45' },
+      { type: 'bot', text: 'Great! What\'s your budget range?', time: '16:45', buttons: [[{text: 'Under $200K'}, {text: '$200K–$400K'}], [{text: '$400K–$700K'}, {text: '$700K+'}]] },
+      { type: 'user', text: '$200K–$400K', time: '16:46' },
+      { type: 'bot', text: 'Found 12 matching developments in this budget. Want me to send a selection with floor plans?', time: '16:46', buttons: [[{text: '📥 Download PDF'}, {text: '👀 Browse In-Chat'}]] }
     ]
   },
   {
     theme: 'dark',
     botName: 'AutoService Bot',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Автосервис "Drive". Выберите нужную услугу:', time: '12:05', buttons: [[{text: '🔧 ТО и ремонт'}, {text: '🚗 Шиномонтаж'}], [{text: '🧼 Мойка'}, {text: '📞 Связь с мастером'}]] },
-      { type: 'user', text: 'ТО и ремонт', time: '12:10' },
-      { type: 'bot', text: 'Что именно нужно сделать?', time: '12:10', buttons: [[{text: '🛢 Замена масла'}, {text: '🛑 Колодки'}], [{text: '⚙️ Диагностика ходовой'}]] },
-      { type: 'user', text: 'Замена масла', time: '12:11' },
-      { type: 'bot', text: 'Замена масла стоит от 800₽ (работа). Масло и фильтры можно купить у нас или привезти свои. Записать вас?', time: '12:11', buttons: [[{text: '📅 Выбрать дату'}]] }
+      { type: 'bot', text: 'Drive Auto Service. Choose a service:', time: '12:05', buttons: [[{text: '🔧 Maintenance & Repair'}, {text: '🚗 Tire Service'}], [{text: '🧼 Car Wash'}, {text: '📞 Talk to Mechanic'}]] },
+      { type: 'user', text: 'Maintenance & Repair', time: '12:10' },
+      { type: 'bot', text: 'What do you need done?', time: '12:10', buttons: [[{text: '🛢 Oil Change'}, {text: '🛑 Brake Pads'}], [{text: '⚙️ Suspension Check'}]] },
+      { type: 'user', text: 'Oil Change', time: '12:11' },
+      { type: 'bot', text: 'Oil change starts at $35 (labor). You can buy oil and filters from us or bring your own. Shall I book you in?', time: '12:11', buttons: [[{text: '📅 Pick a Date'}]] }
     ]
   },
   {
     theme: 'light',
     botName: 'Delivery Tracker',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Ваш заказ #9988 собран и передан курьеру. Ожидайте доставку сегодня с 14:00 до 16:00.', time: '13:00', buttons: [[{text: '📍 Где курьер?'}, {text: '📞 Позвонить курьеру'}], [{text: '✏️ Изменить адрес'}]] },
-      { type: 'user', text: 'Изменить адрес', time: '13:05' },
-      { type: 'bot', text: 'Напишите новый адрес прямо сюда, и я передам его курьеру.', time: '13:05' },
-      { type: 'user', text: 'ул. Ленина 15, кв 44', time: '13:06' },
-      { type: 'bot', text: 'Адрес успешно изменен! Курьер предупрежден.', time: '13:06', buttons: [[{text: '👍 Спасибо'}]] }
+      { type: 'bot', text: 'Your order #9988 is packed and handed to the courier. Expect delivery today between 2–4 PM.', time: '13:00', buttons: [[{text: '📍 Where\'s the Courier?'}, {text: '📞 Call Courier'}], [{text: '✏️ Change Address'}]] },
+      { type: 'user', text: 'Change Address', time: '13:05' },
+      { type: 'bot', text: 'Type the new address right here and I\'ll forward it to the courier.', time: '13:05' },
+      { type: 'user', text: '15 Main St, Apt 44', time: '13:06' },
+      { type: 'bot', text: 'Address updated! The courier has been notified.', time: '13:06', buttons: [[{text: '👍 Thanks'}]] }
     ]
   },
   {
     theme: 'blue',
     botName: 'HR Assistant',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Привет! Я HR-бот компании. Вижу, ты откликнулся на вакансию "Менеджер по продажам". Готов пройти небольшое интервью?', time: '10:00', buttons: [[{text: '🚀 Начать интервью'}, {text: '⏰ Позже'}]] },
-      { type: 'user', text: 'Начать интервью', time: '10:05' },
-      { type: 'bot', text: 'Отлично! Первый вопрос: какой у тебя опыт в B2B продажах?', time: '10:05', buttons: [[{text: 'Менее 1 года'}, {text: '1-3 года'}], [{text: 'Более 3 лет'}]] },
-      { type: 'user', text: '1-3 года', time: '10:06' },
-      { type: 'bot', text: 'Супер. А какой был средний чек?', time: '10:06', buttons: [[{text: 'До 100 тыс.'}, {text: '100-500 тыс.'}], [{text: 'Более 500 тыс.'}]] }
+      { type: 'bot', text: 'Hi! I\'m the company HR bot. I see you applied for the "Sales Manager" position. Ready for a quick screening?', time: '10:00', buttons: [[{text: '🚀 Start Interview'}, {text: '⏰ Later'}]] },
+      { type: 'user', text: 'Start Interview', time: '10:05' },
+      { type: 'bot', text: 'Great! First question: what\'s your B2B sales experience?', time: '10:05', buttons: [[{text: 'Under 1 year'}, {text: '1–3 years'}], [{text: '3+ years'}]] },
+      { type: 'user', text: '1–3 years', time: '10:06' },
+      { type: 'bot', text: 'Awesome. What was your average deal size?', time: '10:06', buttons: [[{text: 'Under $10K'}, {text: '$10K–$50K'}], [{text: 'Over $50K'}]] }
     ]
   },
   {
     theme: 'green',
     botName: 'EcoShop Bot',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Добро пожаловать в эко-маркет! Что ищете?', time: '15:15', buttons: [[{text: '🌿 Косметика'}, {text: '🏠 Для дома'}], [{text: '♻️ Zero Waste'}]] },
+      { type: 'bot', text: 'Welcome to the eco-market! What are you looking for?', time: '15:15', buttons: [[{text: '🌿 Cosmetics'}, {text: '🏠 Home Goods'}], [{text: '♻️ Zero Waste'}]] },
       { type: 'user', text: 'Zero Waste', time: '15:20' },
-      { type: 'bot', text: 'В категории Zero Waste популярны бамбуковые зубные щетки. В наличии 3 вида: мягкие, средние и жесткие. Цена от 150₽.', time: '15:20', buttons: [[{text: '🛒 Добавить в корзину'}, {text: '👀 Посмотреть фото'}]] },
-      { type: 'user', text: 'Посмотреть фото', time: '15:21' },
-      { type: 'bot', text: 'Отправляю каталог... [Файл: brushes.pdf]. Для заказа просто нажмите кнопку.', time: '15:21', buttons: [[{text: '🛍 Оформить заказ'}]] }
+      { type: 'bot', text: 'Our top Zero Waste product: bamboo toothbrushes. 3 types available — soft, medium, and firm. Starting at $3.', time: '15:20', buttons: [[{text: '🛒 Add to Cart'}, {text: '👀 View Photos'}]] },
+      { type: 'user', text: 'View Photos', time: '15:21' },
+      { type: 'bot', text: 'Sending catalog... [File: brushes.pdf]. To order, just tap the button.', time: '15:21', buttons: [[{text: '🛍 Place Order'}]] }
     ]
   },
   {
     theme: 'purple',
     botName: 'Event Ticket Bot',
-    botStatus: 'бот',
+    botStatus: 'bot',
     messages: [
-      { type: 'bot', text: 'Привет! Я помогу купить билеты на концерт. Какой город?', time: '18:00', buttons: [[{text: 'Москва'}, {text: 'Санкт-Петербург'}], [{text: 'Казань'}, {text: 'Екатеринбург'}]] },
-      { type: 'user', text: 'Москва', time: '18:01' },
-      { type: 'bot', text: 'В Москве концерт пройдет 25 октября в клубе Base. Осталось 45 билетов на танцпол (2500₽) и 12 VIP (5000₽). Какие берем?', time: '18:01', buttons: [[{text: '💃 Танцпол (2500₽)'}, {text: '👑 VIP (5000₽)'}]] },
-      { type: 'user', text: 'Танцпол (2500₽)', time: '18:02' },
-      { type: 'bot', text: 'Отлично. Итого 2500₽. Оплатить можно по ссылке ниже. После оплаты билеты придут прямо в этот чат.', time: '18:02', buttons: [[{text: '💳 Оплатить 2500₽', url: 'https://pay.example.com'}]] }
+      { type: 'bot', text: 'Hey! I\'ll help you buy concert tickets. Which city?', time: '18:00', buttons: [[{text: 'New York'}, {text: 'Los Angeles'}], [{text: 'Chicago'}, {text: 'Miami'}]] },
+      { type: 'user', text: 'New York', time: '18:01' },
+      { type: 'bot', text: 'The NYC show is October 25 at Club Base. 45 floor tickets left ($75) and 12 VIP ($150). Which ones?', time: '18:01', buttons: [[{text: '💃 Floor ($75)'}, {text: '👑 VIP ($150)'}]] },
+      { type: 'user', text: 'Floor ($75)', time: '18:02' },
+      { type: 'bot', text: 'Done! Total: $75. Pay via the link below. After payment, tickets will arrive right in this chat.', time: '18:02', buttons: [[{text: '💳 Pay $75', url: 'https://pay.example.com'}]] }
     ]
   }
 ];
 ---
 <section class="portfolio-section" id="portfolio">
-  <div class="section-num reveal">03 — Портфолио</div>
-  <h2 class="section-big-title reveal">Наши <span class="accent">работы</span></h2>
+  <!-- RU: 03 — Портфолио / Наши работы -->
+  <div class="section-num reveal">03 — Portfolio</div>
+  <h2 class="section-big-title reveal">Our <span class="accent">Work</span></h2>
   
   <div class="portfolio-container">
     
     <!-- Telegram Bots Slider -->
     <div class="portfolio-case">
       <div class="case-info reveal">
-        <h3 class="case-title">AI-Боты для бизнеса</h3>
-        <p class="case-desc">Листайте вправо, чтобы посмотреть примеры интерфейсов и сценариев работы наших ботов в Telegram. Мы создаем решения под любой дизайн и логику.</p>
+        <!-- RU: AI-Боты для бизнеса -->
+        <h3 class="case-title">AI Bots for Business</h3>
+        <!-- RU: Листайте вправо, чтобы посмотреть примеры интерфейсов и сценариев работы наших ботов в Telegram. Мы создаем решения под любой дизайн и логику. -->
+        <p class="case-desc">Swipe right to browse interface demos and conversation flows of our Telegram bots. We build custom solutions for any design and logic.</p>
         <div class="case-stats">
           <div class="stat-item">
             <span class="stat-val">50+</span>
-            <span class="stat-label">Реализованных ботов</span>
+            <!-- RU: Реализованных ботов -->
+            <span class="stat-label">Bots Delivered</span>
           </div>
           <div class="stat-item">
             <span class="stat-val">100%</span>
-            <span class="stat-label">Кастомизация</span>
+            <!-- RU: Кастомизация -->
+            <span class="stat-label">Customization</span>
           </div>
         </div>
         
         <div class="slider-controls">
-          <button class="slider-btn prev-btn" aria-label="Назад">←</button>
-          <button class="slider-btn next-btn" aria-label="Вперед">→</button>
+          <!-- RU: Назад / Вперед -->
+          <button class="slider-btn prev-btn" aria-label="Previous">←</button>
+          <button class="slider-btn next-btn" aria-label="Next">→</button>
         </div>
       </div>
       

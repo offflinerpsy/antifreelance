@@ -6,23 +6,27 @@ import TechStack from '../components/TechStack.astro';
 ---
 
 <Layout 
-  title="Портфолио и Обо мне | BotStudio" 
-  description="15+ лет опыта в веб-разработке. Создание сайтов, интернет-магазинов и сложных корпоративных порталов. Top Rated на Upwork."
+  title="Portfolio & About | BotStudio" 
+  description="15+ years of web development experience. Websites, e-commerce stores, and complex corporate portals. Upwork Top Rated."
 >
+  <!-- RU: title="Портфолио и Обо мне | BotStudio" description="15+ лет опыта в веб-разработке..." -->
   <div class="portfolio-page">
     <!-- Hero Section for Portfolio -->
     <section class="port-hero">
       <div class="port-hero-content">
+        <!-- RU: Создаю цифровые шедевры -->
         <h1 class="port-title reveal-text">
-          <span class="line">Создаю цифровые</span>
-          <span class="line accent">шедевры</span>
+          <span class="line">Crafting Digital</span>
+          <span class="line accent">Masterpieces</span>
         </h1>
-        <p class="port-subtitle reveal-fade">Веб-разработка, дизайн и автоматизация бизнеса с опытом более 15 лет.</p>
+        <!-- RU: Веб-разработка, дизайн и автоматизация бизнеса с опытом более 15 лет. -->
+        <p class="port-subtitle reveal-fade">Web development, design, and business automation with 15+ years of experience.</p>
       </div>
       
       <div class="scroll-indicator">
         <div class="mouse"></div>
-        <span>Скролльте вниз</span>
+        <!-- RU: Скролльте вниз -->
+        <span>Scroll Down</span>
       </div>
     </section>
 
@@ -48,6 +52,7 @@ import TechStack from '../components/TechStack.astro';
 
   .port-hero {
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;

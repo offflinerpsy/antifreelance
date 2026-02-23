@@ -1,18 +1,29 @@
 ---
+/* RU:
+  Салон красоты: Бот принимает запись и напоминает о визите 24/7. Количество записей выросло на 40%.
+  Автосервис: После запуска бота — ноль пропущенных обращений, даже ночью и в выходные.
+  Барбершоп: База подписчиков за 2 месяца. Рассылки конвертируют с конверсией 35%.
+  Ресторан / Кафе: Бронирование столиков и предзаказ меню без участия хостес. Увеличение чека на 15%.
+  Мед. клиника: Запись к врачам, ответы на частые вопросы, сбор анализов. Снижение нагрузки на регистратуру.
+  Фитнес-клуб: Продление абонементов, расписание групповых занятий и заморозка карт в один клик.
+  Недвижимость: Квалификация лидов, подбор объектов по параметрам и запись на просмотр.
+  Доставка: Отслеживание статуса заказа, оформление возвратов и сбор отзывов.
+*/
 const cases = [
-  { icon: "💇", title: "Салон красоты", desc: "Бот принимает запись и напоминает о визите 24/7. Количество записей выросло на 40%." },
-  { icon: "🔧", title: "Автосервис", desc: "После запуска бота — ноль пропущенных обращений, даже ночью и в выходные." },
-  { icon: "✂️", title: "Барбершоп", desc: "База подписчиков за 2 месяца. Рассылки конвертируют с конверсией 35%." },
-  { icon: "🍽️", title: "Ресторан / Кафе", desc: "Бронирование столиков и предзаказ меню без участия хостес. Увеличение чека на 15%." },
-  { icon: "🏥", title: "Мед. клиника", desc: "Запись к врачам, ответы на частые вопросы, сбор анализов. Снижение нагрузки на регистратуру." },
-  { icon: "🏋️", title: "Фитнес-клуб", desc: "Продление абонементов, расписание групповых занятий и заморозка карт в один клик." },
-  { icon: "🏠", title: "Недвижимость", desc: "Квалификация лидов, подбор объектов по параметрам и запись на просмотр." },
-  { icon: "📦", title: "Доставка", desc: "Отслеживание статуса заказа, оформление возвратов и сбор отзывов." }
+  { icon: "💇", title: "Beauty Salon", desc: "The bot handles bookings and sends visit reminders 24/7. Appointment volume increased by 40%." },
+  { icon: "🔧", title: "Auto Repair Shop", desc: "After launch — zero missed inquiries, even at night and on weekends." },
+  { icon: "✂️", title: "Barbershop", desc: "Subscriber base built in 2 months. Newsletters convert at 35%." },
+  { icon: "🍽️", title: "Restaurant / Café", desc: "Table reservations and pre-orders without a host. Average check up 15%." },
+  { icon: "🏥", title: "Medical Clinic", desc: "Doctor appointments, FAQ answers, and test collection. Front desk workload reduced significantly." },
+  { icon: "🏋️", title: "Fitness Club", desc: "Membership renewals, group class schedules, and card freezes in one tap." },
+  { icon: "🏠", title: "Real Estate", desc: "Lead qualification, property matching by criteria, and viewing appointments." },
+  { icon: "📦", title: "Delivery", desc: "Order tracking, returns processing, and review collection." }
 ];
 ---
 <section class="cases-section" id="cases">
-  <div class="section-num reveal">02 — Малый бизнес</div>
-  <h2 class="section-big-title reveal">Кому подходит<br><span class="accent">AI-ассистент</span></h2>
+  <!-- RU: 02 — Малый бизнес / Кому подходит AI-ассистент -->
+  <div class="section-num reveal">02 — Small Business</div>
+  <h2 class="section-big-title reveal">Who Needs an<br><span class="accent">AI Assistant</span></h2>
   
   <div class="cases-grid reveal">
     {cases.map((c) => (

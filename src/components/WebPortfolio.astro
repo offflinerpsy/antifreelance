@@ -1,21 +1,27 @@
 ---
+/*
+  RU: Original project labels:
+  Корпоративный портал, Интернет-магазин, Лендинг, Сайт-визитка, Многостраничный сайт,
+  Сложный интерфейс, Интерфейс приложения, Карточка товара, Конфигуратор, Продукт,
+  Главная страница, Макет недвижимости, Медицинский портал, Проекты, Контакты, Скриншот проекта
+*/
 const webProjects = [
-  { src: '/assets/web/D1_Website_Home_Page-1.jpg', alt: 'Корпоративный портал', title: 'Корпоративный портал', category: 'Web Development', size: 'large' },
-  { src: '/assets/web/D1_Website_Home_Page-2.jpg', alt: 'Интернет-магазин', title: 'Интернет-магазин', category: 'E-commerce', size: 'tall' },
-  { src: '/assets/web/D1_Website_Home_Page-3.jpg', alt: 'Лендинг', title: 'Лендинг', category: 'Landing Page', size: 'small' },
-  { src: '/assets/web/Home (4).png', alt: 'Сайт-визитка', title: 'Сайт-визитка', category: 'Corporate', size: 'small' },
-  { src: '/assets/web/home_pk.png', alt: 'Многостраничный сайт', title: 'Многостраничный сайт', category: 'Web Development', size: 'wide' },
-  { src: '/assets/web/image_2024-03-04_10-56-29.png', alt: 'Сложный интерфейс', title: 'Сложный интерфейс', category: 'UI/UX Design', size: 'small' },
-  { src: '/assets/web/image_2024-03-04_10-41-30.png', alt: 'Интерфейс приложения', title: 'Интерфейс приложения', category: 'UI/UX Design', size: 'tall' },
-  { src: '/assets/web/card (2).png', alt: 'Карточка товара', title: 'Карточка товара', category: 'E-commerce', size: 'small' },
-  { src: '/assets/web/configurator - 1 (2).png', alt: 'Конфигуратор', title: 'Конфигуратор', category: 'Web App', size: 'large' },
-  { src: '/assets/web/product (2).png', alt: 'Продукт', title: 'Продукт', category: 'E-commerce', size: 'small' },
-  { src: '/assets/web/main_page.png', alt: 'Главная страница', title: 'Главная страница', category: 'Web Design', size: 'wide' },
-  { src: '/assets/web/real_estate.png', alt: 'Макет недвижимости', title: 'Макет недвижимости', category: 'Real Estate', size: 'large' },
-  { src: '/assets/web/medical_portal.png', alt: 'Медицинский портал', title: 'Медицинский портал', category: 'Healthcare', size: 'tall' },
-  { src: '/assets/web/projects.png', alt: 'Проекты', title: 'Проекты', category: 'Portfolio', size: 'small' },
-  { src: '/assets/web/contacts.png', alt: 'Контакты', title: 'Контакты', category: 'Corporate', size: 'small' },
-  { src: '/assets/web/screenshot_app.png', alt: 'Скриншот проекта', title: 'Скриншот проекта', category: 'Web App', size: 'small' }
+  { src: '/assets/web/D1_Website_Home_Page-1.jpg', alt: 'Corporate Portal', title: 'Corporate Portal', category: 'Web Development', size: 'large' },
+  { src: '/assets/web/D1_Website_Home_Page-2.jpg', alt: 'Online Store', title: 'Online Store', category: 'E-commerce', size: 'tall' },
+  { src: '/assets/web/D1_Website_Home_Page-3.jpg', alt: 'Landing Page', title: 'Landing Page', category: 'Landing Page', size: 'small' },
+  { src: '/assets/web/Home (4).png', alt: 'Business Card Site', title: 'Business Card Site', category: 'Corporate', size: 'small' },
+  { src: '/assets/web/home_pk.png', alt: 'Multi-Page Website', title: 'Multi-Page Website', category: 'Web Development', size: 'wide' },
+  { src: '/assets/web/image_2024-03-04_10-56-29.png', alt: 'Complex Interface', title: 'Complex Interface', category: 'UI/UX Design', size: 'small' },
+  { src: '/assets/web/image_2024-03-04_10-41-30.png', alt: 'App Interface', title: 'App Interface', category: 'UI/UX Design', size: 'tall' },
+  { src: '/assets/web/card (2).png', alt: 'Product Card', title: 'Product Card', category: 'E-commerce', size: 'small' },
+  { src: '/assets/web/configurator - 1 (2).png', alt: 'Configurator', title: 'Configurator', category: 'Web App', size: 'large' },
+  { src: '/assets/web/product (2).png', alt: 'Product Page', title: 'Product Page', category: 'E-commerce', size: 'small' },
+  { src: '/assets/web/main_page.png', alt: 'Home Page', title: 'Home Page', category: 'Web Design', size: 'wide' },
+  { src: '/assets/web/real_estate.png', alt: 'Real Estate Layout', title: 'Real Estate Layout', category: 'Real Estate', size: 'large' },
+  { src: '/assets/web/medical_portal.png', alt: 'Medical Portal', title: 'Medical Portal', category: 'Healthcare', size: 'tall' },
+  { src: '/assets/web/projects.png', alt: 'Projects', title: 'Projects', category: 'Portfolio', size: 'small' },
+  { src: '/assets/web/contacts.png', alt: 'Contacts', title: 'Contacts', category: 'Corporate', size: 'small' },
+  { src: '/assets/web/screenshot_app.png', alt: 'Project Screenshot', title: 'Project Screenshot', category: 'Web App', size: 'small' }
 ];
 
 const upworkReviews = [
@@ -29,8 +35,10 @@ const upworkReviews = [
 <section class="web-portfolio" id="web-portfolio">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Избранные <span class="accent">работы</span></h2>
-      <p class="section-desc">Каждый проект — это уникальное решение, созданное с вниманием к деталям, производительности и конверсии.</p>
+      <!-- RU: Избранные работы -->
+      <h2 class="section-title">Featured <span class="accent">Work</span></h2>
+      <!-- RU: Каждый проект — это уникальное решение, созданное с вниманием к деталям, производительности и конверсии. -->
+      <p class="section-desc">Every project is a unique solution crafted with attention to detail, performance, and conversion.</p>
     </div>
 
     <!-- Web Projects Grid -->
@@ -57,7 +65,8 @@ const upworkReviews = [
     <div class="upwork-integrated reveal">
       <div class="upwork-info">
         <h2 class="section-title">Upwork <span class="accent">Top Rated</span></h2>
-        <p class="upwork-desc">Upwork — крупнейшая мировая фриланс-биржа. Статус <strong>Top Rated</strong> получают только лучшие специалисты (элита платформы) с безупречной репутацией, 100% Job Success Score и десятками успешно сданных проектов.</p>
+        <!-- RU: Upwork — крупнейшая мировая фриланс-биржа. Статус Top Rated получают только лучшие специалисты (элита платформы) с безупречной репутацией, 100% Job Success Score и десятками успешно сданных проектов. -->
+        <p class="upwork-desc">Upwork is the world's largest freelance marketplace. <strong>Top Rated</strong> status is reserved for the platform's elite — professionals with a flawless reputation, 100% Job Success Score, and dozens of successfully completed projects.</p>
         <div class="upwork-badges">
           <div class="badge">100% Job Success</div>
           <div class="badge">Top Rated</div>
@@ -100,11 +109,13 @@ const upworkReviews = [
   <div class="tablet-modal" id="tablet-modal">
     <div class="tablet-overlay"></div>
     <div class="tablet-container">
-      <button class="tablet-close" aria-label="Закрыть">
+      <!-- RU: Закрыть -->
+      <button class="tablet-close" aria-label="Close">
         <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
       
-      <button class="tablet-nav prev-project" aria-label="Предыдущий проект">
+      <!-- RU: Предыдущий проект -->
+      <button class="tablet-nav prev-project" aria-label="Previous project">
         <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
 
@@ -118,7 +129,8 @@ const upworkReviews = [
         <div class="tablet-home-button"></div>
       </div>
 
-      <button class="tablet-nav next-project" aria-label="Следующий проект">
+      <!-- RU: Следующий проект -->
+      <button class="tablet-nav next-project" aria-label="Next project">
         <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
     </div>
