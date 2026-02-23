@@ -24,15 +24,100 @@ const cases = [
   <!-- RU: 02 — Малый бизнес / Кому подходит AI-ассистент -->
   <div class="section-num reveal">02 — Small Business</div>
   <h2 class="section-big-title reveal">Who Needs an<br><span class="accent">AI Assistant</span></h2>
-  
-  <div class="cases-grid reveal">
-    {cases.map((c) => (
-      <div class="case-item">
-        <div class="ci-icon">{c.icon}</div>
-        <div class="ci-title">{c.title}</div>
-        <div class="ci-desc">{c.desc}</div>
-      </div>
-    ))}
+
+  <div class="cases-grid">
+
+    <!-- 01 Beauty Salon — FEATURED (2×2) -->
+    <div class="case-item ci-featured">
+      <span class="ci-num">01</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+        <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+        <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+        <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+      </svg>
+      <div class="ci-title">Beauty Salon</div>
+      <div class="ci-desc">The bot handles bookings and sends visit reminders 24/7. Appointment volume increased by 40%.</div>
+    </div>
+
+    <!-- 02 Auto Repair -->
+    <div class="case-item">
+      <span class="ci-num">02</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+      <div class="ci-title">Auto Repair Shop</div>
+      <div class="ci-desc">After launch — zero missed inquiries, even at night and on weekends.</div>
+    </div>
+
+    <!-- 03 Barbershop -->
+    <div class="case-item">
+      <span class="ci-num">03</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 15a6 6 0 0 0-12 0"/>
+        <circle cx="7" cy="6" r="3"/><circle cx="17" cy="6" r="3"/>
+        <line x1="7" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="7" y2="15"/>
+      </svg>
+      <div class="ci-title">Barbershop</div>
+      <div class="ci-desc">Subscriber base built in 2 months. Newsletters convert at 35%.</div>
+    </div>
+
+    <!-- 04 Restaurant — WIDE (2 cols) -->
+    <div class="case-item ci-wide">
+      <span class="ci-num">04</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+        <path d="M7 2v20"/>
+        <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+      </svg>
+      <div class="ci-title">Restaurant / Café</div>
+      <div class="ci-desc">Table reservations and pre-orders without a host. Average check up 15%.</div>
+    </div>
+
+    <!-- 05 Medical Clinic -->
+    <div class="case-item">
+      <span class="ci-num">05</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+      <div class="ci-title">Medical Clinic</div>
+      <div class="ci-desc">Doctor appointments, FAQ answers, and test collection. Front desk workload reduced significantly.</div>
+    </div>
+
+    <!-- 06 Fitness Club -->
+    <div class="case-item">
+      <span class="ci-num">06</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+      <div class="ci-title">Fitness Club</div>
+      <div class="ci-desc">Membership renewals, group class schedules, and card freezes in one tap.</div>
+    </div>
+
+    <!-- 07 Real Estate -->
+    <div class="case-item">
+      <span class="ci-num">07</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <div class="ci-title">Real Estate</div>
+      <div class="ci-desc">Lead qualification, property matching by criteria, and viewing appointments.</div>
+    </div>
+
+    <!-- 08 Delivery -->
+    <div class="case-item">
+      <span class="ci-num">08</span>
+      <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+        <line x1="12" y1="22.08" x2="12" y2="12"/>
+      </svg>
+      <div class="ci-title">Delivery</div>
+      <div class="ci-desc">Order tracking, returns processing, and review collection.</div>
+    </div>
+
   </div>
 </section>
 
@@ -41,54 +126,183 @@ const cases = [
     background: var(--black);
     padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 40px);
   }
+
+  /* ─── BENTO GRID ─── */
   .cases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 280px), 1fr));
-    gap: clamp(12px, 3vw, 16px);
-    max-width: 1200px;
-  }
-  .case-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: clamp(24px, 4vw, 32px);
-    transition: all 0.3s ease;
-    cursor: default;
-  }
-  .case-item:hover {
-    background: var(--orange);
-    border-color: var(--orange);
-    transform: translateY(-4px);
-  }
-  .ci-icon {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 20px;
-    filter: grayscale(100%) brightness(200%);
-    transition: filter 0.3s;
-  }
-  .case-item:hover .ci-icon {
-    filter: grayscale(0%) brightness(100%);
-  }
-  .ci-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.5rem, 3vw, 1.8rem);
-    letter-spacing: 0.03em;
-    margin-bottom: 12px;
-    color: var(--white);
-  }
-  .ci-desc {
-    font-size: clamp(0.85rem, 1.5vw, 0.9rem);
-    line-height: 1.6;
-    color: rgba(255,255,255,0.6);
-    transition: color 0.3s;
-  }
-  .case-item:hover .ci-desc {
-    color: rgba(255,255,255,0.9);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, minmax(200px, auto));
+    gap: clamp(12px, 1.5vw, 18px);
+    max-width: 100%;
   }
 
-  @media (max-width: 768px) {
+  /* Bento placement */
+  .case-item:nth-child(1) { grid-area: 1/1/3/3; }   /* Beauty: 2×2 featured */
+  .case-item:nth-child(2) { grid-area: 1/3/2/4; }   /* Auto */
+  .case-item:nth-child(3) { grid-area: 1/4/2/5; }   /* Barber */
+  .case-item:nth-child(4) { grid-area: 2/3/3/5; }   /* Restaurant: 2 cols */
+  .case-item:nth-child(5) { grid-area: 3/1/4/2; }   /* Medical */
+  .case-item:nth-child(6) { grid-area: 3/2/4/3; }   /* Fitness */
+  .case-item:nth-child(7) { grid-area: 3/3/4/4; }   /* Real Estate */
+  .case-item:nth-child(8) { grid-area: 3/4/4/5; }   /* Delivery */
+
+  /* ─── CARD BASE ─── */
+  .case-item {
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: clamp(24px, 3vw, 36px);
+    overflow: hidden;
+    cursor: default;
+    /* GSAP will animate opacity/y in */
+    opacity: 0;
+    transform: translateY(48px);
+  }
+
+  /* ─── CIRCULAR COLOR SWEEP on hover ─── */
+  .case-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: var(--orange);
+    clip-path: circle(0% at 0% 100%);
+    transition: clip-path 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  /* Even cards get lime accent */
+  .case-item:nth-child(even)::before { background: var(--lime); }
+  .case-item:hover::before { clip-path: circle(160% at 0% 100%); }
+
+  /* Card border pulse on hover */
+  .case-item:hover {
+    border-color: transparent;
+  }
+
+  /* ─── GHOST NUMBER ─── */
+  .ci-num {
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 130px);
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+    transition: color 0.52s, transform 0.52s;
+    user-select: none;
+  }
+  .case-item:hover .ci-num {
+    color: rgba(0,0,0,0.08);
+    transform: scale(1.05) translateY(-6px);
+  }
+
+  /* ─── ICON ─── */
+  .ci-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: clamp(16px, 3vw, 24px);
+    color: rgba(255,255,255,0.85);
+    display: block;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s, transform 0.4s;
+    flex-shrink: 0;
+  }
+  .case-item:hover .ci-icon {
+    color: var(--black);
+    transform: scale(1.15);
+  }
+  /* Featured card: bigger icon */
+  .ci-featured .ci-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: clamp(20px, 4vw, 36px);
+  }
+
+  /* ─── TITLE & DESC ─── */
+  .ci-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s;
+  }
+  .case-item:hover .ci-title { color: var(--black); }
+
+  /* Featured card: bigger title */
+  .ci-featured .ci-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 16px;
+  }
+
+  .ci-desc {
+    font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+    line-height: 1.65;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s;
+  }
+  .case-item:hover .ci-desc { color: rgba(0,0,0,0.75); }
+
+  /* Featured card: larger desc */
+  .ci-featured .ci-desc {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    color: rgba(255,255,255,0.6);
+    max-width: 340px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1023px) {
     .cases-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
     }
+    /* Reset all bento placements on tablet */
+    .case-item:nth-child(n) {
+      grid-area: auto;
+      opacity: 1;
+      transform: none;
+    }
+    .case-item:nth-child(1) { grid-column: span 2; }
+    .case-item:nth-child(4) { grid-column: span 2; }
+  }
+
+  @media (max-width: 639px) {
+    .cases-grid { grid-template-columns: 1fr; }
+    .case-item:nth-child(n) { grid-column: auto; }
   }
 </style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Only animate on desktop where bento positions are set
+    var mq = window.matchMedia('(min-width: 1024px)');
+    if (!mq.matches) return;
+
+    gsap.to('.cases-grid .case-item', {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: {
+        amount: 0.65,
+        from: 'start'
+      },
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.cases-grid',
+        start: 'top 78%',
+        once: true
+      }
+    });
+  });
+</script>

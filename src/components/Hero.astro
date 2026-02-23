@@ -47,6 +47,19 @@
     background: linear-gradient(135deg, #FF5E00 0%, #FF7A29 100%);
   }
 
+  /* Bottom gradient: bridges hero → dark features section */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 260px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(18,18,18,0.22) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
   /* Background watermark */
   .hero-bg-text {
     position: absolute;
@@ -100,13 +113,13 @@
   /* ═══ H1: THE BIG TEXT ═══ */
   .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 13vw, 12rem);
+    font-size: clamp(5rem, 17vw, 22rem);
     line-height: 0.88;
     letter-spacing: -0.02em;
     color: var(--black);
     position: relative;
     z-index: 2;
-    max-width: 1400px;
+    max-width: 100%;
     text-transform: uppercase;
     perspective: 1200px;
   }
