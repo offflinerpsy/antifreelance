@@ -35,7 +35,7 @@ body {
   transition: background 0.3s, color 0.3s, transform 0.1s, box-shadow 0.3s;
   border: 2px solid transparent;
   cursor: pointer;
-  /* Ненавязчивая анимация: пульсация тени и легкое "нажатие" каждые 3 секунды */
+  /* Subtle pulse animation: shadow pulse + gentle "press" every 3s */
   animation: auto-press 3s infinite;
 }
 
@@ -56,16 +56,30 @@ body {
 .btn-primary:hover {
   background: var(--lime);
   color: var(--black);
-  /* Убрали увеличение (translateY), останавливаем авто-анимацию при наведении */
+  /* Stop auto-animation on hover */
   animation: none;
   box-shadow: 0 8px 20px rgba(221, 245, 22, 0.3);
 }
 
 .btn-primary:active {
-  /* Эффект физического нажатия */
+  /* Physical press effect */
   transform: scale(0.95);
   box-shadow: 0 2px 8px rgba(221, 245, 22, 0.2);
 }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* JS fallback — show reveals if GSAP fails to load */
+.no-js .reveal { opacity: 1; transform: none; }
 
 /* Section Titles */
 .section-num {

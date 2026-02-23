@@ -8,13 +8,15 @@ allArticles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout 
-  title="База знаний | BotStudio" 
-  description="Полезные статьи, кейсы и инсайты о внедрении AI и Telegram-ботов в бизнес."
+  title="Knowledge Base | BotStudio" 
+  description="Helpful articles, case studies, and insights on implementing AI and Telegram bots for business."
 >
+  <!-- RU: title="База знаний | BotStudio" description="Полезные статьи, кейсы и инсайты..." -->
   <section class="kb-header">
-    <div class="section-num reveal">04 — База знаний</div>
-    <h1 class="section-big-title reveal">Инсайты и<br><span class="accent">Кейсы</span></h1>
-    <p class="kb-desc reveal">Как мы автоматизируем бизнес, внедряем AI и создаем продукты, которые приносят деньги.</p>
+    <!-- RU: 04 — База знаний / Инсайты и Кейсы / Как мы автоматизируем бизнес... -->
+    <div class="section-num reveal">04 — Knowledge Base</div>
+    <h1 class="section-big-title reveal">Insights &<br><span class="accent">Case Studies</span></h1>
+    <p class="kb-desc reveal">How we automate business, deploy AI, and build products that generate revenue.</p>
   </section>
 
   <section class="kb-grid reveal">
@@ -23,7 +25,7 @@ allArticles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
         <div class="kb-card-content">
           <div class="kb-meta">
             <span class="kb-date">
-              {article.data.pubDate.toLocaleDateString('ru-RU', {
+              {article.data.pubDate.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -39,7 +41,8 @@ allArticles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
           </div>
           <h2>{article.data.title}</h2>
           <p>{article.data.description}</p>
-          <div class="kb-read-more">Читать статью →</div>
+          <!-- RU: Читать статью → -->
+          <div class="kb-read-more">Read Article →</div>
         </div>
       </a>
     ))}
