@@ -1,0 +1,262 @@
+---
+---
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    <div class="contact-header">
+      <div class="section-label" data-i18n="cf.label">Get Started</div>
+      <h2 data-i18n-html="cf.h2">Let's Build Your <span class="accent">AI Bot</span></h2>
+      <p class="contact-sub" data-i18n="cf.sub">Free consultation · Reply within an hour · No commitment</p>
+    </div>
+
+    <form class="contact-form" id="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contact-name" data-i18n="cf.name">Your Name *</label>
+          <input type="text" id="contact-name" name="name" required placeholder="John Smith" autocomplete="name" data-i18n-ph="cf.name_ph" />
+        </div>
+        <div class="form-group">
+          <label for="contact-email" data-i18n="cf.email">Email *</label>
+          <input type="email" id="contact-email" name="email" required placeholder="john@company.com" autocomplete="email" data-i18n-ph="cf.email_ph" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contact-business" data-i18n="cf.biz">Business Type</label>
+        <select id="contact-business" name="businessType">
+          <option value=""         data-i18n-opt="cf.opt0">Select your industry...</option>
+          <option value="ecommerce"data-i18n-opt="cf.opt1">E-commerce / Online Store</option>
+          <option value="saas"     data-i18n-opt="cf.opt2">SaaS / Tech Startup</option>
+          <option value="services" data-i18n-opt="cf.opt3">Professional Services</option>
+          <option value="healthcare"data-i18n-opt="cf.opt4">Healthcare / Medical</option>
+          <option value="realestate"data-i18n-opt="cf.opt5">Real Estate</option>
+          <option value="restaurant"data-i18n-opt="cf.opt6">Restaurant / Hospitality</option>
+          <option value="salon"    data-i18n-opt="cf.opt7">Beauty / Salon / Spa</option>
+          <option value="education"data-i18n-opt="cf.opt8">Education / Coaching</option>
+          <option value="other"    data-i18n-opt="cf.opt9">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="contact-message" data-i18n="cf.msg">What do you want to automate?</label>
+        <textarea id="contact-message" name="message" rows="3" placeholder="E.g. Customer support bot, appointment booking, lead qualification..." data-i18n-ph="cf.msg_ph"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary btn-submit">
+        <span class="btn-text" data-i18n="cf.btn">Get Free Consultation</span>
+        <span class="btn-loading" data-i18n="cf.sending" style="display:none;">Sending...</span>
+      </button>
+
+      <div class="form-status" id="form-status"></div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 40px);
+    background: var(--black);
+  }
+
+  .contact-container {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: clamp(32px, 5vw, 48px);
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .contact-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--white);
+  }
+
+  .contact-header .accent {
+    color: var(--orange);
+  }
+
+  .contact-sub {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--orange);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  .form-group select option {
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 16px 32px;
+    font-size: 1.05rem;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    text-align: center;
+    font-size: 0.95rem;
+    min-height: 24px;
+  }
+
+  .form-status.success {
+    color: var(--lime);
+  }
+
+  .form-status.error {
+    color: #ff4444;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var btn = form.querySelector('.btn-submit');
+      var btnText = form.querySelector('.btn-text');
+      var btnLoading = form.querySelector('.btn-loading');
+      var status = document.getElementById('form-status');
+
+      var name = form.querySelector('[name="name"]').value.trim();
+      var email = form.querySelector('[name="email"]').value.trim();
+      var businessType = form.querySelector('[name="businessType"]').value;
+      var message = form.querySelector('[name="message"]').value.trim();
+
+      if (!name || !email) {
+        status.textContent = 'Please fill in your name and email.';
+        status.className = 'form-status error';
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      status.textContent = '';
+      status.className = 'form-status';
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, businessType: businessType, message: message })
+      })
+      .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+      .then(function(result) {
+        if (result.ok) {
+          status.textContent = 'Thanks, ' + name + '! We\'ll get back to you within an hour.';
+          status.className = 'form-status success';
+          form.reset();
+        } else {
+          status.textContent = result.data.error || 'Something went wrong. Please try again.';
+          status.className = 'form-status error';
+        }
+      })
+      .catch(function() {
+        status.textContent = 'Network error. Please try again.';
+        status.className = 'form-status error';
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      });
+    });
+  });
+</script>

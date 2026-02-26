@@ -38,31 +38,60 @@ jobs:
              DEBIAN_FRONTEND=noninteractive apt-get install -y -qq nginx && \
              systemctl enable nginx && \
              systemctl start nginx && \
-             mkdir -p /var/www/antifreelance"
+             mkdir -p /var/www/antifreelance/client && \
+             mkdir -p /var/www/antifreelance/server && \
+             command -v node || (curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs) && \
+             command -v pm2 || npm install -g pm2"
 
-      - name: Deploy files
+      - name: Deploy static files
         run: |
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/id_rsa" \
-            ./dist/ root@89.23.96.192:/var/www/antifreelance/
+            ./dist/client/ root@89.23.96.192:/var/www/antifreelance/client/
+
+      - name: Deploy server files
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/id_rsa" \
+            ./dist/server/ root@89.23.96.192:/var/www/antifreelance/server/
+
+      - name: Deploy nginx config
+        run: |
           scp -i ~/.ssh/id_rsa \
             .github/nginx.conf root@89.23.96.192:/etc/nginx/sites-available/antifreelance
 
-      - name: Enable Nginx site
+      - name: Configure and start server
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          ssh -i ~/.ssh/id_rsa root@89.23.96.192 \
-            "ln -sf /etc/nginx/sites-available/antifreelance /etc/nginx/sites-enabled/antifreelance && \
-             rm -f /etc/nginx/sites-enabled/default && \
-             nginx -t && \
-             systemctl reload nginx"
+          ssh -i ~/.ssh/id_rsa root@89.23.96.192 << 'ENDSSH'
+            # Write env file
+            cat > /var/www/antifreelance/server/.env << EOF
+            HOST=127.0.0.1
+            PORT=4321
+            OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+          EOF
+
+            # Enable nginx site
+            ln -sf /etc/nginx/sites-available/antifreelance /etc/nginx/sites-enabled/antifreelance
+            rm -f /etc/nginx/sites-enabled/default
+            nginx -t && systemctl reload nginx
+
+            # Start/restart Node server with PM2
+            cd /var/www/antifreelance/server
+            pm2 delete botstudio 2>/dev/null || true
+            pm2 start entry.mjs --name botstudio --env production
+            pm2 save
+            pm2 startup systemd -u root --hp /root 2>/dev/null || true
+          ENDSSH
 
       - name: Health check
         run: |
-          sleep 3
+          sleep 5
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://89.23.96.192)
           echo "HTTP status: $STATUS"
           if [ "$STATUS" != "200" ]; then
             echo "Health check failed with status $STATUS"
             exit 1
           fi
-          echo "✅ Site is live at http://89.23.96.192"
+          echo "Site is live at http://89.23.96.192"

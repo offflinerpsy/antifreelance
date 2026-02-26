@@ -4,21 +4,27 @@
   <div class="header-inner">
     <div class="nav-logo">BotStudio</div>
     <nav class="nav-links hide-mobile">
-      <!-- RU: Возможности | Кому подходит | Портфолио и Обо мне | База знаний -->
-      <a href="/#features">Features</a>
-      <a href="/#cases">Who It's For</a>
-      <a href="/portfolio">Portfolio & About</a>
-      <a href="/knowledge">Knowledge Base</a>
+      <a href="/#features"  data-i18n="nav.features">Features</a>
+      <a href="/#cases"     data-i18n="nav.cases">Who It's For</a>
+      <a href="/portfolio"  data-i18n="nav.portfolio">Portfolio & About</a>
+      <a href="/knowledge"  data-i18n="nav.kb">Knowledge Base</a>
     </nav>
-    <!-- RU: Написать -->
-    <a href="https://t.me/Gypno_Man" class="btn-primary header-btn hide-mobile">Contact</a>
-    
-    <!-- Mobile Menu Toggle -->
-    <!-- RU: Открыть меню -->
+
+    <div class="header-right hide-mobile">
+      <!-- ─── Language Switcher ─── -->
+      <div class="lang-switcher" aria-label="Language">
+        <div class="lang-indicator"></div>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
+      <a href="#contact" class="btn-primary header-btn" data-i18n="nav.contact">Contact</a>
+    </div>
+
+    <!-- Mobile Toggle -->
     <button class="mobile-toggle hide-desktop" aria-label="Open menu">
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="12" x2="21" y2="12" class="line-mid"></line>
-        <line x1="3" y1="6" x2="21" y2="6" class="line-top"></line>
+        <line x1="3" y1="6"  x2="21" y2="6"  class="line-top"></line>
         <line x1="3" y1="18" x2="21" y2="18" class="line-bot"></line>
       </svg>
     </button>
@@ -27,176 +33,137 @@
   <!-- Mobile Overlay -->
   <div class="mobile-overlay">
     <nav class="mobile-nav">
-      <!-- RU: Возможности | Кому подходит | Портфолио и Обо мне | База знаний | Написать @Gypno_Man -->
-      <a href="/#features" class="mobile-link">Features</a>
-      <a href="/#cases" class="mobile-link">Who It's For</a>
-      <a href="/portfolio" class="mobile-link">Portfolio & About</a>
-      <a href="/knowledge" class="mobile-link">Knowledge Base</a>
-      <a href="https://t.me/Gypno_Man" class="btn-primary mobile-btn">Message @Gypno_Man</a>
+      <a href="/#features" class="mobile-link" data-i18n="nav.features">Features</a>
+      <a href="/#cases"    class="mobile-link" data-i18n="nav.cases">Who It's For</a>
+      <a href="/portfolio" class="mobile-link" data-i18n="nav.portfolio">Portfolio & About</a>
+      <a href="/knowledge" class="mobile-link" data-i18n="nav.kb">Knowledge Base</a>
+
+      <!-- Mobile lang switcher -->
+      <div class="lang-switcher lang-switcher-mob">
+        <div class="lang-indicator"></div>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
+
+      <a href="#contact" class="btn-primary mobile-btn" data-i18n="nav.mobile_cta">Get in Touch</a>
     </nav>
   </div>
 </header>
 
 <style>
   header {
-    position: fixed;
-    z-index: 100;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1000px;
-    /* Transition handled by GSAP for smooth morph */
+    position: fixed; z-index: 100; top: 20px;
+    left: 50%; transform: translateX(-50%);
+    width: 90%; max-width: 1000px;
   }
-  
   .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     padding: 12px 24px;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 100px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 100px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 101;
+    position: relative; z-index: 101;
   }
+  header.scrolled .header-inner { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
 
-  /* Scrolled state — GSAP handles the animation, class kept for JS reference */
-  header.scrolled .header-inner {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.05em; color: var(--white); }
+  .nav-links { display: flex; gap: 20px; }
   .nav-links a {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-    opacity: 0.75;
-    font-weight: 400;
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--white); text-decoration: none; opacity: 0.75;
     transition: opacity 0.2s, color 0.2s;
   }
-  .nav-links a:hover {
-    opacity: 1;
-    color: var(--lime);
-  }
+  .nav-links a:hover { opacity: 1; color: var(--lime); }
 
-  .header-btn {
-    padding: 12px 28px;
-    font-size: 14px;
-  }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .header-btn { padding: 12px 28px; font-size: 14px; }
 
-  /* Mobile Toggle Button */
-  .mobile-toggle {
-    background: none;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
+  /* ══════ Language Switcher ══════ */
+  .lang-switcher {
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    z-index: 102;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.06);
   }
-  .mobile-toggle svg {
-    transition: transform 0.3s ease;
+  .lang-btn {
+    position: relative; z-index: 1;
+    padding: 5px 11px; border: none; background: none;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px; letter-spacing: 0.12em;
+    cursor: pointer; border-radius: 100px;
+    min-width: 32px; text-align: center;
+    transition: color 0.25s;
+  }
+  /* Sliding orange indicator */
+  .lang-indicator {
+    position: absolute;
+    top: 3px; bottom: 3px; left: 3px;
+    right: calc(50%);
+    border-radius: 100px;
+    background: var(--orange);
+    pointer-events: none;
+    transition: left  0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+                right 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  /* CSS-driven by :root[data-lang] — set synchronously in <head> */
+  :root[data-lang="en"] .lang-btn[data-lang="en"],
+  :root[data-lang="ru"] .lang-btn[data-lang="ru"] { color: var(--black); font-weight: 700; }
+  :root[data-lang="ru"] .lang-indicator { left: calc(50%); right: 3px; }
+
+  /* Mobile variant */
+  .lang-switcher-mob {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    transform: scale(1.3); transform-origin: center; margin-top: 8px;
+  }
+  .lang-switcher-mob .lang-btn { font-size: 16px; padding: 7px 16px; color: rgba(255,255,255,0.35); }
+  :root[data-lang="en"] .lang-switcher-mob .lang-btn[data-lang="en"],
+  :root[data-lang="ru"] .lang-switcher-mob .lang-btn[data-lang="ru"] { color: var(--black); }
+
+  /* Mobile Toggle */
+  .mobile-toggle {
+    background: none; border: none; color: var(--white);
+    cursor: pointer; padding: 8px;
+    display: flex; align-items: center; justify-content: center; z-index: 102;
   }
   .mobile-toggle .line-top,
   .mobile-toggle .line-mid,
-  .mobile-toggle .line-bot {
-    transition: all 0.3s ease;
-    transform-origin: 50% 50%;
-    transform-box: fill-box;
-  }
+  .mobile-toggle .line-bot { transition: all 0.3s ease; transform-origin: 50% 50%; transform-box: fill-box; }
 
   /* Mobile Overlay */
   .mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--black);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: var(--black); z-index: 100;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease;
   }
   .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(24px, 6vw, 32px);
-    width: 100%;
-    padding: 0 20px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: clamp(24px, 6vw, 32px); width: 100%; padding: 0 20px;
   }
   .mobile-link {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 10vw, 3.5rem);
-    color: var(--white);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    transform: translateY(20px);
-    text-align: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 10vw, 3.5rem);
+    color: var(--white); text-decoration: none; text-transform: uppercase;
+    letter-spacing: 0.05em; opacity: 0; transform: translateY(20px); text-align: center;
   }
   .mobile-btn {
-    margin-top: clamp(20px, 5vw, 32px);
-    opacity: 0;
-    transform: translateY(20px);
-    background: var(--white);
-    color: var(--black);
-    width: 100%;
-    max-width: 300px;
+    margin-top: clamp(20px, 5vw, 32px); opacity: 0; transform: translateY(20px);
+    background: var(--white); color: var(--black); width: 100%; max-width: 300px;
   }
 
-  /* Menu Open State */
-  body.menu-open {
-    overflow: hidden;
-  }
-  body.menu-open .mobile-overlay {
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible;
-  }
-  body.menu-open .header-inner {
-    background: transparent;
-    border-color: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  body.menu-open .mobile-toggle .line-top {
-    transform: translateY(6px) rotate(45deg);
-  }
-  body.menu-open .mobile-toggle .line-mid {
-    opacity: 0;
-  }
-  body.menu-open .mobile-toggle .line-bot {
-    transform: translateY(-6px) rotate(-45deg);
-  }
+  body.menu-open { overflow: hidden; }
+  body.menu-open .mobile-overlay { opacity: 1; pointer-events: auto; visibility: visible; }
+  body.menu-open .header-inner { background: transparent; border-color: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  body.menu-open .mobile-toggle .line-top { transform: translateY(6px) rotate(45deg); }
+  body.menu-open .mobile-toggle .line-mid { opacity: 0; }
+  body.menu-open .mobile-toggle .line-bot { transform: translateY(-6px) rotate(-45deg); }
 
   @media (max-width: 768px) {
     header { width: 95%; top: 10px; }
@@ -205,132 +172,62 @@
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.getElementById('main-header');
-    const inner = header?.querySelector('.header-inner');
-    const logo = header?.querySelector('.nav-logo');
-    const btn = header?.querySelector('.header-btn');
-    const toggle = document.querySelector('.mobile-toggle');
-    const links = document.querySelectorAll('.mobile-link, .mobile-btn');
-    let isMenuOpen = false;
-    let isScrolled = false;
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var header = document.getElementById('main-header');
+    var inner  = header && header.querySelector('.header-inner');
+    var logo   = header && header.querySelector('.nav-logo');
+    var btn    = header && header.querySelector('.header-btn');
+    var toggle = document.querySelector('.mobile-toggle');
+    var links  = document.querySelectorAll('.mobile-link, .mobile-btn, .lang-switcher-mob');
+    var isMenuOpen = false, isScrolled = false;
+    var D = 0.5, E = 'power2.inOut';
 
-    const MORPH_DURATION = 0.5;
-    const MORPH_EASE = 'power2.inOut';
-
-    // Smooth header morph on scroll — powered by GSAP instead of CSS transition
     function morphToScrolled() {
-      if (isScrolled) return;
-      isScrolled = true;
-      header?.classList.add('scrolled');
-      // @ts-ignore
-      gsap.to(header, { top: 10, maxWidth: 950, duration: MORPH_DURATION, ease: MORPH_EASE });
-      // @ts-ignore
-      gsap.to(inner, {
-        padding: '8px 20px',
-        background: 'rgba(18, 18, 18, 0.85)',
-        borderColor: 'rgba(255, 255, 255, 0.1)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
-        duration: MORPH_DURATION,
-        ease: MORPH_EASE
-      });
-      // @ts-ignore
-      gsap.to(logo, { fontSize: '22px', duration: MORPH_DURATION, ease: MORPH_EASE });
-      // @ts-ignore
-      gsap.to(btn, { padding: '10px 24px', fontSize: '13px', duration: MORPH_DURATION, ease: MORPH_EASE });
+      if (isScrolled) return; isScrolled = true;
+      header && header.classList.add('scrolled');
+      if (typeof gsap === 'undefined') return;
+      gsap.to(header, { top: 10, maxWidth: 950, duration: D, ease: E });
+      gsap.to(inner,  { padding: '8px 20px', background: 'rgba(18,18,18,0.85)', borderColor: 'rgba(255,255,255,0.1)', boxShadow: '0 8px 32px rgba(0,0,0,0.25)', duration: D, ease: E });
+      gsap.to(logo,   { fontSize: '22px', duration: D, ease: E });
+      gsap.to(btn,    { padding: '10px 24px', fontSize: '13px', duration: D, ease: E });
     }
-
     function morphToDefault() {
-      if (!isScrolled) return;
-      isScrolled = false;
-      header?.classList.remove('scrolled');
-      // @ts-ignore
-      gsap.to(header, { top: 20, maxWidth: 1000, duration: MORPH_DURATION, ease: MORPH_EASE });
-      // @ts-ignore
-      gsap.to(inner, {
-        padding: '12px 24px',
-        background: 'rgba(255, 255, 255, 0.1)',
-        borderColor: 'rgba(255, 255, 255, 0.2)',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-        duration: MORPH_DURATION,
-        ease: MORPH_EASE
-      });
-      // @ts-ignore
-      gsap.to(logo, { fontSize: '26px', duration: MORPH_DURATION, ease: MORPH_EASE });
-      // @ts-ignore
-      gsap.to(btn, { padding: '12px 28px', fontSize: '14px', duration: MORPH_DURATION, ease: MORPH_EASE });
+      if (!isScrolled) return; isScrolled = false;
+      header && header.classList.remove('scrolled');
+      if (typeof gsap === 'undefined') return;
+      gsap.to(header, { top: 20, maxWidth: 1000, duration: D, ease: E });
+      gsap.to(inner,  { padding: '12px 24px', background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.2)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', duration: D, ease: E });
+      gsap.to(logo,   { fontSize: '26px', duration: D, ease: E });
+      gsap.to(btn,    { padding: '12px 28px', fontSize: '14px', duration: D, ease: E });
     }
 
-    // Scroll listener
-    document.addEventListener('scroll', () => {
+    document.addEventListener('scroll', function() {
       if (isMenuOpen) return;
-      if (window.scrollY > 50) {
-        morphToScrolled();
-      } else {
-        morphToDefault();
-      }
+      if (window.scrollY > 50) { morphToScrolled(); } else { morphToDefault(); }
     });
 
-    // Mobile Menu Toggle
-    toggle?.addEventListener('click', () => {
+    if (!toggle) return;
+    toggle.addEventListener('click', function() {
       isMenuOpen = !isMenuOpen;
       document.body.classList.toggle('menu-open');
-      
       if (isMenuOpen) {
-        // Reset header to expanded / transparent when menu opens
-        isScrolled = false;
-        header?.classList.remove('scrolled');
-        // @ts-ignore
-        gsap.to(inner, {
-          background: 'transparent',
-          borderColor: 'transparent',
-          boxShadow: 'none',
-          duration: 0.3
-        });
-        // @ts-ignore
-        gsap.to(links, {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: 'power3.out',
-          delay: 0.2
-        });
-      } else {
-        // @ts-ignore
-        gsap.to(links, {
-          opacity: 0,
-          y: 20,
-          duration: 0.3,
-          stagger: 0.05,
-          ease: 'power2.in'
-        });
-        // Re-evaluate scroll state after menu closes
-        if (window.scrollY > 50) {
-          isScrolled = false; // Force re-morph
-          morphToScrolled();
-        } else {
-          isScrolled = true; // Force re-morph
-          morphToDefault();
+        isScrolled = false; header && header.classList.remove('scrolled');
+        if (typeof gsap !== 'undefined') {
+          gsap.to(inner, { background: 'transparent', borderColor: 'transparent', boxShadow: 'none', duration: 0.3 });
+          gsap.to(links, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.15 });
         }
+      } else {
+        if (typeof gsap !== 'undefined') gsap.to(links, { opacity: 0, y: 20, duration: 0.3, stagger: 0.05, ease: 'power2.in' });
+        if (window.scrollY > 50) { isScrolled = false; morphToScrolled(); } else { isScrolled = true; morphToDefault(); }
       }
     });
 
-    // Close menu on link click
-    links.forEach(link => {
-      link.addEventListener('click', () => {
-        isMenuOpen = false;
-        document.body.classList.remove('menu-open');
-        // @ts-ignore
-        gsap.set(links, { opacity: 0, y: 20 });
-        if (window.scrollY > 50) {
-          isScrolled = false;
-          morphToScrolled();
-        } else {
-          isScrolled = true;
-          morphToDefault();
-        }
+    document.querySelectorAll('.mobile-link, .mobile-btn').forEach(function(link) {
+      link.addEventListener('click', function() {
+        isMenuOpen = false; document.body.classList.remove('menu-open');
+        if (typeof gsap !== 'undefined') gsap.set(links, { opacity: 0, y: 20 });
+        if (window.scrollY > 50) { isScrolled = false; morphToScrolled(); } else { isScrolled = true; morphToDefault(); }
       });
     });
   });

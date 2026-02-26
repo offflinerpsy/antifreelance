@@ -3,9 +3,9 @@
 <!-- RU: Хватит терять клиентов / Написать @Gypno_Man ↗ / Консультация бесплатно · Ответ в течение часа · 15 лет опыта -->
 <section class="cta-wrap">
   <div class="cta-bg-num">@BOT</div>
-  <h2>Stop<br>Losing<br><span class="w">Customers</span></h2>
-  <a href="https://t.me/Gypno_Man" class="btn-primary btn-cta-big">Message @Gypno_Man ↗</a>
-  <div class="cta-sub">Free consultation · Reply within an hour · 15 years of experience</div>
+  <h2 data-i18n="cta.h2">Stop Losing Customers</h2>
+  <a href="#contact" class="btn-primary btn-cta-big" data-i18n="cta.btn">Get Free Consultation ↓</a>
+  <div class="cta-sub" data-i18n="cta.sub">Free consultation · Reply within an hour · 15 years of experience</div>
 </section>
 
 <style>
@@ -71,13 +71,13 @@
   }
 </style>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // @ts-ignore
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
     gsap.to('.cta-bg-num', {
       y: '-15%',
       ease: 'none',
-      // @ts-ignore
       scrollTrigger: { trigger: '.cta-wrap', scrub: 1 }
     });
   });
