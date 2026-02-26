@@ -107,7 +107,7 @@ export const POST: APIRoute = async ({ request }) => {
         'X-Title': 'BotStudio Chat'
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-sonnet-4',
+        model: 'meta-llama/llama-3.1-8b-instruct:free',
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
           ...messages.slice(-20) // Keep last 20 messages for context
