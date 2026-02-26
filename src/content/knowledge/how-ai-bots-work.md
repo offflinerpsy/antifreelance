@@ -1,26 +1,34 @@
 ---
-title: "Как AI-боты экономят бизнесу до 80 000 ₽ в месяц"
-description: "Разбираем на реальных примерах, почему локальный AI лучше обычных скриптовых ботов и как он заменяет целый отдел продаж."
+title: "How AI Bots Save Businesses Up to $5,000 a Month"
+description: "Real-world examples of why local AI outperforms basic scripted bots and how it can replace an entire sales department."
 pubDate: 2026-02-22
-tags: ["AI", "Автоматизация", "Кейсы"]
+tags: ["AI", "Automation", "Case Studies"]
 ---
 
-# Почему скриптовые боты умерли?
+# Why Scripted Bots Are Dead
 
-Еще пару лет назад все делали ботов с жесткими кнопками: "Нажми 1, чтобы узнать цену", "Нажми 2, чтобы позвать оператора". Это бесило клиентов. Люди хотят общаться с бизнесом так же, как с живым человеком.
+A few years ago, every bot was a rigid button menu: "Press 1 for pricing," "Press 2 to talk to a human." Customers hated it. People want to interact with a business the same way they'd talk to a real person.
 
-## В чем магия локального AI?
+## What Makes Local AI Different?
 
-В отличие от ChatGPT, который может "галлюцинировать" и придумывать несуществующие акции, **локальный AI** обучается строго на вашей базе знаний (прайс-листы, регламенты, частые вопросы).
+Unlike ChatGPT, which can "hallucinate" and invent promotions that don't exist, **local AI** is trained strictly on your knowledge base — price lists, policies, and FAQs.
 
-1. **Мгновенный ответ:** Бот отвечает за 1 секунду.
-2. **Контекст:** Он помнит, о чем клиент спрашивал 5 сообщений назад.
-3. **Продажи:** Он не просто отвечает на вопросы, он ведет клиента по воронке к целевому действию (запись, покупка).
+1. **Instant Response:** The bot replies in under 1 second.
+2. **Context Awareness:** It remembers what the customer asked 5 messages ago.
+3. **Sales-Driven:** It doesn't just answer questions — it guides the customer through a funnel toward a target action (booking, purchase).
 
-> "После внедрения AI-ассистента конверсия из диалога в запись выросла на 40%, а администратор наконец-то смог заняться сервисом в салоне, а не переписками в телефоне."
+> "After deploying the AI assistant, our conversion from chat to booking jumped 40%. Our receptionist finally had time to focus on in-salon service instead of texting all day."
 
-### Как мы это делаем?
+### How We Build It
 
-Мы берем ваши данные, загружаем их в нейросеть, настраиваем промпты (инструкции для AI) и интегрируем это всё в Telegram. Весь процесс занимает 2-3 дня.
+We take your data, load it into a neural network, configure prompts (AI instructions), and integrate everything into your website or messaging platform. The entire process takes 2–3 days.
 
-*Здесь скоро появится видео с демонстрацией работы бота.*
+### What You Get
+
+- A 24/7 AI assistant that never calls in sick
+- Instant answers to 80%+ of routine questions
+- Automatic appointment booking and lead capture
+- CRM integration (HubSpot, Salesforce, Zapier)
+- Monthly cost of $50–$200 vs. $2,000–$4,000 for a human agent
+
+*Want to see it in action? [Get a free consultation](#contact).*

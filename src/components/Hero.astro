@@ -3,32 +3,32 @@
 <section class="hero">
   <div class="hero-bg-text" aria-hidden="true">BOT AI BOT AI</div>
   <div class="hero-meta">
-    <div class="hero-tag">AI Automation for Business &middot; 2026</div>
+    <div class="hero-tag" data-i18n="hero.tag">AI Automation for Business &middot; 2026</div>
     <div class="hero-author">@Gypno_Man</div>
   </div>
-  <h1 id="hero-title" aria-label="Tired of losing customers?">
-    <span class="line line1" data-text="Tired of">Tired of</span>
-    <span class="line line2"><span class="invert" data-text="losing">losing</span></span>
-    <span class="line line3" data-text="customers?">customers?</span>
+  <h1 id="hero-title">
+    <span class="line line1">Tired of</span>
+    <span class="line line2"><span class="invert">losing</span></span>
+    <span class="line line3">customers?</span>
   </h1>
   <div class="hero-bottom">
-    <p class="hero-desc">An AI bot responds instantly, works 24/7, and costs 4&ndash;8x less than a human agent. Launch in 2&ndash;3 days.</p>
+    <p class="hero-desc" data-i18n="hero.desc">An AI bot responds instantly, works 24/7, and costs 4&ndash;8x less than a human agent. Launch in 2&ndash;3 days.</p>
     <div class="hero-stats-row">
       <div class="h-stat">
         <div class="h-stat-n" data-count="15">15</div>
-        <div class="h-stat-l">Years of Experience</div>
+        <div class="h-stat-l" data-i18n="hero.stat1">Years of Experience</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n" data-count="50">50<span class="stat-plus">+</span></div>
-        <div class="h-stat-l">Bots Built</div>
+        <div class="h-stat-l" data-i18n="hero.stat2">Bots Built</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">24/7</div>
-        <div class="h-stat-l">Always On</div>
+        <div class="h-stat-l" data-i18n="hero.stat3">Always On</div>
       </div>
     </div>
     <div class="hero-cta">
-      <a href="https://t.me/Gypno_Man" class="btn-primary">Free Consultation &rarr;</a>
+      <a href="#contact" class="btn-primary" data-i18n="hero.cta">Free Consultation &rarr;</a>
     </div>
   </div>
 </section>
@@ -228,7 +228,7 @@
 <script is:inline>
   document.addEventListener("DOMContentLoaded", function () {
     // ─── Guard: bail if GSAP CDN failed to load ───
-    if (typeof gsap === 'undefined') {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
       document.querySelectorAll('.hero-meta, .hero-bottom').forEach(function(el) {
         el.style.opacity = '1';
       });
@@ -292,6 +292,7 @@
       });
     }
 
+    gsap.registerPlugin(ScrollTrigger);
     var mm = gsap.matchMedia();
 
     // ═══════════════════════════════════════════

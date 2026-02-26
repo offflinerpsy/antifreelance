@@ -5,16 +5,16 @@
   Ольга, Мед. клиника | Сергей, Недвижимость | Анна, Доставка цветов | Виктор, СТО | Наталья, Кофейня
 */
 const reviews = [
-  { name: "Alex, Auto Repair Shop", text: "Built our bot in 3 days. Now clients book at night while we sleep. Conversions up 30%!" },
-  { name: "Maria, Beauty Salon", text: "Our admin couldn't keep up with Instagram DMs. The bot now handles 80% of the routine." },
-  { name: "Igor, Barbershop", text: "A perfect replacement for a manager. The bot reminds clients about haircuts after a month. Repeat visits up 45%." },
-  { name: "Elena, Restaurant", text: "Table reservations are now fully automated. No more mix-ups or double bookings." },
-  { name: "Dmitry, Fitness Club", text: "Members renew subscriptions through the bot themselves. Revenue up, call center costs down." },
-  { name: "Olga, Medical Clinic", text: "The bot collects initial medical history before appointments. Doctors love it — saves tons of time." },
-  { name: "Sergey, Real Estate", text: "The AI qualifies leads better than junior agents. Only passes hot prospects to brokers." },
-  { name: "Anna, Flower Delivery", text: "During holidays, the bot saved us from total chaos. Processed 500+ orders in a day without a single error." },
-  { name: "Victor, Auto Service", text: "CRM integration runs like clockwork. Every inquiry lands straight in the pipeline." },
-  { name: "Natalie, Coffee Shop", text: "Launched coffee pre-orders through the bot. Morning lines vanished, revenue went up." }
+  { name: "Jake, Auto Repair Shop", text: "Built our bot in 3 days. Now clients book at night while we sleep. Conversions up 30%!" },
+  { name: "Sarah, Beauty Salon", text: "Our admin couldn't keep up with Instagram DMs. The bot now handles 80% of the routine." },
+  { name: "Mike, Barbershop", text: "A perfect replacement for a manager. The bot reminds clients about haircuts after a month. Repeat visits up 45%." },
+  { name: "Jessica, Restaurant", text: "Table reservations are now fully automated. No more mix-ups or double bookings." },
+  { name: "Brandon, Fitness Club", text: "Members renew subscriptions through the bot themselves. Revenue up, call center costs down." },
+  { name: "Emily, Medical Clinic", text: "The bot collects initial medical history before appointments. Doctors love it — saves tons of time." },
+  { name: "Ryan, Real Estate", text: "The AI qualifies leads better than junior agents. Only passes hot prospects to brokers." },
+  { name: "Ashley, Flower Delivery", text: "During holidays, the bot saved us from total chaos. Processed 500+ orders in a day without a single error." },
+  { name: "David, Auto Service", text: "CRM integration runs like clockwork. Every inquiry lands straight in the pipeline." },
+  { name: "Lauren, Coffee Shop", text: "Launched coffee pre-orders through the bot. Morning lines vanished, revenue went up." }
 ];
 
 // Split into two rows for marquee
@@ -23,8 +23,8 @@ const row2 = reviews.slice(5, 10);
 ---
 <section class="reviews-section" id="reviews">
   <!-- RU: 03 — Отзывы / Что говорят клиенты -->
-  <div class="section-num reveal">03 — Reviews</div>
-  <h2 class="section-big-title reveal">What Our<br><span class="accent">Clients Say</span></h2>
+  <div class="section-num reveal" data-i18n="rev.label">03 — Reviews</div>
+  <h2 class="section-big-title reveal" data-i18n-html="rev.h2">What Our<br><span class="accent">Clients Say</span></h2>
   
   <div class="marquee-container reveal">
     <div class="marquee-track track-left">

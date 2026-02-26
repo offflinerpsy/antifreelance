@@ -1,25 +1,24 @@
 {
-  "name": "antifreelance",
-  "version": "1.0.0",
-  "description": "Система для автоматического поиска прямых контактов заказчиков по текстам вакансий и заданий, публикуемых в платных или закрытых Telegram-каналах и ботах-агрегаторах.",
+  "name": "botstudio",
+  "version": "2.0.0",
+  "description": "AI Bots & Business Automation — BotStudio lead generation website",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "optimize": "node scripts/optimize-images.mjs",
     "astro": "astro"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["ai", "bots", "automation", "business"],
+  "author": "Aliaksei Y.",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
-    "@gsap/react": "^2.1.2",
+    "@astrojs/node": "^9.1.3",
     "astro": "^5.17.3",
-    "gsap": "^3.14.2"
+    "nodemailer": "^6.9.16",
+    "sharp": "^0.33.5"
   }
 }

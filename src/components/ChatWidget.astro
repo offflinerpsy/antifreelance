@@ -1,0 +1,530 @@
+---
+---
+<!-- Chat Toggle Button -->
+<button class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+  <svg class="chat-icon-open" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+  <svg class="chat-icon-close" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+  <span class="chat-badge" id="chat-badge">1</span>
+</button>
+
+<!-- Chat Panel -->
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">B</div>
+      <div>
+        <div class="chat-name">Bot</div>
+        <div class="chat-status" data-i18n="chat.status">BotStudio AI Assistant</div>
+      </div>
+    </div>
+    <button class="chat-close" id="chat-close" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="chat-messages" id="chat-messages">
+    <!-- Messages appear here -->
+  </div>
+
+  <div class="chat-quick-replies" id="chat-quick-replies">
+    <!-- Quick reply buttons appear here -->
+  </div>
+
+  <form class="chat-input-area" id="chat-form">
+    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" data-i18n-ph="chat.input_ph" />
+    <button type="submit" class="chat-send" aria-label="Send message">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<style>
+  /* Toggle Button */
+  .chat-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255, 94, 0, 0.4);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+  }
+
+  .chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(255, 94, 0, 0.5);
+  }
+
+  .chat-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--lime);
+    color: var(--black);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: badgePulse 2s infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* Chat Panel */
+  .chat-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 380px;
+    height: 520px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .chat-panel.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  @media (max-width: 480px) {
+    .chat-panel {
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+    .chat-toggle {
+      bottom: 16px;
+      right: 16px;
+    }
+  }
+
+  /* Header */
+  .chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(255, 94, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+  }
+
+  .chat-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  .chat-status {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .chat-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    transition: color 0.2s;
+  }
+
+  .chat-close:hover {
+    color: var(--white);
+  }
+
+  /* Messages */
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+
+  .chat-messages::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  /* Message Bubbles */
+  .chat-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    animation: msgIn 0.3s ease;
+    word-wrap: break-word;
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-msg.bot {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border-bottom-left-radius: 4px;
+  }
+
+  .chat-msg.user {
+    align-self: flex-end;
+    background: var(--orange);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-msg.typing {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.4);
+    border-bottom-left-radius: 4px;
+  }
+
+  .typing-dots span {
+    animation: blink 1.4s infinite both;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.2; }
+    40% { opacity: 1; }
+  }
+
+  /* Quick Replies */
+  .chat-quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 8px;
+    min-height: 0;
+  }
+
+  .quick-reply-btn {
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--white);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Space Grotesk', sans-serif;
+    white-space: nowrap;
+  }
+
+  .quick-reply-btn:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+
+  /* Input Area */
+  .chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  #chat-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  #chat-input:focus {
+    border-color: var(--orange);
+  }
+
+  .chat-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .chat-send:hover {
+    transform: scale(1.1);
+  }
+
+  .chat-send:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggle = document.getElementById('chat-toggle');
+    var panel = document.getElementById('chat-panel');
+    var closeBtn = document.getElementById('chat-close');
+    var form = document.getElementById('chat-form');
+    var input = document.getElementById('chat-input');
+    var messagesEl = document.getElementById('chat-messages');
+    var quickRepliesEl = document.getElementById('chat-quick-replies');
+    var badge = document.getElementById('chat-badge');
+    var iconOpen = toggle.querySelector('.chat-icon-open');
+    var iconClose = toggle.querySelector('.chat-icon-close');
+    var sendBtn = form.querySelector('.chat-send');
+
+    var isOpen = false;
+    var isSending = false;
+    var hasOpened = false;
+    var messages = []; // { role: 'user'|'assistant', content: string }
+
+    var _lang = document.documentElement.getAttribute('data-lang') || 'en';
+    var _t = (window.__TRANS && window.__TRANS[_lang]) || (window.__TRANS && window.__TRANS['en']) || {};
+    var INITIAL_GREETING = _t['chat.greeting'] || "Hey there! 👋 I'm Bot, your AI assistant at BotStudio.\n\nWhat brings you here today?";
+    var INITIAL_QUICK_REPLIES = [
+      _t['chat.qr.1'] || 'I need a chatbot',
+      _t['chat.qr.2'] || 'Website help',
+      _t['chat.qr.3'] || 'Full automation',
+      _t['chat.qr.4'] || 'Just browsing'
+    ];
+
+    function toggleChat() {
+      isOpen = !isOpen;
+      panel.classList.toggle('open', isOpen);
+      iconOpen.style.display = isOpen ? 'none' : 'block';
+      iconClose.style.display = isOpen ? 'block' : 'none';
+      badge.style.display = 'none';
+
+      if (isOpen && !hasOpened) {
+        hasOpened = true;
+        addBotMessage(INITIAL_GREETING);
+        showQuickReplies(INITIAL_QUICK_REPLIES);
+      }
+
+      if (isOpen) {
+        setTimeout(function() { input.focus(); }, 300);
+      }
+    }
+
+    toggle.addEventListener('click', toggleChat);
+    closeBtn.addEventListener('click', toggleChat);
+
+    function addMessage(role, text) {
+      var div = document.createElement('div');
+      div.className = 'chat-msg ' + role;
+      div.textContent = text;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function addBotMessage(text) {
+      messages.push({ role: 'assistant', content: text });
+      addMessage('bot', text);
+    }
+
+    function addUserMessage(text) {
+      messages.push({ role: 'user', content: text });
+      addMessage('user', text);
+    }
+
+    function showTyping() {
+      var div = document.createElement('div');
+      div.className = 'chat-msg typing';
+      div.id = 'typing-indicator';
+      div.innerHTML = '<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>';
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function removeTyping() {
+      var typing = document.getElementById('typing-indicator');
+      if (typing) typing.remove();
+    }
+
+    function showQuickReplies(replies) {
+      quickRepliesEl.innerHTML = '';
+      replies.forEach(function(text) {
+        var btn = document.createElement('button');
+        btn.className = 'quick-reply-btn';
+        btn.textContent = text;
+        btn.addEventListener('click', function() {
+          sendMessage(text);
+        });
+        quickRepliesEl.appendChild(btn);
+      });
+    }
+
+    function clearQuickReplies() {
+      quickRepliesEl.innerHTML = '';
+    }
+
+    function extractQuickReplies(text) {
+      // Look for patterns like "A) option, B) option" or "1. option 2. option"
+      var replies = [];
+      var patterns = [
+        /([A-D])\)\s*([^,\n]+)/gi,
+        /([A-D])\.\s*([^,\n]+)/gi,
+      ];
+      for (var i = 0; i < patterns.length; i++) {
+        var match;
+        while ((match = patterns[i].exec(text)) !== null) {
+          replies.push(match[2].trim());
+        }
+        if (replies.length > 0) break;
+      }
+      return replies;
+    }
+
+    function sendMessage(text) {
+      if (isSending || !text.trim()) return;
+
+      isSending = true;
+      sendBtn.disabled = true;
+      addUserMessage(text);
+      clearQuickReplies();
+      input.value = '';
+      showTyping();
+
+      // Build messages for API (only user/assistant, no system)
+      var apiMessages = messages.map(function(m) {
+        return { role: m.role, content: m.content };
+      });
+
+      fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiMessages })
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('API error');
+        return res.json();
+      })
+      .then(function(data) {
+        removeTyping();
+        var reply = data.choices && data.choices[0] && data.choices[0].message
+          ? data.choices[0].message.content
+          : "Sorry, I couldn't process that. Try again?";
+
+        addBotMessage(reply);
+
+        // Extract quick replies from bot response
+        var qr = extractQuickReplies(reply);
+        if (qr.length > 0) {
+          showQuickReplies(qr);
+        }
+      })
+      .catch(function() {
+        removeTyping();
+        addBotMessage("Oops, something went wrong 😅 Try again in a moment!");
+      })
+      .finally(function() {
+        isSending = false;
+        sendBtn.disabled = false;
+        input.focus();
+      });
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      sendMessage(input.value);
+    });
+
+    // Auto-open hint after 8 seconds (badge pulse)
+    setTimeout(function() {
+      if (!hasOpened) {
+        badge.style.display = 'flex';
+      }
+    }, 8000);
+  });
+</script>

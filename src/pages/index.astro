@@ -4,9 +4,9 @@ import Hero from '../components/Hero.astro';
 import LogosCarousel from '../components/LogosCarousel.astro';
 import Cases from '../components/Cases.astro';
 import PhoneDemo from '../components/PhoneDemo.astro';
-import Portfolio from '../components/Portfolio.astro';
 import Reviews from '../components/Reviews.astro';
 import CTA from '../components/CTA.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
 <Layout 
@@ -20,61 +20,56 @@ import CTA from '../components/CTA.astro';
   <!-- RU: Мгновенный ответ | 24/7 работа | Запись клиентов | Локальный AI | Без ChatGPT | 2-3 дня до запуска | 15 лет опыта | 50+ ботов -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span class="marquee-item">Instant Response</span>
-      <span class="marquee-item">24/7 Uptime</span>
-      <span class="marquee-item">Client Booking</span>
-      <span class="marquee-item">Local AI</span>
-      <span class="marquee-item">No ChatGPT</span>
-      <span class="marquee-item">Launch in 2–3 Days</span>
-      <span class="marquee-item">15 Years of Experience</span>
-      <span class="marquee-item">50+ Bots</span>
+      <span class="marquee-item" data-i18n="mq.1">Instant Response</span>
+      <span class="marquee-item" data-i18n="mq.2">24/7 Uptime</span>
+      <span class="marquee-item" data-i18n="mq.3">Client Booking</span>
+      <span class="marquee-item" data-i18n="mq.4">Local AI</span>
+      <span class="marquee-item" data-i18n="mq.5">No ChatGPT</span>
+      <span class="marquee-item" data-i18n="mq.6">Launch in 2–3 Days</span>
+      <span class="marquee-item" data-i18n="mq.7">15 Years of Experience</span>
+      <span class="marquee-item" data-i18n="mq.8">50+ Bots</span>
       <!-- Duplicates for infinite scroll -->
-      <span class="marquee-item">Instant Response</span>
-      <span class="marquee-item">24/7 Uptime</span>
-      <span class="marquee-item">Client Booking</span>
-      <span class="marquee-item">Local AI</span>
-      <span class="marquee-item">No ChatGPT</span>
-      <span class="marquee-item">Launch in 2–3 Days</span>
-      <span class="marquee-item">15 Years of Experience</span>
-      <span class="marquee-item">50+ Bots</span>
+      <span class="marquee-item" data-i18n="mq.1">Instant Response</span>
+      <span class="marquee-item" data-i18n="mq.2">24/7 Uptime</span>
+      <span class="marquee-item" data-i18n="mq.3">Client Booking</span>
+      <span class="marquee-item" data-i18n="mq.4">Local AI</span>
+      <span class="marquee-item" data-i18n="mq.5">No ChatGPT</span>
+      <span class="marquee-item" data-i18n="mq.6">Launch in 2–3 Days</span>
+      <span class="marquee-item" data-i18n="mq.7">15 Years of Experience</span>
+      <span class="marquee-item" data-i18n="mq.8">50+ Bots</span>
     </div>
   </div>
 
   <!-- Features -->
   <section class="features-section" id="features">
     <!-- RU: 01 — Возможности / Бот работает пока вы спите -->
-    <div class="section-num reveal">01 — Features</div>
-    <h2 class="section-big-title reveal">The bot works<br><span class="accent">while you sleep</span></h2>
+    <div class="section-num reveal" data-i18n="feat.label">01 — Features</div>
+    <h2 class="section-big-title reveal" data-i18n-html="feat.h2">The bot works<br><span class="accent">while you sleep</span></h2>
     <div class="features-asymmetric">
       <div class="feat-card bg-orange reveal">
         <div class="feat-num">01</div>
-        <!-- RU: Мгновенный ответ / Реакция менее 1 секунды. Пока конкуренты спят — вы уже приняли заявку. -->
-        <div class="feat-title">Instant Response</div>
-        <div class="feat-desc">Under 1 second. Every moment you don't reply, a competitor does. Your bot answers before they finish typing.</div>
+        <div class="feat-title" data-i18n="feat.1.title">Instant Response</div>
+        <div class="feat-desc"  data-i18n="feat.1.desc">Under 1 second. Every moment you don't reply, a competitor does. Your bot answers before they finish typing.</div>
       </div>
       <div class="feat-card reveal">
         <div class="feat-num">02</div>
-        <!-- RU: Собственный AI / Собственная AI-модель без зависимости от ChatGPT и зарубежных сервисов. -->
-        <div class="feat-title">Private AI</div>
-        <div class="feat-desc">Your own AI model. No ChatGPT dependency. No outages. No third-party data risk.</div>
+        <div class="feat-title" data-i18n="feat.2.title">Private AI</div>
+        <div class="feat-desc"  data-i18n="feat.2.desc">Your own AI model. No ChatGPT dependency. No outages. No third-party data risk.</div>
       </div>
       <div class="feat-card reveal">
         <div class="feat-num">03</div>
-        <!-- RU: Приём записей / Клиент записывается сам через бота в любое время суток. -->
-        <div class="feat-title">Appointment Booking</div>
-        <div class="feat-desc">Clients book themselves 24/7 — no receptionist, no phone tag. Just revenue while you sleep.</div>
+        <div class="feat-title" data-i18n="feat.3.title">Appointment Booking</div>
+        <div class="feat-desc"  data-i18n="feat.3.desc">Clients book themselves 24/7 — no receptionist, no phone tag. Just revenue while you sleep.</div>
       </div>
       <div class="feat-card bg-lime reveal">
         <div class="feat-num">04</div>
-        <!-- RU: Интеграции с CRM / Подключаем к HubSpot, Salesforce, Zapier и любым другим системам. -->
-        <div class="feat-title">Plugs Into Everything</div>
-        <div class="feat-desc">HubSpot, Salesforce, Google Sheets, Zapier — seamless sync with whatever you already use.</div>
+        <div class="feat-title" data-i18n="feat.4.title">Plugs Into Everything</div>
+        <div class="feat-desc"  data-i18n="feat.4.desc">HubSpot, Salesforce, Google Sheets, Zapier — seamless sync with whatever you already use.</div>
       </div>
       <div class="feat-card reveal feat-wide">
         <div class="feat-num">05</div>
-        <!-- RU: В 4–8 раз дешевле менеджера / Обслуживание бота — от $50/мес. Менеджер стоит $500–$1 000/мес. -->
-        <div class="feat-title">Cut Payroll by 80%</div>
-        <div class="feat-desc">A bot runs for $50/mo. A human agent costs $500–$1,000. Same work, a fraction of the price.</div>
+        <div class="feat-title" data-i18n="feat.5.title">Cut Payroll by 80%</div>
+        <div class="feat-desc"  data-i18n="feat.5.desc">A bot runs for $50/mo. A human agent costs $500–$1,000. Same work, a fraction of the price.</div>
       </div>
     </div>
   </section>
@@ -82,9 +77,9 @@ import CTA from '../components/CTA.astro';
   <PhoneDemo />
 
   <Cases />
-  <Portfolio />
   <Reviews />
   <CTA />
+  <ContactForm />
 </Layout>
 
 <style>

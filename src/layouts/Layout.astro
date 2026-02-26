@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 
 interface Props {
   title: string;
@@ -12,7 +13,6 @@ const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<!-- RU: <html lang="ru"> -->
 <html lang="en" class="no-js">
 <script is:inline>document.documentElement.classList.remove('no-js');</script>
   <head>
@@ -20,19 +20,294 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <!-- RU: telegram бот, ai бот, автоматизация бизнеса, разработка ботов, нейросети для бизнеса, малый бизнес -->
     <meta name="keywords" content="telegram bot, ai bot, business automation, bot development, AI for business, small business" />
-    
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+
+    <!-- ═══════════════ i18n System ═══════════════ -->
+    <script is:inline>
+      // SYNC: set lang attribute immediately (prevents flash)
+      var __bs_lang = (function() {
+        try { return localStorage.getItem('bs_lang') || 'en'; } catch(e) { return 'en'; }
+      })();
+      document.documentElement.setAttribute('data-lang', __bs_lang);
+
+      // ─── Translations ─────────────────────────────────
+      window.__TRANS = {
+        en: {
+          'nav.features': 'Features',
+          'nav.cases': "Who It's For",
+          'nav.portfolio': 'Portfolio & About',
+          'nav.kb': 'Knowledge Base',
+          'nav.contact': 'Contact',
+          'nav.mobile_cta': 'Get in Touch',
+
+          'hero.tag': 'AI Automation for Business · 2026',
+          'hero.line1': 'Tired of',
+          'hero.line2': 'losing',
+          'hero.line3': 'customers?',
+          'hero.desc': 'An AI bot responds instantly, works 24/7, and costs 4–8x less than a human agent. Launch in 2–3 days.',
+          'hero.stat1': 'Years of Experience',
+          'hero.stat2': 'Bots Built',
+          'hero.stat3': 'Always On',
+          'hero.cta': 'Free Consultation →',
+
+          'mq.1': 'Instant Response', 'mq.2': '24/7 Uptime', 'mq.3': 'Client Booking',
+          'mq.4': 'Local AI', 'mq.5': 'No ChatGPT', 'mq.6': 'Launch in 2–3 Days',
+          'mq.7': '15 Years of Experience', 'mq.8': '50+ Bots',
+
+          'feat.label': '01 — Features',
+          'feat.h2': 'The bot works<br><span class="accent">while you sleep</span>',
+          'feat.1.title': 'Instant Response',
+          'feat.1.desc': "Under 1 second. Every moment you don't reply, a competitor does. Your bot answers before they finish typing.",
+          'feat.2.title': 'Private AI',
+          'feat.2.desc': 'Your own AI model. No ChatGPT dependency. No outages. No third-party data risk.',
+          'feat.3.title': 'Appointment Booking',
+          'feat.3.desc': 'Clients book themselves 24/7 — no receptionist, no phone tag. Just revenue while you sleep.',
+          'feat.4.title': 'Plugs Into Everything',
+          'feat.4.desc': 'HubSpot, Salesforce, Google Sheets, Zapier — seamless sync with whatever you already use.',
+          'feat.5.title': 'Cut Payroll by 80%',
+          'feat.5.desc': 'A bot runs for $50/mo. A human agent costs $500–$1,000. Same work, a fraction of the price.',
+
+          'cases.label': '02 — Small Business',
+          'cases.h2': 'Who Needs an<br><span class="accent">AI Assistant</span>',
+          'cases.1.title': 'Beauty Salon',
+          'cases.1.desc': 'The bot handles bookings and sends visit reminders 24/7. Appointment volume increased by 40%.',
+          'cases.2.title': 'Auto Repair Shop',
+          'cases.2.desc': 'After launch — zero missed inquiries, even at night and on weekends.',
+          'cases.3.title': 'Barbershop',
+          'cases.3.desc': 'Subscriber base built in 2 months. Newsletters convert at 35%.',
+          'cases.4.title': 'Restaurant / Café',
+          'cases.4.desc': 'Table reservations and pre-orders without a host. Average check up 15%.',
+          'cases.5.title': 'Medical Clinic',
+          'cases.5.desc': 'Doctor appointments, FAQ answers, and test collection. Front desk workload reduced significantly.',
+          'cases.6.title': 'Fitness Club',
+          'cases.6.desc': 'Membership renewals, group class schedules, and card freezes in one tap.',
+          'cases.7.title': 'Real Estate',
+          'cases.7.desc': 'Lead qualification, property matching by criteria, and viewing appointments.',
+          'cases.8.title': 'Delivery',
+          'cases.8.desc': 'Order tracking, returns processing, and review collection.',
+
+          'rev.label': '03 — Reviews',
+          'rev.h2': 'What Our<br><span class="accent">Clients Say</span>',
+
+          'cta.h2': 'Stop Losing Customers',
+          'cta.btn': 'Get Free Consultation ↓',
+          'cta.sub': 'Free consultation · Reply within an hour · 15 years of experience',
+
+          'cf.label': 'Get Started',
+          'cf.h2': 'Let\'s Build Your <span class="accent">AI Bot</span>',
+          'cf.sub': 'Free consultation · Reply within an hour · No commitment',
+          'cf.name': 'Your Name *', 'cf.name_ph': 'John Smith',
+          'cf.email': 'Email *', 'cf.email_ph': 'john@company.com',
+          'cf.biz': 'Business Type', 'cf.biz_ph': 'Select your industry...',
+          'cf.msg': 'What do you want to automate?',
+          'cf.msg_ph': 'E.g. Customer support bot, appointment booking, lead qualification...',
+          'cf.btn': 'Get Free Consultation', 'cf.sending': 'Sending...',
+          'cf.opt0': 'Select your industry...',
+          'cf.opt1': 'E-commerce / Online Store', 'cf.opt2': 'SaaS / Tech Startup',
+          'cf.opt3': 'Professional Services', 'cf.opt4': 'Healthcare / Medical',
+          'cf.opt5': 'Real Estate', 'cf.opt6': 'Restaurant / Hospitality',
+          'cf.opt7': 'Beauty / Salon / Spa', 'cf.opt8': 'Education / Coaching',
+          'cf.opt9': 'Other',
+
+          'ft.tagline': 'AI Chatbots & Business Automation',
+          'chat.status': 'BotStudio AI Assistant',
+          'chat.greeting': "Hey there! 👋 I'm Bot, your AI assistant at BotStudio.\n\nWhat brings you here today?",
+          'chat.qr.1': 'I need a chatbot', 'chat.qr.2': 'Website help',
+          'chat.qr.3': 'Full automation', 'chat.qr.4': 'Just browsing',
+
+          'port.h1': 'Crafting Digital', 'port.h1_accent': 'Masterpieces',
+          'port.subtitle': 'Web development, design, and business automation with 15+ years of experience.',
+          'port.scroll': 'Scroll Down',
+
+          'ab.num': '04 — About Me',
+          'ab.h2_main': "Hey, I'm", 'ab.h2_accent': 'Aliaksei',
+          'ab.bio1': "I've been in web development for over 15 years. In that time, I've gone from building simple websites to developing complex corporate portals and AI-powered solutions.",
+          'ab.bio2': "My experience includes international internships and working with clients worldwide. Since 2021, I've been an independent consultant helping businesses grow and automate their processes.",
+          'ab.bio3': 'My goal is to make business better through modern technology. I believe that smart automation frees up time for creativity and strategic growth.',
+          'ab.skill1': 'Web Development', 'ab.skill2': 'E-commerce',
+          'ab.skill3': 'AI Automation', 'ab.skill4': 'Architecture',
+          'ab.exp': 'Years in IT',
+          'chat.input_ph': 'Type a message...',
+        },
+        ru: {
+          'nav.features': 'Возможности',
+          'nav.cases': 'Кому подходит',
+          'nav.portfolio': 'Портфолио и Обо мне',
+          'nav.kb': 'База знаний',
+          'nav.contact': 'Написать',
+          'nav.mobile_cta': 'Связаться',
+
+          'hero.tag': 'AI-автоматизация для бизнеса · 2026',
+          'hero.line1': 'Устали',
+          'hero.line2': 'терять',
+          'hero.line3': 'клиентов?',
+          'hero.desc': 'AI-бот отвечает мгновенно, работает 24/7 и стоит в 4–8 раз дешевле менеджера. Запуск за 2–3 дня.',
+          'hero.stat1': 'Лет опыта',
+          'hero.stat2': 'Ботов создано',
+          'hero.stat3': 'Всегда в работе',
+          'hero.cta': 'Бесплатная консультация →',
+
+          'mq.1': 'Мгновенный ответ', 'mq.2': 'Работа 24/7', 'mq.3': 'Запись клиентов',
+          'mq.4': 'Локальный AI', 'mq.5': 'Без ChatGPT', 'mq.6': 'Запуск за 2–3 дня',
+          'mq.7': '15 лет опыта', 'mq.8': '50+ ботов',
+
+          'feat.label': '01 — Возможности',
+          'feat.h2': 'Бот работает<br><span class="accent">пока вы спите</span>',
+          'feat.1.title': 'Мгновенный ответ',
+          'feat.1.desc': 'Менее 1 секунды. Пока конкуренты спят — вы уже приняли заявку. Бот отвечает раньше, чем клиент успевает дочитать.',
+          'feat.2.title': 'Собственный AI',
+          'feat.2.desc': 'Своя AI-модель без зависимости от ChatGPT. Без сбоев. Без риска утечки данных.',
+          'feat.3.title': 'Запись клиентов',
+          'feat.3.desc': 'Клиент записывается сам в любое время. Никаких администраторов. Просто деньги пока вы спите.',
+          'feat.4.title': 'Интегрируется со всем',
+          'feat.4.desc': 'HubSpot, Salesforce, Google Таблицы, Zapier — синхронизация с инструментами, которые вы используете.',
+          'feat.5.title': 'Экономия до 80%',
+          'feat.5.desc': 'Бот стоит от $50/мес. Менеджер — $500–$1 000. Та же работа, в разы дешевле.',
+
+          'cases.label': '02 — Малый бизнес',
+          'cases.h2': 'Кому нужен<br><span class="accent">AI-ассистент</span>',
+          'cases.1.title': 'Салон красоты',
+          'cases.1.desc': 'Бот принимает запись и напоминает о визите 24/7. Количество записей выросло на 40%.',
+          'cases.2.title': 'Автосервис',
+          'cases.2.desc': 'После запуска — ноль пропущенных обращений, даже ночью и в выходные.',
+          'cases.3.title': 'Барбершоп',
+          'cases.3.desc': 'База подписчиков за 2 месяца. Рассылки конвертируют с конверсией 35%.',
+          'cases.4.title': 'Ресторан / Кафе',
+          'cases.4.desc': 'Бронирование столиков и предзаказ меню без хостес. Увеличение чека на 15%.',
+          'cases.5.title': 'Мед. клиника',
+          'cases.5.desc': 'Запись к врачам, ответы на частые вопросы, сбор анализов. Снижение нагрузки на регистратуру.',
+          'cases.6.title': 'Фитнес-клуб',
+          'cases.6.desc': 'Продление абонементов, расписание занятий и заморозка карт в один клик.',
+          'cases.7.title': 'Недвижимость',
+          'cases.7.desc': 'Квалификация лидов, подбор объектов по параметрам и запись на просмотр.',
+          'cases.8.title': 'Доставка',
+          'cases.8.desc': 'Отслеживание статуса заказа, оформление возвратов и сбор отзывов.',
+
+          'rev.label': '03 — Отзывы',
+          'rev.h2': 'Что говорят<br><span class="accent">наши клиенты</span>',
+
+          'cta.h2': 'Хватит терять клиентов',
+          'cta.btn': 'Получить консультацию ↓',
+          'cta.sub': 'Бесплатно · Ответ в течение часа · 15 лет опыта',
+
+          'cf.label': 'Начнём',
+          'cf.h2': 'Создадим вашего <span class="accent">AI-бота</span>',
+          'cf.sub': 'Бесплатно · Ответ в течение часа · Без обязательств',
+          'cf.name': 'Ваше имя *', 'cf.name_ph': 'Иван Петров',
+          'cf.email': 'Email *', 'cf.email_ph': 'ivan@company.ru',
+          'cf.biz': 'Тип бизнеса', 'cf.biz_ph': 'Выберите отрасль...',
+          'cf.msg': 'Что хотите автоматизировать?',
+          'cf.msg_ph': 'Например: поддержка клиентов, запись на приём, квалификация лидов...',
+          'cf.btn': 'Получить консультацию', 'cf.sending': 'Отправляем...',
+          'cf.opt0': 'Выберите отрасль...',
+          'cf.opt1': 'E-commerce / Интернет-магазин', 'cf.opt2': 'SaaS / Технологический стартап',
+          'cf.opt3': 'Профессиональные услуги', 'cf.opt4': 'Здравоохранение / Медицина',
+          'cf.opt5': 'Недвижимость', 'cf.opt6': 'Ресторан / Гостеприимство',
+          'cf.opt7': 'Красота / Салон / Спа', 'cf.opt8': 'Образование / Коучинг',
+          'cf.opt9': 'Другое',
+
+          'ft.tagline': 'AI-боты и автоматизация бизнеса',
+          'chat.status': 'AI-ассистент BotStudio',
+          'chat.greeting': "Привет! 👋 Я Бот — AI-ассистент BotStudio.\n\nЧем могу помочь?",
+          'chat.qr.1': 'Нужен чат-бот', 'chat.qr.2': 'Помощь с сайтом',
+          'chat.qr.3': 'Полная автоматизация', 'chat.qr.4': 'Просто смотрю',
+
+          'port.h1': 'Создаю цифровые', 'port.h1_accent': 'шедевры',
+          'port.subtitle': 'Веб-разработка, дизайн и автоматизация бизнеса с опытом более 15 лет.',
+          'port.scroll': 'Прокрутить',
+
+          'ab.num': '04 — Обо мне',
+          'ab.h2_main': 'Привет, я', 'ab.h2_accent': 'Алексей',
+          'ab.bio1': 'Я занимаюсь веб-разработкой более 15 лет. За это время прошёл путь от простых сайтов до сложных корпоративных порталов и AI-решений.',
+          'ab.bio2': 'Мой опыт включает международные стажировки и работу с клиентами по всему миру. С 2021 года — независимый консультант.',
+          'ab.bio3': 'Моя цель — делать бизнес лучше через современные технологии. Умная автоматизация освобождает время для роста.',
+          'ab.skill1': 'Веб-разработка', 'ab.skill2': 'Интернет-магазины',
+          'ab.skill3': 'AI-автоматизация', 'ab.skill4': 'Архитектура систем',
+          'ab.exp': 'Лет в IT',
+          'chat.input_ph': 'Написать сообщение...',
+        }
+      };
+
+      // ─── Apply function ────────────────────────────────
+      window.__bs_apply = function(lang) {
+        var t = window.__TRANS[lang] || window.__TRANS['en'];
+
+        // 1. textContent
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var k = el.getAttribute('data-i18n');
+          if (t[k] !== undefined) el.textContent = t[k];
+        });
+        // 2. innerHTML (for tags with <br> / <span>)
+        document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+          var k = el.getAttribute('data-i18n-html');
+          if (t[k] !== undefined) el.innerHTML = t[k];
+        });
+        // 3. placeholder
+        document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+          var k = el.getAttribute('data-i18n-ph');
+          if (t[k] !== undefined) el.placeholder = t[k];
+        });
+        // 4. select <option> text
+        document.querySelectorAll('[data-i18n-opt]').forEach(function(el) {
+          var k = el.getAttribute('data-i18n-opt');
+          if (t[k] !== undefined) el.textContent = t[k];
+        });
+        // 5. Hero heading special (may have char spans after GSAP animation)
+        var hl1 = document.querySelector('.hero .line1');
+        var hl2 = document.querySelector('.hero .invert');
+        var hl3 = document.querySelector('.hero .line3');
+        if (hl1 && t['hero.line1']) hl1.textContent = t['hero.line1'];
+        if (hl2 && t['hero.line2']) hl2.textContent = t['hero.line2'];
+        if (hl3 && t['hero.line3']) hl3.textContent = t['hero.line3'];
+
+        // 6. html attrs
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('lang', lang === 'ru' ? 'ru' : 'en');
+
+        // 7. Persist
+        try { localStorage.setItem('bs_lang', lang); } catch(e) {}
+      };
+
+      // Register DOMContentLoaded FIRST (runs before component scripts in <body>)
+      document.addEventListener('DOMContentLoaded', function() {
+        window.__bs_apply(__bs_lang);
+
+        // Wire lang toggle buttons
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var newLang = btn.getAttribute('data-lang');
+            var curLang = document.documentElement.getAttribute('data-lang');
+            if (newLang === curLang) return;
+
+            var main = document.querySelector('main');
+            if (main && typeof gsap !== 'undefined') {
+              gsap.to(main, {
+                opacity: 0.1, duration: 0.18, ease: 'power2.in',
+                onComplete: function() {
+                  window.__bs_apply(newLang);
+                  gsap.to(main, { opacity: 1, duration: 0.32, ease: 'power2.out' });
+                }
+              });
+            } else {
+              window.__bs_apply(newLang);
+            }
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <Header />
@@ -40,15 +315,14 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <Footer />
-    
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // @ts-ignore
+    <ChatWidget />
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         gsap.registerPlugin(ScrollTrigger);
-        
-        // @ts-ignore
-        gsap.utils.toArray('.reveal').forEach((el: any) => {
-          // @ts-ignore
+
+        gsap.utils.toArray('.reveal').forEach(function(el) {
           gsap.to(el, {
             opacity: 1, y: 0,
             duration: 0.7, ease: 'power2.out',
