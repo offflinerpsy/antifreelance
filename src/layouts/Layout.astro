@@ -1,15 +1,20 @@
 ---
+import '../styles/tokens.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ChatWidget from '../components/ChatWidget.astro';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title: string;
   description: string;
+  page?: 'home' | 'portfolio' | 'knowledge';
 }
 
-const { title, description } = Astro.props;
+const { title, description, page = 'home' } = Astro.props;
+const SITE = 'https://aggressorbulkit.online';
+const canonical = `${SITE}${Astro.url.pathname}`;
 ---
 
 <!DOCTYPE html>
@@ -20,14 +25,33 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="telegram bot, ai bot, business automation, bot development, AI for business, small business" />
+    <meta name="keywords" content="telegram bot, ai bot, business automation, bot development, AI chatbot for business, small business automation, AI assistant" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Aliaksei Y." />
+    <meta name="geo.region" content="US" />
 
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${SITE}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="BotStudio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE}/og-image.png`} />
+
+    <!-- JSON-LD Structured Data (GEO/SEO) -->
+    <SEO page={page} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />

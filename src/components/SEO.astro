@@ -1,0 +1,203 @@
+---
+/**
+ * SEO.astro — JSON-LD structured data for GEO optimization
+ * Renders schema.org markup for AI search engines (ChatGPT, Claude, Perplexity, Gemini)
+ * Include in Layout.astro <head> or individual pages.
+ */
+interface Props {
+  page?: 'home' | 'portfolio' | 'knowledge';
+  articleTitle?: string;
+  articleDescription?: string;
+  articleDate?: string;
+}
+
+const { page = 'home', articleTitle, articleDescription, articleDate } = Astro.props;
+const SITE = 'https://aggressorbulkit.online';
+---
+
+<!-- Person + WebSite Schema -->
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://aggressorbulkit.online/#person",
+      "name": "Aliaksei Y.",
+      "jobTitle": "AI Bot Developer & Business Automation Expert",
+      "description": "15 years of experience building custom AI bots, Telegram bots, and business automation systems for small and medium businesses worldwide.",
+      "url": "https://aggressorbulkit.online",
+      "image": "https://aggressorbulkit.online/og-image.png",
+      "knowsAbout": [
+        "Telegram Bot Development",
+        "AI Chatbot Development",
+        "Business Process Automation",
+        "CRM Integration",
+        "Local AI Models",
+        "Lead Generation Automation"
+      ],
+      "sameAs": [
+        "https://www.upwork.com/freelancers/aliakseiY"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aggressorbulkit.online/#website",
+      "name": "BotStudio",
+      "url": "https://aggressorbulkit.online",
+      "description": "AI bots and business automation for small and medium businesses. Launch in 2–3 days.",
+      "publisher": { "@id": "https://aggressorbulkit.online/#person" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://aggressorbulkit.online/#service",
+      "name": "BotStudio — AI Bot Development",
+      "provider": { "@id": "https://aggressorbulkit.online/#person" },
+      "serviceType": "AI Chatbot & Business Automation",
+      "description": "Custom AI bots for Telegram and web. Appointment booking, lead qualification, CRM sync, 24/7 customer support. Launch in 2–3 days from $50/month.",
+      "areaServed": "Worldwide",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "50",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "USD",
+          "price": "50",
+          "unitText": "per month"
+        }
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Bot Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Telegram AI Bot" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Appointment Booking Bot" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lead Qualification Bot" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM Integration Bot" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24/7 Customer Support Bot" } }
+        ]
+      }
+    }
+  ]
+}
+</script>
+
+<!-- FAQPage Schema (GEO: AI search engine optimization) -->
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an AI bot for business and how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An AI bot for business is an automated assistant that uses artificial intelligence to handle customer conversations, answer questions, and complete tasks 24/7. It connects to messaging platforms like Telegram or websites, processes natural language, and responds like a human agent — booking appointments, qualifying leads, answering FAQs, and syncing with your CRM automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a custom AI bot cost for a small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A custom AI bot from BotStudio starts at $50/month to operate — compared to $500–$1,000/month for a human agent doing the same work. The setup cost depends on complexity: a basic booking or FAQ bot starts around $500–$800 one-time, while a full-featured bot with CRM integration and custom AI training ranges from $1,500–$3,000. Most clients see ROI within the first month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to build and launch an AI bot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard AI bot for a small business launches in 2–3 business days after a consultation call. Complex bots with multiple integrations (CRM, calendar, payment systems) take 5–7 days. We handle everything: bot setup, AI training, platform integration, and testing. No technical knowledge required from your side."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the bot integrate with HubSpot, Salesforce, or Google Sheets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our bots integrate with all major business tools: HubSpot, Salesforce, Google Sheets, Zapier, Calendly, Airtable, and more. Every lead, booking, or conversation can be automatically logged in your existing CRM. No manual data entry required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the bot use ChatGPT or a private AI model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We build bots with your own private AI model — no dependency on ChatGPT's servers or Anthropic's API. This means: no outages when OpenAI goes down, no third-party data risk, and faster response times. Your customer data stays on your infrastructure. We can also integrate with ChatGPT or other AI providers if you prefer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the AI bot available 24/7 without downtime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our bots run on cloud infrastructure with 99.9% uptime. They respond to customer messages in under 1 second, around the clock, including weekends and holidays. No sick days, no lunch breaks, no overtime costs. Many clients report capturing 30–40% more leads from after-hours inquiries they previously missed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of businesses benefit most from AI bots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI bots are especially effective for: beauty salons and barbershops (appointment booking), medical clinics (scheduling + FAQ), restaurants (reservations + menu questions), auto repair shops (inquiry handling), real estate agencies (lead qualification), fitness clubs (membership management), and any business that receives repetitive customer questions or needs 24/7 availability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an AI bot replace a human customer service agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For 80% of routine customer interactions, yes. AI bots excel at answering FAQs, booking appointments, collecting lead information, sending reminders, and processing simple requests — all faster and cheaper than a human. For complex cases, the bot can seamlessly escalate to a human agent. Most clients reduce their customer service staff costs by 60–80% while improving response times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started with BotStudio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Getting started is simple: fill out the contact form on our website for a free consultation, or chat with our AI assistant right now. We'll ask about your business type, main pain points, and existing tools. Within 24 hours, you'll get a custom proposal with pricing and timeline. No upfront payment required for the consultation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the bot doesn't understand a customer's question?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When the bot is uncertain, it handles it gracefully: it acknowledges the question, offers relevant alternatives, and can escalate to a human team member via notification. We also continuously train the bot on real conversations from your business, so it gets smarter over time. The bot learns your specific terminology, common questions, and customer patterns."
+      }
+    }
+  ]
+}
+</script>
+
+{page === 'portfolio' && (
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aggressorbulkit.online" },
+    { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://aggressorbulkit.online/portfolio" }
+  ]
+}
+</script>
+)}
+
+{page === 'knowledge' && articleTitle && (
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<!-- article title injected by page -->",
+  "author": { "@id": "https://aggressorbulkit.online/#person" },
+  "publisher": { "@id": "https://aggressorbulkit.online/#person" },
+  "datePublished": "<!-- date injected by page -->",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://aggressorbulkit.online/knowledge/" },
+  "inLanguage": "en-US"
+}
+</script>
+)}
