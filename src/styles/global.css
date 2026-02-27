@@ -1,5 +1,13 @@
 /* Design tokens are defined in tokens.css — imported via Layout.astro */
 
+/* NLP keyword highlighting ("25th frame" subliminal accent) */
+mark {
+  background: none;
+  color: var(--color-accent);
+  font-weight: 600;
+  padding: 0;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {

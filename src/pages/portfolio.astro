@@ -1,56 +1,132 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Portfolio from '../components/Portfolio.astro';
-import WebPortfolio from '../components/WebPortfolio.astro';
 import AboutMe from '../components/AboutMe.astro';
 import TechStack from '../components/TechStack.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+
+const casestudies = await getCollection('casestudies');
+const featured = casestudies.find(c => c.data.featured);
+const others = casestudies
+  .filter(c => !c.data.featured)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<Layout 
-  title="Portfolio & About | BotStudio" 
-  description="15+ years of web development experience. Websites, e-commerce stores, and complex corporate portals. Upwork Top Rated."
+<Layout
+  title="Case Studies | BotStudio — Real AI Bot Results"
+  description="See how AI bots transform real businesses: +47% bookings, -82% no-shows, -60% support tickets. Real case studies from BotStudio."
+  page="portfolio"
 >
-  <!-- RU: title="Портфолио и Обо мне | BotStudio" description="15+ лет опыта в веб-разработке..." -->
   <div class="portfolio-page">
-    <!-- Hero Section for Portfolio -->
+    <!-- Hero Section -->
     <section class="port-hero">
       <div class="port-hero-content">
-        <!-- RU: Создаю цифровые шедевры -->
         <h1 class="port-title reveal-text">
-          <span class="line" data-i18n="port.h1">Crafting Digital</span>
-          <span class="line accent" data-i18n="port.h1_accent">Masterpieces</span>
+          <span class="line" data-i18n="port.h1">Our</span>
+          <span class="line accent" data-i18n="port.h1_accent">Work</span>
         </h1>
-        <!-- RU: Веб-разработка, дизайн и автоматизация бизнеса с опытом более 15 лет. -->
-        <p class="port-subtitle reveal-fade" data-i18n="port.subtitle">Web development, design, and business automation with 15+ years of experience.</p>
+        <p class="port-subtitle reveal-fade" data-i18n="port.subtitle">Real results from real automation projects. See how AI bots transform businesses.</p>
       </div>
-      
+
       <div class="scroll-indicator">
         <div class="mouse"></div>
-        <!-- RU: Скролльте вниз -->
         <span data-i18n="port.scroll">Scroll Down</span>
       </div>
     </section>
 
-    <!-- About Me Section (Integrated) -->
+    <!-- About Me Section -->
     <AboutMe />
 
     <!-- Tech Stack Marquee -->
     <TechStack />
 
+    <!-- Case Studies Section -->
+    <section class="case-studies-section" id="case-studies">
+      <div class="cs-container">
+        <div class="cs-header">
+          <h2 class="cs-main-title" data-i18n="port.cs_title">Case <span class="accent">Studies</span></h2>
+          <p class="cs-main-desc">Every project tells a story. Here's how we turned business challenges into automated success.</p>
+        </div>
+
+        <div class="cs-grid">
+          {featured && (
+            <CaseStudyCard
+              slug={featured.id.replace(/\.md$/, '')}
+              title={featured.data.title}
+              client={featured.data.client}
+              industry={featured.data.industry}
+              icon={featured.data.icon}
+              image={featured.data.images[0]}
+              resultValue={featured.data.results[0].value}
+              resultLabel={featured.data.results[0].label}
+              featured={true}
+            />
+          )}
+          {others.map((cs) => (
+            <CaseStudyCard
+              slug={cs.id.replace(/\.md$/, '')}
+              title={cs.data.title}
+              client={cs.data.client}
+              industry={cs.data.industry}
+              icon={cs.data.icon}
+              image={cs.data.images[0]}
+              resultValue={cs.data.results[0].value}
+              resultLabel={cs.data.results[0].label}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Telegram Bot Portfolio -->
     <Portfolio />
 
-    <!-- Web Portfolio Grid (High-end) -->
-    <WebPortfolio />
+    <!-- Upwork Section -->
+    <section class="upwork-section reveal">
+      <div class="cs-container">
+        <div class="upwork-grid">
+          <div class="upwork-info">
+            <h2 class="cs-main-title">Upwork <span class="accent">Top Rated</span></h2>
+            <p class="upwork-desc">Upwork is the world's largest freelance marketplace. <strong>Top Rated</strong> status is reserved for the platform's elite — professionals with a flawless reputation, 100% Job Success Score, and dozens of successfully completed projects.</p>
+            <div class="upwork-badges">
+              <div class="upwork-badge">100% Job Success</div>
+              <div class="upwork-badge">Top Rated</div>
+            </div>
+          </div>
+          <div class="upwork-visual">
+            <div class="tablet-device">
+              <div class="tablet-camera"></div>
+              <div class="tablet-screen">
+                <div class="tablet-scroll-area">
+                  <div class="upwork-scroll-track">
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (1).webp" alt="Upwork Review" loading="lazy" />
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (2).webp" alt="Upwork Review" loading="lazy" />
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (3).webp" alt="Upwork Review" loading="lazy" />
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (4).webp" alt="Upwork Review" loading="lazy" />
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (1).webp" alt="Upwork Review" loading="lazy" />
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (2).webp" alt="Upwork Review" loading="lazy" />
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (3).webp" alt="Upwork Review" loading="lazy" />
+                    <img src="/assets/upwork/Aliaksei Y. - _PREMIUM_ WordPress _ Woocommerce _ Shopify _ Laravel _ PHP Deleloper - Upwork Freelan (4).webp" alt="Upwork Review" loading="lazy" />
+                  </div>
+                </div>
+              </div>
+              <div class="tablet-home-btn"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </div>
 </Layout>
 
 <style>
   .portfolio-page {
-    background: var(--black);
+    background: var(--color-surface);
     min-height: 100vh;
-    color: var(--white);
+    color: var(--color-text);
     overflow: hidden;
   }
 
@@ -72,26 +148,19 @@ import TechStack from '../components/TechStack.astro';
   }
 
   .port-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-heading);
     font-size: clamp(4rem, 10vw, 8rem);
     line-height: 0.9;
     margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
-
-  .port-title .line {
-    display: block;
-    overflow: hidden;
-  }
-
-  .port-title .accent {
-    color: var(--orange);
-  }
+  .port-title .line { display: block; overflow: hidden; }
+  .accent { color: var(--color-primary); }
 
   .port-subtitle {
     font-size: clamp(1.2rem, 2vw, 1.5rem);
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-text-muted);
     max-width: 600px;
     margin: 0 auto;
   }
@@ -114,11 +183,10 @@ import TechStack from '../components/TechStack.astro';
   .mouse {
     width: 24px;
     height: 36px;
-    border: 2px solid var(--white);
+    border: 2px solid var(--color-text);
     border-radius: 12px;
     position: relative;
   }
-
   .mouse::before {
     content: '';
     position: absolute;
@@ -127,14 +195,166 @@ import TechStack from '../components/TechStack.astro';
     transform: translateX(-50%);
     width: 4px;
     height: 6px;
-    background: var(--white);
+    background: var(--color-text);
     border-radius: 2px;
     animation: scroll 1.5s infinite;
   }
-
   @keyframes scroll {
     0% { transform: translate(-50%, 0); opacity: 1; }
     100% { transform: translate(-50%, 10px); opacity: 0; }
+  }
+
+  /* Case Studies Section */
+  .case-studies-section {
+    padding: clamp(80px, 15vw, 150px) 20px;
+  }
+  .cs-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+  .cs-header {
+    margin-bottom: clamp(40px, 8vw, 80px);
+  }
+  .cs-main-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1;
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+  }
+  .cs-main-desc {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    line-height: var(--leading-normal);
+  }
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  /* Upwork Section */
+  .upwork-section {
+    padding: clamp(80px, 15vw, 150px) 20px;
+  }
+  .upwork-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: var(--space-12);
+    background: var(--color-surface-2);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-surface-4);
+  }
+  .upwork-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .upwork-desc {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+  }
+  .upwork-desc strong { color: var(--color-text); }
+  .upwork-badges {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .upwork-badge {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: rgba(221, 245, 22, 0.1);
+    border: 1px solid rgba(221, 245, 22, 0.25);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+  .upwork-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Tablet device */
+  .tablet-device {
+    width: 100%;
+    max-width: 380px;
+    height: 560px;
+    background: var(--color-surface-3);
+    border-radius: var(--radius-xl);
+    border: 10px solid #333;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .tablet-camera {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    border: 1px solid #222;
+    z-index: 10;
+  }
+  .tablet-screen {
+    flex: 1;
+    background: #000;
+    margin: 28px 8px 20px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .tablet-scroll-area {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .upwork-scroll-track {
+    display: flex;
+    flex-direction: column;
+    animation: scrollUpwork 40s linear infinite;
+  }
+  .upwork-scroll-track:hover {
+    animation-play-state: paused;
+  }
+  .upwork-scroll-track img {
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid #222;
+  }
+  .tablet-home-btn {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+  }
+  @keyframes scrollUpwork {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  @media (max-width: 1024px) {
+    .upwork-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: var(--space-8) var(--space-6);
+    }
+    .tablet-device { height: 480px; }
+  }
+  @media (max-width: 768px) {
+    .cs-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -146,5 +366,13 @@ import TechStack from '../components/TechStack.astro';
     tl.fromTo('.port-title .line', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power4.out' })
       .fromTo('.port-subtitle', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
       .fromTo('.scroll-indicator', { opacity: 0 }, { opacity: 0.5, duration: 1 }, '-=0.3');
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.fromTo('.upwork-section', { y: 50, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: '.upwork-section', start: 'top 85%', once: true }
+      });
+    }
   });
 </script>
