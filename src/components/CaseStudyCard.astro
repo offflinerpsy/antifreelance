@@ -1,0 +1,148 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  client: string;
+  industry: string;
+  icon: string;
+  image: string;
+  resultValue: string;
+  resultLabel: string;
+  featured?: boolean;
+}
+
+const { slug, title, client, industry, icon, image, resultValue, resultLabel, featured = false } = Astro.props;
+---
+
+<a href={`/casestudies/${slug}/`} class={`case-card ${featured ? 'case-card--featured' : ''}`}>
+  <div class="case-card__image">
+    <img src={image} alt={title} loading="lazy" width="600" height="338" />
+    <div class="case-card__overlay"></div>
+  </div>
+  <div class="case-card__content">
+    <span class="case-card__badge">{icon} {industry}</span>
+    <h3 class="case-card__title">{client}</h3>
+    <div class="case-card__result">
+      <span class="case-card__result-value">{resultValue}</span>
+      <span class="case-card__result-label">{resultLabel}</span>
+    </div>
+    <span class="case-card__link" data-i18n="cs.read_story">Read Story &rarr;</span>
+  </div>
+</a>
+
+<style>
+  .case-card {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid var(--color-surface-4);
+    transition: border-color var(--duration-base) var(--ease-smooth),
+                transform var(--duration-base) var(--ease-spring);
+  }
+  .case-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+  .case-card:hover .case-card__image img {
+    transform: scale(1.05);
+  }
+
+  .case-card__image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .case-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-smooth);
+  }
+  .case-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(18, 18, 18, 0.1) 0%,
+      rgba(18, 18, 18, 0.85) 100%
+    );
+    pointer-events: none;
+  }
+
+  .case-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-6);
+  }
+
+  .case-card__badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    background: rgba(255, 94, 0, 0.15);
+    border: 1px solid rgba(255, 94, 0, 0.3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+
+  .case-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    color: var(--color-text);
+    line-height: 1.1;
+    margin-bottom: var(--space-3);
+  }
+
+  .case-card__result {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  .case-card__result-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  .case-card__result-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .case-card__link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    transition: color var(--duration-fast);
+  }
+  .case-card:hover .case-card__link {
+    color: var(--color-primary);
+  }
+
+  /* Featured variant */
+  .case-card--featured {
+    grid-column: 1 / -1;
+  }
+  .case-card--featured .case-card__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  .case-card--featured .case-card__result-value {
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  @media (max-width: 768px) {
+    .case-card__content {
+      padding: var(--space-4);
+    }
+    .case-card__title {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

@@ -1,0 +1,550 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('casestudies');
+  return cases.map((c) => ({
+    params: { slug: c.id.replace(/\.md$/, '') },
+    props: { entry: c },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const d = entry.data;
+const SITE = 'https://aggressorbulkit.online';
+const slug = entry.id.replace(/\.md$/, '');
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": d.title,
+  "description": d.challenge,
+  "author": { "@type": "Person", "@id": `${SITE}/#person`, "name": "Aliaksei Y." },
+  "publisher": { "@type": "Person", "@id": `${SITE}/#person`, "name": "Aliaksei Y." },
+  "datePublished": d.pubDate.toISOString().split('T')[0],
+  "image": d.images[0] ? `${SITE}${d.images[0]}` : undefined,
+  "url": `${SITE}/casestudies/${slug}`
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE },
+    { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": `${SITE}/portfolio` },
+    { "@type": "ListItem", "position": 3, "name": d.client, "item": `${SITE}/casestudies/${slug}` }
+  ]
+});
+
+const reviewSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "reviewBody": d.testimonial.quote,
+  "author": { "@type": "Person", "name": d.testimonial.author },
+  "itemReviewed": {
+    "@type": "Service",
+    "name": `AI Bot for ${d.industry}`,
+    "provider": { "@type": "Person", "@id": `${SITE}/#person`, "name": "Aliaksei Y." }
+  }
+});
+---
+
+<Layout title={d.title} description={d.challenge} page="home">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={faqSchema} />
+    <script type="application/ld+json" set:html={breadcrumbSchema} />
+    <script type="application/ld+json" set:html={reviewSchema} />
+  </Fragment>
+
+  <!-- Breadcrumb -->
+  <section class="cs-breadcrumb-section">
+    <div class="container">
+      <div class="cs-breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <a href="/portfolio/">Case Studies</a>
+        <span class="sep">/</span>
+        <span class="current">{d.client}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section class="cs-hero case-section">
+    <div class="container">
+      <div class="cs-hero__badge">{d.icon} {d.industry}</div>
+      <h1 class="cs-hero__title">{d.title}</h1>
+      <p class="cs-hero__challenge">{d.challenge}</p>
+      {d.images[0] && (
+        <div class="cs-hero__image">
+          <img src={d.images[0]} alt={`${d.client} project`} loading="eager" width="1200" height="675" />
+          <div class="cs-image-overlay"></div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- The Challenge -->
+  <section class="cs-challenge case-section">
+    <div class="container">
+      <h2 class="cs-section-label" data-i18n="cs.challenge">The Challenge</h2>
+      <div class="cs-challenge__block">
+        <p>{d.challenge}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="cs-approach case-section">
+    <div class="container">
+      <h2 class="cs-section-label" data-i18n="cs.approach">Our Approach</h2>
+      <div class="cs-timeline">
+        {d.approach.map((step: { step: string; description: string }, i: number) => (
+          <div class="cs-timeline__step">
+            <div class="cs-timeline__number">{String(i + 1).padStart(2, '0')}</div>
+            <div class="cs-timeline__content">
+              <h3 class="cs-timeline__title">{step.step}</h3>
+              <p class="cs-timeline__desc">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Gallery -->
+  {d.images.length > 1 && (
+    <section class="cs-gallery case-section">
+      <div class="container">
+        <div class="cs-gallery__grid">
+          {d.images.slice(1).map((img: string, i: number) => (
+            <div class="cs-gallery__item">
+              <img src={img} alt={`${d.client} — image ${i + 2}`} loading="lazy" width="600" height="338" />
+              <div class="cs-image-overlay"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Narrative Content (markdown body) -->
+  <section class="cs-content case-section">
+    <div class="container cs-content__inner">
+      <Content />
+    </div>
+  </section>
+
+  <!-- The Results -->
+  <section class="cs-results case-section">
+    <div class="container">
+      <h2 class="cs-section-label" data-i18n="cs.results">The Results</h2>
+      <div class="cs-results__grid">
+        {d.results.map((r: { value: string; label: string }) => (
+          <div class="cs-results__card">
+            <div class="cs-results__value result-value">{r.value}</div>
+            <div class="cs-results__label">{r.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="cs-testimonial case-section">
+    <div class="container">
+      <h2 class="cs-section-label" data-i18n="cs.testimonial">What the Client Says</h2>
+      <blockquote class="cs-quote">
+        <div class="cs-quote__mark">&ldquo;</div>
+        <p class="cs-quote__text">{d.testimonial.quote}</p>
+        <footer class="cs-quote__footer">
+          <strong>{d.testimonial.author}</strong>
+          <span>{d.testimonial.role}</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Technologies -->
+  <section class="cs-tech case-section">
+    <div class="container">
+      <h2 class="cs-section-label" data-i18n="cs.tech">Technologies Used</h2>
+      <div class="cs-tags">
+        {d.tags.map((tag: string) => (
+          <span class="cs-tag">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cs-cta case-section">
+    <div class="container">
+      <h2 class="cs-cta__title" data-i18n="cs.cta">Want similar results? Let's talk</h2>
+      <p class="cs-cta__sub">Get a custom AI bot for your {d.industry.toLowerCase()} — launched in 2-3 days.</p>
+      <a href="/#contact" class="btn-primary" data-i18n="cs.cta_btn">Start a Conversation &rarr;</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container { max-width: var(--container-max); margin: 0 auto; }
+
+  /* Breadcrumb */
+  .cs-breadcrumb-section {
+    padding: clamp(100px, 18vw, 160px) 20px 0;
+    background: var(--color-surface);
+  }
+  .cs-breadcrumb {
+    font-size: var(--text-sm);
+    color: var(--color-text-subtle);
+  }
+  .cs-breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+  .cs-breadcrumb a:hover { color: var(--color-primary); }
+  .cs-breadcrumb .sep { margin: 0 var(--space-2); }
+  .cs-breadcrumb .current { color: var(--color-text); }
+
+  /* Hero */
+  .cs-hero {
+    padding: var(--space-8) 20px clamp(40px, 8vw, 80px);
+    background: var(--color-surface);
+  }
+  .cs-hero__badge {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: rgba(255, 94, 0, 0.12);
+    border: 1px solid rgba(255, 94, 0, 0.3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+  .cs-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    color: var(--color-text);
+    max-width: 900px;
+    margin-bottom: var(--space-6);
+  }
+  .cs-hero__challenge {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 700px;
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-10);
+  }
+  .cs-hero__image {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .cs-hero__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Shared image overlay */
+  .cs-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(18,18,18,0.3), rgba(255,94,0,0.06));
+    pointer-events: none;
+  }
+
+  /* Section label */
+  .cs-section-label {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--color-text);
+    margin-bottom: var(--space-10);
+  }
+
+  /* Challenge */
+  .cs-challenge {
+    padding: clamp(60px, 10vw, 100px) 20px;
+    background: var(--color-surface-2);
+  }
+  .cs-challenge__block {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--space-6);
+    max-width: 700px;
+  }
+  .cs-challenge__block p {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Approach / Timeline */
+  .cs-approach {
+    padding: clamp(60px, 10vw, 100px) 20px;
+    background: var(--color-surface);
+  }
+  .cs-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    max-width: 800px;
+  }
+  .cs-timeline__step {
+    display: flex;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-surface-4);
+    border-radius: var(--radius-md);
+    transition: border-color var(--duration-base) var(--ease-smooth);
+  }
+  .cs-timeline__step:hover {
+    border-color: var(--color-primary);
+  }
+  .cs-timeline__number {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    color: var(--color-primary);
+    line-height: 1;
+    min-width: 60px;
+    opacity: 0.6;
+  }
+  .cs-timeline__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+  .cs-timeline__desc {
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    font-size: var(--text-sm);
+  }
+
+  /* Gallery */
+  .cs-gallery {
+    padding: 0 20px clamp(60px, 10vw, 100px);
+    background: var(--color-surface);
+  }
+  .cs-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+  .cs-gallery__item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .cs-gallery__item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Content (markdown body) */
+  .cs-content {
+    padding: clamp(60px, 10vw, 100px) 20px;
+    background: var(--color-surface-2);
+  }
+  .cs-content__inner {
+    max-width: 750px;
+  }
+  .cs-content__inner :global(h2) {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    color: var(--color-text);
+    margin: var(--space-10) 0 var(--space-4);
+  }
+  .cs-content__inner :global(h3) {
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    margin: var(--space-8) 0 var(--space-3);
+  }
+  .cs-content__inner :global(p) {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-base);
+  }
+  .cs-content__inner :global(strong) { color: var(--color-text); }
+  .cs-content__inner :global(ul), .cs-content__inner :global(ol) {
+    color: var(--color-text-muted);
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+    line-height: var(--leading-relaxed);
+  }
+  .cs-content__inner :global(mark) {
+    background: none;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Results */
+  .cs-results {
+    padding: clamp(60px, 10vw, 100px) 20px;
+    background: var(--color-surface);
+  }
+  .cs-results__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-4);
+  }
+  .cs-results__card {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-surface-4);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    text-align: center;
+  }
+  .cs-results__value {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+  .cs-results__label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Testimonial */
+  .cs-testimonial {
+    padding: clamp(60px, 10vw, 100px) 20px;
+    background: var(--color-surface-2);
+  }
+  .cs-quote {
+    max-width: 750px;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cs-quote__mark {
+    font-family: var(--font-heading);
+    font-size: 6rem;
+    color: var(--color-primary);
+    line-height: 0.5;
+    margin-bottom: var(--space-4);
+    opacity: 0.5;
+  }
+  .cs-quote__text {
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+    margin-bottom: var(--space-6);
+  }
+  .cs-quote__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .cs-quote__footer strong {
+    color: var(--color-text);
+    font-size: var(--text-base);
+  }
+  .cs-quote__footer span {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  /* Technologies */
+  .cs-tech {
+    padding: clamp(40px, 8vw, 80px) 20px;
+    background: var(--color-surface);
+  }
+  .cs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .cs-tag {
+    padding: var(--space-2) var(--space-4);
+    background: rgba(221, 245, 22, 0.1);
+    border: 1px solid rgba(221, 245, 22, 0.25);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cs-cta {
+    padding: clamp(80px, 15vw, 140px) 20px;
+    background: var(--color-surface-2);
+    text-align: center;
+  }
+  .cs-cta__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+  .cs-cta__sub {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (max-width: 768px) {
+    .cs-timeline__step {
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-5);
+    }
+    .cs-timeline__number {
+      font-size: var(--text-2xl);
+      min-width: auto;
+    }
+    .cs-results__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Reveal sections on scroll
+  gsap.utils.toArray('.case-section').forEach(function(el) {
+    gsap.fromTo(el, { y: 50, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+  // Stagger timeline steps
+  gsap.utils.toArray('.cs-timeline__step').forEach(function(el, i) {
+    gsap.fromTo(el, { x: -30, opacity: 0 }, {
+      x: 0, opacity: 1, duration: 0.5, delay: i * 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    });
+  });
+
+  // Counter animation for results
+  document.querySelectorAll('.result-value').forEach(function(el) {
+    var text = el.textContent || '';
+    var match = text.match(/([\+\-]?)(\d+\.?\d*)(.*)/);
+    if (!match) return;
+    var prefix = match[1];
+    var num = parseFloat(match[2]);
+    var suffix = match[3];
+    var isFloat = match[2].includes('.');
+
+    gsap.fromTo({ val: 0 }, { val: num }, {
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      onUpdate: function() {
+        var current = this.targets()[0].val;
+        el.textContent = prefix + (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
+      }
+    });
+  });
+});
+</script>
