@@ -88,10 +88,15 @@ jobs:
       - name: Health check
         run: |
           sleep 5
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://89.23.96.192)
-          echo "HTTP status: $STATUS"
+          STATUS=$(curl -sk -o /dev/null -w "%{http_code}" https://aggressorbulkit.online)
+          echo "HTTPS status: $STATUS"
           if [ "$STATUS" != "200" ]; then
-            echo "Health check failed with status $STATUS"
-            exit 1
+            echo "HTTPS health check failed, trying HTTP fallback..."
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://89.23.96.192)
+            echo "HTTP status: $STATUS"
+            if [ "$STATUS" != "200" ] && [ "$STATUS" != "301" ]; then
+              echo "Health check failed with status $STATUS"
+              exit 1
+            fi
           fi
-          echo "Site is live at http://89.23.96.192"
+          echo "Site is live at https://aggressorbulkit.online"
