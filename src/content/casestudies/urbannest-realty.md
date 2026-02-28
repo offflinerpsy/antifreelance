@@ -8,7 +8,7 @@ approach:
   - step: "Discovery"
     description: "Analyzed 500 historical leads and mapped every qualification criterion agents used. The data was clear: leads contacted within 5 minutes converted at 8x the rate of those contacted after 1 hour."
   - step: "Design"
-    description: "Designed an AI-powered Telegram bot that qualifies leads in real time — capturing property preferences, budget range, purchase timeline, and automatically scheduling viewings with matched agents."
+    description: "Designed an AI-powered web chat and SMS bot that qualifies leads in real time — capturing property preferences, budget range, purchase timeline, and automatically scheduling viewings with matched agents."
   - step: "Build"
     description: "Integrated the bot with MLS listings for instant property matches, Salesforce CRM for automated lead assignment, and Google Maps API for neighborhood-aware recommendations."
   - step: "Deploy"
@@ -32,14 +32,14 @@ images:
   - "/assets/cases/urbannest-1.webp"
   - "/assets/cases/urbannest-2.webp"
   - "/assets/cases/urbannest-3.webp"
-tags: ["Telegram Bot", "MLS API", "Salesforce CRM", "AI/NLP", "Google Maps API"]
+tags: ["Web Chat", "SMS", "MLS API", "Salesforce CRM", "AI/NLP", "Google Maps API"]
 featured: false
 pubDate: 2025-12-15
 ---
 
 ## The First Call
 
-Diana's voice had that particular frustration I've learned to recognize — the sound of someone who knows the problem but can't fix it alone. "My agents are some of the best in the city," she told me, "but they're ==wasting== half their day on people who can't afford what we sell."
+Diana's voice had that particular frustration I've learned to recognize — the sound of someone who knows the problem but can't fix it alone. "My agents are some of the best in the city," she told me, "but they spend ==half their day== on people who can't afford what we sell."
 
 The math was brutal. UrbanNest was generating solid traffic from their website and ad campaigns. But ==70% of those leads== were unqualified. Wrong budget. Wrong neighborhood. Just browsing. And every minute an agent spent on a dead-end call was a minute they weren't spending with a serious buyer.
 
@@ -53,7 +53,7 @@ But there was a second insight hiding in the data. The qualification process age
 
 ## The Turning Point
 
-We built a Telegram bot that intercepted every new lead the moment they came in. No 6-hour wait. No phone tag. ==30 seconds== — that's the new response time.
+We built an AI chat widget embedded right on the UrbanNest website that intercepted every new lead the moment they came in. No 6-hour wait. No phone tag. ==30 seconds== — that's the new response time.
 
 The bot opens with a warm, conversational flow. Not a form. Not an interrogation. It asks about their dream neighborhood, walks them through budget ranges with helpful context, and captures their timeline. Then it does something no junior agent could do at that speed: it queries the MLS database in real time and serves up matching properties with photos, pricing, and a one-tap viewing scheduler.
 

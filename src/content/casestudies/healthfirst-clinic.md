@@ -32,14 +32,14 @@ images:
   - "/assets/cases/healthfirst-1.webp"
   - "/assets/cases/healthfirst-2.webp"
   - "/assets/cases/healthfirst-3.webp"
-tags: ["Telegram Bot", "EHR Integration", "HIPAA Compliant", "Node.js", "PostgreSQL"]
+tags: ["SMS Bot", "Patient Portal", "EHR Integration", "HIPAA Compliant", "Node.js"]
 featured: false
 pubDate: 2026-02-01
 ---
 
 ## The First Call
 
-Dr. Rodriguez did not reach out about a chatbot. She reached out about money disappearing. Every month, HealthFirst Clinic was ==losing== an estimated $8,500 in revenue to patients who simply never showed up.
+Dr. Rodriguez did not reach out about a chatbot. She reached out about money disappearing. Every month, HealthFirst Clinic was watching ==$8,500 in revenue== walk out the door because patients simply never showed up.
 
 When I visited the clinic, I saw the problem in real time. Two front-desk staff members were working through a printed call list, dialing patients one by one to remind them of tomorrow's appointments. Some picked up. Most did not. The ones who did often had no idea what they were supposed to do before their visit — fasting requirements, paperwork, insurance cards. So even the ones who showed up were not always ready.
 
@@ -55,18 +55,18 @@ Worse, the cascade effect was real. No-shows meant idle doctors, idle rooms, and
 
 ## The Turning Point
 
-The bot I built for HealthFirst operates on Telegram with full HIPAA awareness baked into every layer. No protected health information is ever stored in chat logs. Patient identification uses secure tokens, not names or dates of birth.
+The bot I built for HealthFirst operates via SMS and a secure patient portal, with full HIPAA compliance baked into every layer. No protected health information is ever stored in chat logs. Patient identification uses secure tokens, not names or dates of birth.
 
 The core mechanic is a ==dual-stage reminder== system. Forty-eight hours before an appointment, the patient gets a friendly message with the date, time, doctor's name, and a one-tap confirm or reschedule option. Two hours before, a second nudge arrives with specific prep instructions — fasting status, documents to bring, parking directions.
 
-The rescheduling flow was critical. Previously, a patient who could not make it had to call during office hours, sit on hold, and speak with someone. Now they tap "Reschedule" and the bot offers the next three available slots pulled directly from the ==EHR system== in real time. A slot that would have gone empty gets filled automatically.
+The rescheduling flow was critical. Previously, a patient who could not make it had to call during office hours, sit on hold, and speak with someone. Now they tap "Reschedule" and the bot offers the next three available slots pulled directly from the EHR system in real time. A slot that would have gone empty gets filled automatically.
 
 ## What Happened Next
 
 We phased the rollout carefully — healthcare demands it. The first hundred patients went through a full compliance review cycle before we expanded. By week four, the entire patient base was on the system.
 
-The no-show rate dropped from 22% to just under ==4%==. That is an ==82% reduction==. The front-desk team reclaimed ==15 hours per week== — time that went back into patient care, insurance processing, and follow-ups that actually required a human touch.
+The no-show rate dropped from 22% to just under 4%. That is an ==82% reduction==. The front-desk team reclaimed ==15 hours per week== — time that went back into patient care, insurance processing, and follow-ups that actually required a human touch.
 
 Patient satisfaction climbed to ==94%== in post-visit surveys, with multiple patients specifically praising the reminders and prep instructions. Dr. Rodriguez told me that patients were arriving better prepared than she had ever seen in fifteen years of practice.
 
-The recovered revenue — ==$8,500 per month== — was not a projection. It was measured directly from filled slots that would have previously gone empty. The bot did not just solve a scheduling problem. It ==transformed== the financial health of the entire clinic.
+The recovered revenue — ==$8,500 per month== — was not a projection. It was measured directly from filled slots that would have previously gone empty. The bot did not just solve a scheduling problem. It changed the financial trajectory of the entire clinic.

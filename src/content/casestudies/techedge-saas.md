@@ -39,7 +39,7 @@ pubDate: 2025-11-20
 
 ## The First Call
 
-Ryan didn't contact me through the website. He sent a DM at 1 AM on a Tuesday — the kind of message you send when something is keeping you up at night. "We're ==losing== enterprise accounts and I can trace every single one back to support response times."
+Ryan didn't contact me through the website. He sent a DM at 1 AM on a Tuesday — the kind of message you send when something is keeping you up at night. "We're hemorrhaging enterprise accounts and I can trace every single one back to support response times."
 
 TechEdge had built a genuinely good product. Their SaaS platform had loyal users, strong feature-market fit, and a growing customer base. But growth had outpaced their support infrastructure. ==500 tickets a day== were flooding in, and the team was underwater.
 
@@ -65,7 +65,7 @@ The deployment strategy was critical. We didn't flip a switch. We ran in ==shado
 
 ## What Happened Next
 
-Response time didn't just improve. It ==collapsed==. From 4 hours to under 70 minutes on average, with the bot handling the majority of tickets instantly. The 62% auto-resolution rate meant the human team could finally focus on the complex, high-value problems they were actually hired to solve.
+Response time didn't just improve — it dropped from ==4 hours to under 70 minutes== on average, with the bot handling the majority of tickets instantly. The 62% auto-resolution rate meant the human team could finally focus on the complex, high-value problems they were actually hired to solve.
 
 But the number Ryan cares about most is the NPS. It climbed from 32 to ==67== in four months. Enterprise clients started noticing. One of them — a client that had been evaluating competitors — renewed their annual contract specifically because of the support turnaround.
 

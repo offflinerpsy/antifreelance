@@ -8,7 +8,7 @@ approach:
   - step: "Discovery"
     description: "Audited the entire booking flow end-to-end and discovered that 68% of calls during peak hours were going directly to voicemail, with zero follow-up system in place."
   - step: "Design"
-    description: "Architected a dual-channel Telegram and WhatsApp bot capable of handling appointment scheduling, service upsells, and automated reminders — all in a conversational tone matching the brand voice."
+    description: "Architected a dual-channel WhatsApp Business and web chat bot capable of handling appointment scheduling, service upsells, and automated reminders — all in a conversational tone matching the brand voice."
   - step: "Build"
     description: "Integrated the bot with the Booksy calendar API, built custom NLP to understand natural-language booking requests, and implemented smart slot suggestions based on stylist availability."
   - step: "Deploy"
@@ -32,7 +32,7 @@ images:
   - "/assets/cases/luxeglow-1.webp"
   - "/assets/cases/luxeglow-2.webp"
   - "/assets/cases/luxeglow-3.webp"
-tags: ["Telegram Bot", "WhatsApp", "Booksy API", "Node.js", "NLP"]
+tags: ["WhatsApp Business", "Web Chat", "Booksy API", "Node.js", "NLP"]
 featured: true
 pubDate: 2026-02-15
 ---
@@ -41,7 +41,7 @@ pubDate: 2026-02-15
 
 When I first sat down with Sarah from LuxeGlow Beauty, she pulled out her phone and showed me the voicemail log. Forty-seven missed calls. That was just Tuesday.
 
-She ran a gorgeous salon — loyal clients, five-star reviews, a team that genuinely cared about their craft. But every evening after 6 PM, every Sunday, every time her receptionist was already on another call — the phone just rang out. And each unanswered ring was ==losing== her a booking worth $80 to $200.
+She ran a gorgeous salon — loyal clients, five-star reviews, a team that genuinely cared about their craft. But every evening after 6 PM, every Sunday, every time her receptionist was already on another call — the phone just rang out. And each unanswered ring cost her a booking worth ==$80 to $200==.
 
 ## What We Found
 
@@ -53,7 +53,7 @@ The real gut punch? Her best time slots — Saturday mornings, Friday evenings �
 
 ## The Turning Point
 
-I built a conversational bot that lives on both Telegram and WhatsApp, the two apps her clients already had open all day. No app downloads. No new accounts. Just a message away.
+I built a conversational bot that lives on both WhatsApp Business and the salon's website as a chat widget — the two channels her clients already used daily. No app downloads. No new accounts. Just a message away.
 
 The bot plugs directly into Booksy, so it sees real-time availability across every stylist. A client texts "I need a balayage next Saturday" and the bot responds in seconds with open slots, pricing, and stylist options. It handles rescheduling, sends ==automated reminders== 24 hours before, and even suggests add-on services based on booking history.
 
@@ -65,4 +65,4 @@ We soft-launched with 50 of Sarah's most active clients. Within 72 hours, the fe
 
 After the full rollout, the numbers told the real story. Bookings climbed by ==+47%== in the first month. No-shows dropped by ==82%== thanks to automated reminders. The repeat visit rate hit ==2.3x== because post-visit follow-ups kept the salon top-of-mind with personalized offers.
 
-The best part? Sarah did not hire a single additional staff member. The bot handled the volume that previously required a second receptionist — saving her thousands per month while ==unlocking== revenue she never knew she was leaving on the table.
+The best part? Sarah did not hire a single additional staff member. The bot handled the volume that previously required a second receptionist — saving her thousands per month while capturing revenue that had been slipping through the cracks for years.
