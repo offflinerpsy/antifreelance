@@ -78,6 +78,14 @@ const SITE = 'https://aggressorbulkit.online';
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM Integration Bot" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24/7 Customer Support Bot" } }
         ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "6",
+        "reviewCount": "6"
       }
     }
   ]
@@ -188,16 +196,19 @@ const SITE = 'https://aggressorbulkit.online';
 )}
 
 {page === 'knowledge' && articleTitle && (
-<script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "<!-- article title injected by page -->",
-  "author": { "@id": "https://aggressorbulkit.online/#person" },
-  "publisher": { "@id": "https://aggressorbulkit.online/#person" },
-  "datePublished": "<!-- date injected by page -->",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://aggressorbulkit.online/knowledge/" },
-  "inLanguage": "en-US"
-}
-</script>
+<script type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": articleTitle,
+    "description": articleDescription || "",
+    "author": { "@id": "https://aggressorbulkit.online/#person" },
+    "publisher": { "@type": "Person", "@id": "https://aggressorbulkit.online/#person", "name": "Aliaksei Y." },
+    "datePublished": articleDate || "",
+    "dateModified": articleDate || "",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://aggressorbulkit.online/knowledge/` },
+    "inLanguage": "en-US",
+    "isPartOf": { "@id": "https://aggressorbulkit.online/#website" }
+  })}
+/>
 )}

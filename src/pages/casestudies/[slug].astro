@@ -24,6 +24,7 @@ const faqSchema = JSON.stringify({
   "author": { "@type": "Person", "@id": `${SITE}/#person`, "name": "Aliaksei Y." },
   "publisher": { "@type": "Person", "@id": `${SITE}/#person`, "name": "Aliaksei Y." },
   "datePublished": d.pubDate.toISOString().split('T')[0],
+  "dateModified": d.pubDate.toISOString().split('T')[0],
   "image": d.images[0] ? `${SITE}${d.images[0]}` : undefined,
   "url": `${SITE}/casestudies/${slug}`
 });
@@ -74,7 +75,12 @@ const reviewSchema = JSON.stringify({
   <!-- Hero -->
   <section class="cs-hero case-section">
     <div class="container">
-      <div class="cs-hero__badge">{d.icon} {d.industry}</div>
+      <div class="cs-hero__meta">
+        <span class="cs-hero__badge">{d.icon} {d.industry}</span>
+        <time class="cs-hero__date" datetime={d.pubDate.toISOString().split('T')[0]}>
+          {d.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+        </time>
+      </div>
       <h1 class="cs-hero__title">{d.title}</h1>
       <p class="cs-hero__challenge">{d.challenge}</p>
       {d.images[0] && (
@@ -211,6 +217,13 @@ const reviewSchema = JSON.stringify({
     padding: var(--space-8) 20px clamp(40px, 8vw, 80px);
     background: var(--color-surface);
   }
+  .cs-hero__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
   .cs-hero__badge {
     display: inline-block;
     padding: var(--space-2) var(--space-4);
@@ -220,7 +233,11 @@ const reviewSchema = JSON.stringify({
     font-size: var(--text-sm);
     color: var(--color-primary);
     font-weight: 600;
-    margin-bottom: var(--space-6);
+  }
+  .cs-hero__date {
+    font-size: var(--text-sm);
+    color: var(--color-text-subtle);
+    font-family: monospace;
   }
   .cs-hero__title {
     font-family: var(--font-heading);
