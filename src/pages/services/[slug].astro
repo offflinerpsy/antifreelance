@@ -16,6 +16,20 @@ const d = entry.data;
 const SITE = 'https://aggressorbulkit.online';
 const slug = entry.id.replace(/\.md$/, '');
 
+// Cross-link: find matching case study by industry
+const allCases = await getCollection('casestudies');
+const industryMap: Record<string, string> = {
+  'Beauty Salon': 'Beauty & Wellness',
+  'Restaurant': 'Food Delivery',
+  'Medical Clinic': 'Healthcare',
+  'Fitness Club': 'Fitness & Wellness',
+  'Real Estate': 'Real Estate',
+  'E-commerce': 'SaaS',
+  'Delivery': 'Food Delivery',
+};
+const matchedIndustry = industryMap[d.industry] || d.industry;
+const relatedCase = allCases.find(c => c.data.industry === matchedIndustry);
+
 // Build FAQ JSON-LD
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -121,6 +135,23 @@ const breadcrumbSchema = JSON.stringify({
       </div>
     </div>
   </section>
+
+  {relatedCase && (
+    <section class="related-case">
+      <div class="container">
+        <h2 class="section-title">See It In Action</h2>
+        <a href={`/casestudies/${relatedCase.id.replace(/\.md$/, '')}/`} class="related-case__card">
+          <div class="related-case__icon">{relatedCase.data.icon}</div>
+          <div class="related-case__info">
+            <div class="related-case__client">{relatedCase.data.client}</div>
+            <div class="related-case__title">{relatedCase.data.title}</div>
+            <div class="related-case__result">{relatedCase.data.results[0].value} {relatedCase.data.results[0].label}</div>
+          </div>
+          <div class="related-case__arrow">→</div>
+        </a>
+      </div>
+    </section>
+  )}
 
   <section class="bottom-cta">
     <div class="container">
@@ -309,6 +340,58 @@ const breadcrumbSchema = JSON.stringify({
     padding: 0 var(--space-6) var(--space-5);
     color: var(--color-text-muted);
     line-height: var(--leading-normal);
+  }
+
+  /* Related Case Study */
+  .related-case {
+    padding: clamp(60px, 10vw, 100px) 20px;
+    background: var(--color-surface);
+  }
+  .related-case__card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-surface-4);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-8);
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.3s;
+    max-width: var(--container-sm);
+  }
+  .related-case__card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+  .related-case__icon { font-size: 2.5rem; }
+  .related-case__client {
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-1);
+  }
+  .related-case__title {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+  .related-case__result {
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .related-case__arrow {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  @media (max-width: 600px) {
+    .related-case__card { flex-wrap: wrap; }
+    .related-case__arrow { display: none; }
   }
 
   /* Bottom CTA */

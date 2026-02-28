@@ -78,6 +78,39 @@ import ContactForm from '../components/ContactForm.astro';
 
   <Cases />
   <Reviews />
+
+  <!-- FAQ / People Also Ask -->
+  <section class="faq-section" id="faq">
+    <div class="section-num reveal" data-i18n="faq.label">05 — FAQ</div>
+    <h2 class="section-big-title reveal" data-i18n-html="faq.h2">Frequently<br><span class="accent">Asked</span></h2>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary data-i18n="faq.q1">What is an AI bot for business and how does it work?</summary>
+        <p data-i18n="faq.a1">An AI bot is an automated assistant that handles customer conversations, answers questions, and completes tasks 24/7. It connects to Telegram or your website, processes natural language, and responds like a human agent — booking appointments, qualifying leads, and syncing with your CRM.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="faq.q2">How much does a custom AI bot cost?</summary>
+        <p data-i18n="faq.a2">Starting at $50/month to operate — compared to $500–$1,000/month for a human agent. Setup ranges from $500–$800 for a basic bot to $1,500–$3,000 for full CRM integration. Most clients see ROI within the first month.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="faq.q3">How long does it take to launch?</summary>
+        <p data-i18n="faq.a3">A standard bot launches in 2–3 business days. Complex bots with multiple integrations take 5–7 days. We handle everything: setup, AI training, integration, and testing.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="faq.q4">Does the bot use ChatGPT or a private AI?</summary>
+        <p data-i18n="faq.a4">We build bots with your own private AI model — no ChatGPT dependency. No outages when OpenAI goes down, no third-party data risk, faster response times. Your data stays on your infrastructure.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="faq.q5">Can it integrate with my CRM?</summary>
+        <p data-i18n="faq.a5">Yes. Our bots integrate with HubSpot, Salesforce, Google Sheets, Zapier, Calendly, Airtable, and more. Every lead, booking, or conversation is automatically logged — no manual data entry.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="faq.q6">What types of businesses benefit most?</summary>
+        <p data-i18n="faq.a6">Beauty salons, medical clinics, restaurants, auto repair shops, real estate agencies, fitness clubs, and any business receiving repetitive questions or needing 24/7 availability.</p>
+      </details>
+    </div>
+  </section>
+
   <CTA />
   <ContactForm />
 </Layout>
@@ -176,4 +209,53 @@ import ContactForm from '../components/ContactForm.astro';
   }
   .feat-card.bg-orange .feat-desc,
   .feat-card.bg-lime .feat-desc { opacity: 1; }
+
+  /* FAQ Section */
+  .faq-section {
+    background: var(--black);
+    padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 40px);
+  }
+  .faq-list {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .faq-item summary {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 600;
+    color: var(--white);
+    padding: clamp(20px, 4vw, 28px) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: color 0.3s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--orange);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq-item summary:hover { color: var(--orange); }
+  .faq-item p {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    padding: 0 0 clamp(20px, 4vw, 28px);
+    max-width: 700px;
+  }
 </style>
