@@ -16,6 +16,19 @@ const d = entry.data;
 const SITE = 'https://aggressorbulkit.online';
 const slug = entry.id.replace(/\.md$/, '');
 
+// Cross-link: find matching service page by industry
+const allServices = await getCollection('services');
+const caseToServiceMap: Record<string, string> = {
+  'Beauty & Wellness': 'Beauty Salon',
+  'Food Delivery': 'Restaurant',
+  'Healthcare': 'Medical Clinic',
+  'Fitness & Wellness': 'Fitness Club',
+  'Real Estate': 'Real Estate',
+  'SaaS': 'E-commerce',
+};
+const matchedIndustry = caseToServiceMap[d.industry] || d.industry;
+const relatedService = allServices.find(s => s.data.industry === matchedIndustry);
+
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Article",
@@ -184,6 +197,18 @@ const reviewSchema = JSON.stringify({
       </div>
     </div>
   </section>
+
+  <!-- Related Service -->
+  {relatedService && (
+    <section class="cs-related case-section">
+      <div class="container">
+        <a href={`/services/${relatedService.id.replace(/\.md$/, '')}/`} class="cs-related__link">
+          <span class="cs-related__label">Explore our service →</span>
+          <span class="cs-related__title">{relatedService.data.title}</span>
+        </a>
+      </div>
+    </section>
+  )}
 
   <!-- CTA -->
   <section class="cs-cta case-section">
@@ -486,6 +511,41 @@ const reviewSchema = JSON.stringify({
     font-size: var(--text-sm);
     color: var(--color-accent);
     font-weight: 500;
+  }
+
+  /* Related Service */
+  .cs-related {
+    padding: clamp(40px, 6vw, 60px) 20px;
+    background: var(--color-surface);
+  }
+  .cs-related__link {
+    display: block;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-surface-4);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-8);
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.3s;
+    max-width: 600px;
+  }
+  .cs-related__link:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+  .cs-related__label {
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+  .cs-related__title {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    font-weight: 600;
+    display: block;
   }
 
   /* CTA */
