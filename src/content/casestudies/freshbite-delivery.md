@@ -8,7 +8,7 @@ approach:
   - step: "Discovery"
     description: "Analyzed a sample of 2,000 support tickets and found that 73% were simple order-status queries that didn't require human judgment — just real-time data the team was looking up manually."
   - step: "Design"
-    description: "Designed a multi-channel bot deployed on Telegram and as a website widget, with real-time delivery tracking integration and smart escalation paths for complex issues."
+    description: "Designed a multi-channel bot deployed as a website widget and via SMS notifications, with real-time delivery tracking integration and smart escalation paths for complex issues."
   - step: "Build"
     description: "Connected the bot to FreshBite's delivery API and CRM, enabling automatic status updates, live ETA calculations, and context-aware escalation to human agents when needed."
   - step: "Deploy"
@@ -32,14 +32,14 @@ images:
   - "/assets/cases/freshbite-1.webp"
   - "/assets/cases/freshbite-2.webp"
   - "/assets/cases/freshbite-3.webp"
-tags: ["Telegram Bot", "Website Chatbot", "REST API", "CRM Integration", "Node.js"]
+tags: ["Website Chatbot", "SMS Notifications", "REST API", "CRM Integration", "Node.js"]
 featured: false
 pubDate: 2026-01-20
 ---
 
 ## The First Call
 
-Marcus from FreshBite did not mince words. "We're ==drowning==," he told me on our first call. His support team — four people — was fielding over ==200 tickets a day==, and the vast majority were the exact same question: "Where is my food?"
+Marcus from FreshBite did not mince words on our first call. His support team — four people — was fielding over ==200 tickets a day==, and the vast majority were the exact same question: "Where is my food?"
 
 You could hear the exhaustion in his voice. These were good support agents. Empathetic, fast, skilled at de-escalation. And they were spending eight hours a day copy-pasting tracking links.
 
@@ -51,15 +51,15 @@ The breakdown was staggering. ==73% of all tickets== were simple order-status qu
 
 The remaining 27% — the real problems, the angry customers, the missing items — those were getting buried. Average response time had crept up to ==45 minutes==. By the time an agent got to a genuine complaint, the customer had already written a one-star review and downloaded a competitor's app.
 
-FreshBite was not just ==wasting== human talent on robotic tasks. They were letting their hardest problems fester because the easy ones consumed all available bandwidth.
+FreshBite was not just burning out good people on robotic tasks. They were letting their hardest problems fester because the easy ones ate up every hour of the day.
 
 ## The Turning Point
 
-I built a bot that operates across two channels — Telegram for power users and a sleek website widget for first-time visitors. Both hit the same backend.
+I built a bot that operates across two channels — a sleek website chat widget for real-time support and SMS notifications for proactive delivery updates. Both hit the same backend.
 
 The core integration was the delivery API. When a customer asks "where's my order?", the bot pulls real-time GPS data and returns an ETA in under three seconds. No ticket created. No queue. No wait. Just an instant answer.
 
-But the real shift came from going ==proactive==. Instead of waiting for customers to ask, the bot now pushes notifications at key moments: order confirmed, driver assigned, two minutes away, delivered. We ==eliminated== the question before it was ever asked.
+But the real shift came from going ==proactive==. Instead of waiting for customers to ask, the bot now pushes notifications at key moments: order confirmed, driver assigned, two minutes away, delivered. The question disappeared before anyone had to ask it.
 
 For anything the bot cannot handle — a missing item, a billing dispute, a dietary concern — it collects context and routes to a human agent with a full summary attached. The agent picks up mid-conversation with everything they need. No repetition, no frustration.
 

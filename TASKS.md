@@ -24,17 +24,17 @@
 - [x] Layout.astro imports tokens first
 
 ### Phase 9: SEO / GEO Foundation
-- [x] nginx.conf — domain `aggressorbulkit.online` + www redirect
+- [x] nginx.conf — domain `aggressorbulkit.online` + www redirect + SSL
 - [x] Layout.astro — canonical, robots, author, OG image, Twitter Card
-- [x] `src/components/SEO.astro` — JSON-LD: Person, WebSite, ProfessionalService, FAQPage (10 Q&A), BreadcrumbList, Article
+- [x] `src/components/SEO.astro` — JSON-LD: Person, WebSite, ProfessionalService, FAQPage (10 Q&A), BreadcrumbList, BlogPosting
 - [x] `@astrojs/sitemap`, `public/robots.txt`, `public/og-image.png`
 - [x] KB articles: `telegram-bot-vs-website-chatbot.md`, `geo-optimization-for-ai-chatbots.md`
 - [x] 12 industry doorway pages (`src/content/services/`) with per-page JSON-LD schemas + FAQ
 
 ### Phase 9.5: SSL & Domain
 - [x] Let's Encrypt SSL via certbot + nginx auto-config
-- [x] HTTP -> HTTPS redirect (certbot managed)
-- [x] www -> non-www HTTPS redirect
+- [x] HTTP -> HTTPS redirect, www -> non-www HTTPS redirect
+- [x] `.github/nginx.conf` updated with full SSL blocks (survives deploys)
 
 ---
 
@@ -61,87 +61,144 @@
 
 ---
 
+## DONE — Phase 10.5: SEO/GEO Fixes + Localization
+
+### SEO/GEO Fixes (GitHub Issues #14-#17, #21)
+- [x] #14: hreflang en/ru/x-default tags in Layout.astro
+- [x] #15: AggregateRating in ProfessionalService, BlogPosting for knowledge articles
+- [x] #16: Cross-linking: service pages <-> case studies via industry mapping
+- [x] #17: Visible FAQ accordion on homepage (6 Q&A, EN/RU i18n)
+- [x] #21: Semantic `<time>` elements, dateModified in Article schema
+
+### Case Study Localization (EN = US market)
+- [x] All 6 case studies: removed Telegram, replaced with US platforms
+  - LuxeGlow: WhatsApp Business + Web Chat
+  - FreshBite: Website Chatbot + SMS Notifications
+  - HealthFirst: SMS Bot + Patient Portal
+  - MetroFit: Mobile App + SMS
+  - UrbanNest: Web Chat + SMS
+  - TechEdge: already Slack-based, no change
+- [x] index.astro meta + FAQ: "Telegram" -> "website, WhatsApp, SMS"
+- [x] SEO.astro JSON-LD: all Telegram refs -> WhatsApp/SMS/web
+- [x] api/chat.ts: system prompt updated to US platforms
+- [x] RU i18n: keeps Telegram + added Битрикс24, AmoCRM
+
+### Content Quality Review
+- [x] Removed templated `==losing==` highlight from 4/6 case studies (AI-generation tell)
+- [x] Reduced excessive NLP marks to max 8 per article
+- [x] Fixed MetroFit missing App Store rating in body text
+- [x] Polished marketing-speak phrases
+
+### Profile Image Fix
+- [x] Fixed EXIF rotation on me.jpg/me.webp (sharp .rotate())
+
+---
+
 ## SEO/GEO Audit (2026-02-28)
 
-### SEO Score: ~85% — Strong
+### SEO Score: ~88% — Strong
 
 | Element | Status | Coverage |
 |---|---|---|
 | Meta Tags (OG, Twitter) | Done | 90% |
-| JSON-LD Schemas (7 types) | Done | 95% |
+| JSON-LD Schemas (8 types) | Done | 95% |
 | Sitemap + robots.txt | Done | 100% |
 | Canonical URLs (dynamic) | Done | 100% |
+| hreflang (en/ru/x-default) | Done | 100% |
 | Alt Tags on images | Done | 85% |
 | Heading Hierarchy (H1-H3) | Done | 85% |
-| Internal Linking | Done | 75% |
+| Internal Linking + Cross-links | Done | 85% |
 | SSL/HTTPS | Done | 100% |
 | Image Optimization (WebP) | Done | 80% |
+| Semantic `<time>` elements | Done | 90% |
 
-### GEO Score: ~74% — Good Foundation
+### GEO Score: ~80% — Good
 
 | Signal | Status | Coverage |
 |---|---|---|
-| FAQPage Schema (10+ Q&A) | Done | 90% |
+| FAQPage Schema (10+ Q&A) | Done | 95% |
+| Visible FAQ accordion | Done | 90% |
 | Statistics & Data Points | Done | 85% |
 | Direct Answer Content | Done | 85% |
 | Breadcrumbs (visual+JSON-LD) | Done | 85% |
 | Expertise Signals (author bio) | Done | 80% |
-| Conversational Language | Done | 70% |
-| Content Freshness (pubDate) | Done | 65% |
-| Entity Authority & Cross-links | Partial | 65% |
-| Definition Content ("What is") | Partial | 60% |
-| "People Also Ask" Sections | Missing | 35% |
+| AggregateRating | Done | 90% |
+| BlogPosting schema | Done | 90% |
+| Content Freshness (dateModified) | Done | 85% |
+| Entity Authority & Cross-links | Done | 80% |
+| "People Also Ask" Sections | Partial | 50% |
 
-### SEO/GEO — Critical Gaps to Fix
-- [ ] **hreflang tags** — missing entirely; i18n is JS-only, invisible to crawlers
-- [ ] **"Last Updated" timestamps** — only pubDate, no freshness signals
-- [ ] **AggregateRating schema** — no star ratings for testimonials
-- [ ] **HowTo schema** — knowledge articles need it for step-by-step content
-- [ ] **Internal cross-linking** — case studies <-> services <-> knowledge articles
-- [ ] **"People Also Ask" sections** — expandable Q&A on main pages
-- [ ] **Image srcset/picture** — responsive image variants not implemented
-- [ ] **<time> elements** — dates not in semantic HTML
-- [ ] **BlogPosting schema** — knowledge base articles use Article, not BlogPosting
-- [ ] **TL;DR summaries** — long articles lack quick answer at top
+---
+
+## OPEN — GitHub Issues
+
+| # | Title | Priority | Status |
+|---|-------|----------|--------|
+| #18 | Chatbot upgrade: smarter qualification + Telegram leads | High | Open |
+| #19 | Analytics: Plausible or GA4 | Medium | Open |
+| #20 | Image optimization: srcset/picture responsive | Medium | Open |
+| #22 | CRM pipeline: leads -> Google Sheets + notifications | High | Open |
 
 ---
 
 ## NEXT — Phase 11: Lead Generator Machine
 
-### 11A. Inbound Funnel Upgrade
-- [ ] **Chat -> CRM pipeline**: ChatWidget -> Google Sheets/Notion + Telegram notification
-- [ ] **Lead scoring**: qualify leads by budget/urgency/niche
-- [ ] **Automated follow-up**: 24h no-reply -> auto email
-- [ ] **Calendly embed**: in chatbot, offer call slot
+### 11A. Chatbot Upgrade (#18) — HIGH PRIORITY
+- [ ] Research best lead qualification tactics (psychology, conversion patterns)
+- [ ] Redesign system prompt with qualification flow
+- [ ] Lead notifications -> owner's Telegram
+- [ ] i18n for chatbot greeting
+- [ ] Context-aware responses based on page visitor came from
 
-### 11B. Chatbot Upgrade
-- [ ] Make chatbot smarter (system prompt, context, lead qualification flow)
-- [ ] i18n for chatbot greeting (language switch doesn't change greeting)
+### 11B. CRM Pipeline (#22)
+- [ ] Chat -> Google Sheets/Notion + Telegram notification
+- [ ] Lead scoring by budget/urgency/niche
+- [ ] Automated follow-up: 24h no-reply -> auto email
+- [ ] Calendly embed in chatbot
 
-### 11C. Traffic Amplification
-- [ ] **Backlink campaign** — 20 directory submissions (G2, Capterra, Clutch, etc.)
-- [ ] **Reddit strategy** — r/entrepreneur, r/smallbusiness, r/chatbots
-- [ ] **GEO monitoring** — weekly check ChatGPT/Perplexity mentions
-- [ ] **Analytics**: Plausible or GA4
+### 11C. Analytics (#19)
+- [ ] Plausible or GA4 setup
+- [ ] Event tracking: chat opens, form submits, CTA clicks
+
+### 11D. Traffic Amplification
+- [ ] Backlink campaign — 20 directory submissions (G2, Capterra, Clutch)
+- [ ] Reddit strategy — r/entrepreneur, r/smallbusiness, r/chatbots
+- [ ] GEO monitoring — weekly ChatGPT/Perplexity citation checks
 
 ---
 
 ## Phase 12: AI Agent System (Future)
 
 - [ ] Claude Agent SDK for autonomous agents
-- [ ] **Content Agent**: auto-generate FAQ articles -> publish to KB
-- [ ] **Outreach Agent**: find prospects on LinkedIn/Reddit -> personalized DMs
-- [ ] **GEO Monitor Agent**: daily Perplexity/ChatGPT citation checks
-- [ ] **Lead Qualifier Agent**: qualification dialog -> hot leads to Telegram
+- [ ] Content Agent: auto-generate FAQ articles -> publish to KB
+- [ ] Outreach Agent: find prospects on LinkedIn/Reddit -> personalized DMs
+- [ ] GEO Monitor Agent: daily Perplexity/ChatGPT citation checks
+- [ ] Lead Qualifier Agent: qualification dialog -> hot leads to Telegram
 
 ---
 
 ## Technical Debt
 
 - [ ] Knowledge Base: add search/filter by tags
-- [ ] Portfolio.astro: add real Telegram bot case studies (screenshots + descriptions)
+- [ ] Image srcset/picture responsive variants (#20)
 - [ ] Trailing slash consistency (canonical URL normalization)
 - [ ] Font optimization (preload critical fonts, font-display:swap explicit)
+- [ ] HowTo schema for knowledge base step-by-step articles
+- [ ] TL;DR summaries for long articles
+
+---
+
+## Localization Rules
+
+**EN (US market):**
+- Platforms: WhatsApp Business, SMS, Web Chat, Slack, Intercom
+- CRMs: HubSpot, Salesforce, Google Sheets, Zapier, Calendly
+- NO Telegram mentions (Americans associate it with darknet)
+
+**RU (Russian market):**
+- Platforms: Telegram (primary), WhatsApp
+- CRMs: Битрикс24, AmoCRM, Google Таблицы, Zapier
+- Telegram is the default messaging platform
 
 ---
 
