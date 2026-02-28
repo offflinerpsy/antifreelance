@@ -13,19 +13,19 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={`${entry.data.title} | BotStudio`} description={entry.data.description}>
+<Layout title={`${entry.data.title} | BotStudio`} description={entry.data.description} page="knowledge" articleTitle={entry.data.title} articleDescription={entry.data.description} articleDate={entry.data.pubDate.toISOString().split('T')[0]}>
   <article class="kb-article">
     <div class="kb-article-header reveal">
       <!-- RU: ← Назад в Базу знаний -->
       <a href="/knowledge" class="kb-back">← Back to Knowledge Base</a>
       <div class="kb-meta">
-        <span class="kb-date">
+        <time class="kb-date" datetime={entry.data.pubDate.toISOString().split('T')[0]}>
           {entry.data.pubDate.toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
           })}
-        </span>
+        </time>
         {entry.data.tags && (
           <div class="kb-tags">
             {entry.data.tags.map((tag) => (
