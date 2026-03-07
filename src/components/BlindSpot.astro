@@ -1,0 +1,361 @@
+---
+// BlindSpot — "While you read this, your competitor got another AI referral"
+// Waffle dots infographic + competitor comparison card
+---
+
+<section class="blindspot" id="blindspot">
+  <div class="container">
+    <div class="blindspot__header reveal">
+      <p class="section-tag" data-i18n="geo.blind.tag">The Blind Spot</p>
+      <h2 class="blindspot__headline" data-i18n-html="geo.blind.h2">While you read this, your competitor just got <span class="accent">another</span> AI referral</h2>
+      <p class="blindspot__sub" data-i18n="geo.blind.sub">Every day, AI assistants answer thousands of "best [business] near me" queries in your city. Your competitor shows up. You don't.</p>
+    </div>
+
+    <div class="blindspot__layout">
+      <!-- Left: Hero stat + waffle grids -->
+      <div class="blindspot__left">
+        <div class="blindspot__hero-stat reveal">
+          <div class="hero-num" id="blindspotNum">59%</div>
+          <div class="hero-desc" data-i18n="geo.blind.stat">of local searches now bypass Google entirely — going through AI assistants that pick one winner. Not a list. One name.</div>
+        </div>
+
+        <div class="waffles-label reveal" data-i18n="geo.blind.closing">The window is closing — fast</div>
+
+        <div class="waffles-row reveal">
+          <div class="waffle-col">
+            <div class="waffle-year">2023</div>
+            <div class="waffle-pct">15%</div>
+            <div class="waffle-grid">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div class={`wf-dot ${i < 15 ? 'filled' : ''}`} />
+              ))}
+            </div>
+          </div>
+          <div class="waffle-col">
+            <div class="waffle-year">2024</div>
+            <div class="waffle-pct">38%</div>
+            <div class="waffle-grid">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div class={`wf-dot ${i < 38 ? 'filled' : ''}`} />
+              ))}
+            </div>
+          </div>
+          <div class="waffle-col">
+            <div class="waffle-year">2025</div>
+            <div class="waffle-pct">59%</div>
+            <div class="waffle-grid">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div class={`wf-dot ${i < 59 ? 'filled' : ''}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-stats reveal">
+          <div class="mini-stat">
+            <div class="mini-stat-val">4.4x</div>
+            <div class="mini-stat-label" data-i18n="geo.blind.mini1">higher purchase intent from AI referrals vs paid ads</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-val">$0</div>
+            <div class="mini-stat-label" data-i18n="geo.blind.mini2">cost per AI referral — while you pay $50+ per Google click</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Competitor visibility card -->
+      <div class="blindspot__right reveal">
+        <div class="competitor-card">
+          <div class="competitor-card__header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="competitor-card__title" data-i18n="geo.blind.card">Your Competitor's AI Report</span>
+          </div>
+          <div class="competitor-card__body">
+            <div class="plat-row">
+              <div class="plat-logo"><img src="/assets/geo/chatgpt-logo.png" alt="ChatGPT" width="22" height="22" /></div>
+              <span class="plat-name">ChatGPT</span>
+              <div class="plat-bar"><div class="plat-bar-fill" style="width:92%;background:var(--color-accent)"></div></div>
+              <span class="plat-status status-rec">Recommended</span>
+            </div>
+            <div class="plat-row">
+              <div class="plat-logo"><img src="/assets/geo/perplexity-logo.png" alt="Perplexity" width="22" height="22" /></div>
+              <span class="plat-name">Perplexity</span>
+              <div class="plat-bar"><div class="plat-bar-fill" style="width:74%;background:var(--color-primary)"></div></div>
+              <span class="plat-status status-cite">Cited</span>
+            </div>
+            <div class="plat-row">
+              <div class="plat-logo"><img src="/assets/geo/gemini-logo.png" alt="Google AI" width="22" height="22" /></div>
+              <span class="plat-name">Google AI</span>
+              <div class="plat-bar"><div class="plat-bar-fill" style="width:45%;background:#E8930C"></div></div>
+              <span class="plat-status status-ment">Mentioned</span>
+            </div>
+            <div class="plat-row">
+              <div class="plat-logo"><img src="/assets/geo/claude-logo.svg" alt="Claude" width="22" height="22" /></div>
+              <span class="plat-name">Claude</span>
+              <div class="plat-bar"><div class="plat-bar-fill" style="width:68%;background:var(--color-primary)"></div></div>
+              <span class="plat-status status-cite">Cited</span>
+            </div>
+          </div>
+          <div class="competitor-card__footer">
+            <div class="footer-stat">
+              <span class="footer-val accent">4/4</span>
+              <span class="footer-label" data-i18n="geo.blind.them">platforms recommend them</span>
+            </div>
+            <div class="footer-sep"></div>
+            <div class="footer-stat">
+              <span class="footer-val danger">0/4</span>
+              <span class="footer-label" data-i18n="geo.blind.you">recommend you</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blindspot {
+    background: var(--color-surface-2);
+    padding: var(--section-padding) 20px;
+    overflow: hidden;
+  }
+  .container { max-width: var(--container-max); margin: 0 auto; }
+  .section-tag {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .blindspot__header { margin-bottom: var(--space-16); }
+  .blindspot__headline {
+    font-family: var(--font-heading);
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+  .accent { color: var(--color-accent); }
+  .blindspot__sub {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    max-width: 540px;
+  }
+
+  .blindspot__layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+
+  /* Hero stat */
+  .blindspot__hero-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    margin-bottom: var(--space-12);
+  }
+  .hero-num {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 9vw, 5.5rem);
+    line-height: 0.88;
+    color: var(--color-text);
+    letter-spacing: -0.05em;
+  }
+  .hero-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    max-width: 260px;
+    padding-top: 14px;
+  }
+
+  /* Waffles */
+  .waffles-label {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-subtle);
+    margin-bottom: var(--space-6);
+  }
+  .waffles-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .waffle-year {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .waffle-pct {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  .waffle-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+    width: fit-content;
+  }
+  .wf-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--color-surface-4);
+  }
+  .wf-dot.filled {
+    background: var(--color-primary);
+    box-shadow: 0 1px 5px rgba(255, 94, 0, 0.35);
+  }
+
+  /* Mini stats */
+  .mini-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: var(--space-10);
+  }
+  .mini-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--color-surface-3);
+    border: 1px solid var(--color-surface-4);
+    border-radius: var(--radius-md);
+  }
+  .mini-stat-val {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+  .mini-stat-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    line-height: 1.35;
+    max-width: 140px;
+  }
+
+  /* Competitor card */
+  .competitor-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-surface-4);
+    overflow: hidden;
+  }
+  .competitor-card__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--color-surface-4);
+    background: var(--color-surface-2);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.red { background: #FF5F57; }
+  .dot.yellow { background: #FEBC2E; }
+  .dot.green { background: #28C840; }
+  .competitor-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    color: var(--color-text-subtle);
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .competitor-card__body { padding: 28px 24px; }
+  .plat-row {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-surface-4);
+  }
+  .plat-row:last-child { border-bottom: none; }
+  .plat-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 14px;
+  }
+  .plat-logo img { width: 22px; height: 22px; object-fit: contain; }
+  .plat-name {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    flex: 1;
+  }
+  .plat-bar {
+    width: 120px;
+    height: 3px;
+    background: var(--color-surface-4);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-right: 16px;
+  }
+  .plat-bar-fill { height: 100%; border-radius: 2px; }
+  .plat-status {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .status-rec { color: var(--color-accent); background: rgba(221, 245, 22, 0.1); }
+  .status-cite { color: var(--color-primary); background: rgba(255, 94, 0, 0.1); }
+  .status-ment { color: #E8930C; background: rgba(232, 147, 12, 0.1); }
+
+  .competitor-card__footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--color-surface-4);
+    background: var(--color-surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .footer-stat { display: flex; align-items: baseline; gap: 6px; }
+  .footer-val {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    letter-spacing: -0.02em;
+  }
+  .footer-val.danger { color: #EF4444; }
+  .footer-label { font-size: var(--text-xs); color: var(--color-text-subtle); }
+  .footer-sep { width: 1px; height: 16px; background: var(--color-surface-4); }
+
+  @media (max-width: 1024px) { .blindspot__layout { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) {
+    .blindspot__hero-stat { flex-direction: column; gap: 12px; }
+    .hero-num { font-size: 4rem; }
+    .hero-desc { padding-top: 0; max-width: 100%; }
+    .waffles-row { gap: 16px; }
+    .waffle-grid { gap: 3px; }
+    .wf-dot { width: 6px; height: 6px; }
+    .mini-stats { flex-direction: column; gap: 10px; }
+    .plat-bar { width: 72px; margin-right: 10px; }
+    .plat-name { font-size: var(--text-xs); }
+    .plat-status { font-size: 10px; padding: 2px 8px; }
+  }
+</style>
