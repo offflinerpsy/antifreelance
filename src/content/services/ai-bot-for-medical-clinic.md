@@ -4,7 +4,7 @@ description: "AI chatbot for medical clinics and healthcare providers. Automate 
 industry: "Medical Clinic & Healthcare"
 icon: "🏥"
 heroHeadline: "Patient Care Starts Before the Visit — Let AI Handle the Admin"
-heroSub: "Medical clinics using BotStudio AI reduce front desk phone volume by 60% and cut administrative workload by 45% while keeping patients informed 24/7"
+heroSub: "Medical clinics using Override AI reduce front desk phone volume by 60% and cut administrative workload by 45% while keeping patients informed 24/7"
 stats:
   - value: "-60%"
     label: "Fewer phone calls"
@@ -23,7 +23,7 @@ benefits:
     text: "Automated reminders for medication refills, follow-up appointments, and preventive screenings. Patients who need their annual physical get a nudge at the right time, not a generic blast."
 faq:
   - q: "Is the bot HIPAA compliant?"
-    a: "BotStudio AI for healthcare is built with HIPAA-awareness in mind. All conversations are encrypted in transit and at rest. We sign BAAs (Business Associate Agreements) with healthcare clients and do not store protected health information beyond the session unless explicitly configured with compliant storage."
+    a: "Override AI for healthcare is built with HIPAA-awareness in mind. All conversations are encrypted in transit and at rest. We sign BAAs (Business Associate Agreements) with healthcare clients and do not store protected health information beyond the session unless explicitly configured with compliant storage."
   - q: "Can it handle insurance verification?"
     a: "The bot collects insurance provider, member ID, and group number during intake and passes this to your verification system. It does not perform real-time eligibility checks directly but prepares all data for your billing team before the patient arrives."
   - q: "What if a patient describes an emergency?"
@@ -44,7 +44,7 @@ This phone burden has a cascading effect. Front desk staff rushed between calls 
 
 ## How the AI Bot Transforms Clinic Operations
 
-BotStudio AI handles the routine so your clinical staff focuses on what matters:
+Override AI handles the routine so your clinical staff focuses on what matters:
 
 - **Smart scheduling** — The bot understands appointment types (new patient vs. follow-up vs. procedure), required durations, prep time between visits, and provider-specific preferences. A 15-minute blood pressure check is not booked in a 45-minute new patient slot
 - **Insurance pre-verification** — Collects all payer information during booking so your billing team can verify eligibility before the patient walks in. Reduces day-of-visit surprises and claim denials

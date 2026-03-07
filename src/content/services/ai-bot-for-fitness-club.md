@@ -4,7 +4,7 @@ description: "AI chatbot for gyms and fitness clubs. Boost membership renewals b
 industry: "Fitness Club & Gym"
 icon: "💪"
 heroHeadline: "More Members, Fewer Cancellations — Your AI-Powered Front Desk"
-heroSub: "Fitness clubs using BotStudio AI see 25% higher membership renewals, 40% better class fill rates, and fully automated member check-ins from day one"
+heroSub: "Fitness clubs using Override AI see 25% higher membership renewals, 40% better class fill rates, and fully automated member check-ins from day one"
 stats:
   - value: "+25%"
     label: "More membership renewals"
@@ -27,7 +27,7 @@ faq:
   - q: "How does it help reduce membership cancellations?"
     a: "The bot monitors engagement signals. When visit frequency drops — say from 3x/week to once in two weeks — it triggers a personalized check-in message. It might suggest a new class, offer a free PT session, or simply ask how training is going. Early intervention catches at-risk members before they decide to cancel."
   - q: "Does it integrate with our gym management software?"
-    a: "BotStudio AI integrates with major fitness platforms including Mindbody, Glofox, Zen Planner, ClubReady, and ABC Fitness. Member data, class schedules, and billing sync automatically."
+    a: "Override AI integrates with major fitness platforms including Mindbody, Glofox, Zen Planner, ClubReady, and ABC Fitness. Member data, class schedules, and billing sync automatically."
   - q: "Can it handle supplement shop or smoothie bar orders?"
     a: "Absolutely. Members can pre-order a post-workout protein shake or purchase supplements through the bot while still on the gym floor. Orders are ready for pickup by the time they finish their session."
   - q: "What about family memberships and multi-tier plans?"
@@ -42,7 +42,7 @@ The fitness industry faces a brutal churn problem. Half of all new members stop 
 
 Front desk staff at a busy gym are handling check-ins, towel exchanges, tour requests, and phone calls simultaneously. They cannot track which of 2,000 members have not visited in two weeks and need a motivational nudge.
 
-## How BotStudio AI Fights Member Churn
+## How Override AI Fights Member Churn
 
 The bot acts as a proactive engagement layer that no front desk can replicate at scale:
 
@@ -53,7 +53,7 @@ The bot acts as a proactive engagement layer that no front desk can replicate at
 
 ## Revenue Growth Beyond Membership Dues
 
-Group class fill rates directly impact profitability. An empty spin bike in a class that runs regardless costs you money. BotStudio AI pushes real-time openings to members who have attended similar classes before, filling those last 5 spots that used to sit empty.
+Group class fill rates directly impact profitability. An empty spin bike in a class that runs regardless costs you money. Override AI pushes real-time openings to members who have attended similar classes before, filling those last 5 spots that used to sit empty.
 
 Personal training upselling becomes organic. When a member messages about plateau frustration, the bot can suggest a complimentary goal-review session with a trainer — the most effective PT sales conversion strategy in the industry.
 

@@ -4,7 +4,7 @@ description: "AI chatbot for real estate agencies. Qualify buyer leads 3x faster
 industry: "Real Estate Agency"
 icon: "🏠"
 heroHeadline: "Capture Every Lead, Close More Deals — While You Sleep"
-heroSub: "Real estate teams using BotStudio AI qualify 3x more leads, respond 50% faster than competitors, and book showings around the clock without hiring extra agents"
+heroSub: "Real estate teams using Override AI qualify 3x more leads, respond 50% faster than competitors, and book showings around the clock without hiring extra agents"
 stats:
   - value: "3x"
     label: "More leads qualified"
@@ -25,7 +25,7 @@ faq:
   - q: "Can the bot handle rental inquiries and sales inquiries differently?"
     a: "Yes. The bot detects intent from the initial message and routes into separate qualification flows. Rental prospects are asked about move-in date, lease term, and pet ownership. Buyers are asked about pre-approval status, down payment range, and property type preferences."
   - q: "Does it integrate with MLS and our CRM?"
-    a: "BotStudio AI connects to major real estate platforms including Zillow, Realtor.com, KvCORE, Follow Up Boss, Sierra Interactive, and BoomTown. New listings sync automatically, and qualified leads flow directly into your CRM pipeline."
+    a: "Override AI connects to major real estate platforms including Zillow, Realtor.com, KvCORE, Follow Up Boss, Sierra Interactive, and BoomTown. New listings sync automatically, and qualified leads flow directly into your CRM pipeline."
   - q: "How does it handle the lead that is 'just browsing'?"
     a: "These are often your future buyers. The bot enrolls casual browsers into a nurture sequence — sending new listings matching their rough criteria, market updates for their target neighborhoods, and gentle check-ins over weeks or months until they are ready to act."
   - q: "Can it provide property details beyond basic listing info?"
@@ -42,7 +42,7 @@ Research consistently shows that the first agent to respond to an inquiry wins t
 
 The challenge is human capacity. A busy agent showing properties from 10 AM to 6 PM cannot simultaneously respond to the 23 inquiries that came in from Zillow, their website, and Instagram. By the time they sit down at 8 PM to work leads, the hottest prospects have already heard from a competitor.
 
-## How BotStudio AI Changes the Game for Agents
+## How Override AI Changes the Game for Agents
 
 The bot becomes the fastest-responding team member in your brokerage:
 

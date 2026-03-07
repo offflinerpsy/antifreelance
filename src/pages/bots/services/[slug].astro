@@ -156,6 +156,20 @@ const breadcrumbSchema = JSON.stringify({
     </section>
   )}
 
+  <!-- Boost with GEO Cross-Link -->
+  <section class="geo-boost">
+    <div class="container">
+      <div class="geo-boost__card">
+        <div class="geo-boost__content">
+          <span class="geo-boost__tag">AI Visibility</span>
+          <h3 class="geo-boost__title">Want AI to Recommend Your {d.industry}?</h3>
+          <p class="geo-boost__desc">A chatbot handles conversations. But what if AI platforms like ChatGPT and Gemini actively recommended your business? Override GEO makes that happen.</p>
+          <a href="/" class="geo-boost__link">Explore AI Visibility Services →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="bottom-cta">
     <div class="container">
       <h2>Ready to Automate Your {d.industry}?</h2>
@@ -396,6 +410,48 @@ const breadcrumbSchema = JSON.stringify({
     .related-case__card { flex-wrap: wrap; }
     .related-case__arrow { display: none; }
   }
+
+  /* GEO Boost Cross-Link */
+  .geo-boost {
+    padding: 0 20px clamp(60px, 10vw, 100px);
+    background: var(--color-surface);
+  }
+  .geo-boost__card {
+    background: linear-gradient(135deg, rgba(255, 94, 0, 0.08) 0%, rgba(221, 245, 22, 0.06) 100%);
+    border: 1px solid rgba(255, 94, 0, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-10) var(--space-8);
+  }
+  .geo-boost__tag {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    display: block;
+  }
+  .geo-boost__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+  .geo-boost__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+    max-width: 600px;
+    margin-bottom: var(--space-5);
+  }
+  .geo-boost__link {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .geo-boost__link:hover { color: var(--color-accent); }
 
   /* Bottom CTA */
   .bottom-cta {

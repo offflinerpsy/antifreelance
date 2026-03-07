@@ -13,6 +13,14 @@ import ContactForm from '../../components/ContactForm.astro';
   title="AI Chatbots for Business | Override"
   description="Smart AI chatbots with local AI for your business. Sales automation, 24/7 client booking. Launch in 2–3 days."
 >
+  <!-- GEO Cross-Link Banner -->
+  <div class="geo-banner">
+    <div class="geo-banner__inner">
+      <span class="geo-banner__text">Need AI platforms to recommend your business first?</span>
+      <a href="/" class="geo-banner__link">Explore Override GEO Services →</a>
+    </div>
+  </div>
+
   <Hero />
 
   <!-- Marquee -->
@@ -113,6 +121,40 @@ import ContactForm from '../../components/ContactForm.astro';
 </Layout>
 
 <style>
+  /* GEO Cross-Link Banner */
+  .geo-banner {
+    background: linear-gradient(90deg, var(--color-primary, #FF5E00) 0%, #FF7A2E 100%);
+    padding: 12px 20px;
+    position: relative;
+    z-index: 2;
+    margin-top: 80px;
+  }
+  .geo-banner__inner {
+    max-width: var(--container-max, 1200px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .geo-banner__text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+  }
+  .geo-banner__link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    transition: border-color 0.2s;
+  }
+  .geo-banner__link:hover {
+    border-color: #fff;
+  }
+
   /* Marquee */
   .marquee-wrap {
     background: var(--lime);

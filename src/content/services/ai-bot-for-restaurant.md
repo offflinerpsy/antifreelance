@@ -4,7 +4,7 @@ description: "AI chatbot for restaurants and cafes. Handle reservations, answer 
 industry: "Restaurant & Cafe"
 icon: "🍽️"
 heroHeadline: "Every Table Filled, Every Guest Delighted — Without Answering the Phone"
-heroSub: "Restaurants running BotStudio AI see 35% more reservations booked, 15% higher average check, and zero missed calls during rush hours"
+heroSub: "Restaurants running Override AI see 35% more reservations booked, 15% higher average check, and zero missed calls during rush hours"
 stats:
   - value: "+15%"
     label: "Higher average check"
@@ -25,7 +25,7 @@ faq:
   - q: "Can the bot handle walk-in waitlist management?"
     a: "Yes. Walk-in guests scan a QR code and join a virtual queue. The bot sends them a message when their table is ready, so they can browse nearby shops instead of crowding your lobby."
   - q: "Does it work with our POS system?"
-    a: "BotStudio AI integrates with major restaurant POS platforms including Toast, Square, Lightspeed, and Revel. Menu updates in your POS automatically sync to the bot."
+    a: "Override AI integrates with major restaurant POS platforms including Toast, Square, Lightspeed, and Revel. Menu updates in your POS automatically sync to the bot."
   - q: "How does the bot handle dietary restrictions and allergies?"
     a: "The bot cross-references guest-stated allergies against your full ingredient database. It proactively flags dishes containing allergens and suggests safe alternatives — reducing liability and improving guest trust."
   - q: "Can it manage reservations across multiple locations?"
@@ -44,7 +44,7 @@ The problem is structural: your best staff are on the floor delivering experienc
 
 ## What the Bot Actually Does for Your Restaurant
 
-BotStudio AI becomes your always-available front-of-house assistant:
+Override AI becomes your always-available front-of-house assistant:
 
 - **Reservation management** — Books, modifies, and cancels reservations across all channels with real-time table availability. Handles party merging, split checks requests, and high-top vs. booth preferences
 - **Menu intelligence** — Answers detailed questions about preparation methods, sourcing, calories, allergens, and pairings. Updated automatically when your chef changes the seasonal menu
