@@ -47,6 +47,7 @@ jobs:
       - name: Deploy static files
         run: |
           rsync -avz --delete \
+            --exclude='geo/' \
             -e "ssh -i ~/.ssh/id_rsa" \
             ./dist/client/ root@89.23.96.192:/var/www/antifreelance/client/
 
