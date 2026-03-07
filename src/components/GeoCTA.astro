@@ -1,0 +1,146 @@
+---
+// GeoCTA — Final call to action with scanner form + trust badges
+---
+
+<section class="geo-cta" id="geo-cta">
+  <div class="geo-cta__bg"></div>
+  <div class="container">
+    <p class="section-tag reveal" data-i18n="geo.cta.tag">Free AI Scan</p>
+    <h2 class="geo-cta__headline reveal" data-i18n-html="geo.cta.h2">Find out if AI recommends you.<br>30 seconds. Completely free.</h2>
+    <p class="geo-cta__sub reveal" data-i18n="geo.cta.sub">We'll scan ChatGPT, Gemini, Perplexity, Claude, and more — and show you exactly where you stand vs. your competitors.</p>
+
+    <form class="geo-cta__form reveal" id="geoCtaForm">
+      <input
+        type="text"
+        name="business"
+        placeholder="Your business name or website"
+        data-i18n-placeholder="geo.cta.placeholder"
+        required
+      />
+      <button type="submit" data-i18n="geo.cta.btn">Get Free Report</button>
+    </form>
+
+    <div class="geo-cta__checks reveal">
+      <span data-i18n="geo.cta.c1">✓ Takes 30 seconds</span>
+      <span data-i18n="geo.cta.c2">✓ No credit card</span>
+      <span data-i18n="geo.cta.c3">✓ Instant AI visibility report</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('geoCtaForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = (e.target as HTMLFormElement).querySelector('input');
+    if (input?.value) {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+</script>
+
+<style>
+  .geo-cta {
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-padding) 20px;
+    text-align: center;
+  }
+  .geo-cta__bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #FF7A2E 50%, var(--color-accent) 100%);
+    opacity: 0.12;
+  }
+  .container { max-width: var(--container-max); margin: 0 auto; position: relative; z-index: 1; }
+  .section-tag {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .geo-cta__headline {
+    font-family: var(--font-heading);
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+  .geo-cta__sub {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 560px;
+    margin: 0 auto var(--space-10);
+    line-height: var(--leading-normal);
+  }
+
+  .geo-cta__form {
+    display: flex;
+    max-width: 560px;
+    margin: 0 auto var(--space-5);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-surface-4);
+    border-radius: var(--radius-full);
+    padding: 6px 6px 6px 24px;
+    transition: border-color var(--duration-base), box-shadow var(--duration-base);
+  }
+  .geo-cta__form:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-glow-sm);
+  }
+  .geo-cta__form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 15px;
+    color: var(--color-text);
+    padding: 12px 0;
+    font-family: var(--font-body);
+  }
+  .geo-cta__form input::placeholder { color: var(--color-text-subtle); }
+  .geo-cta__form button {
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    transition: background var(--duration-base), transform var(--duration-base);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .geo-cta__form button:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-1px);
+  }
+
+  .geo-cta__checks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    font-size: var(--text-sm);
+    color: var(--color-text-subtle);
+  }
+
+  @media (max-width: 600px) {
+    .geo-cta__form {
+      flex-direction: column;
+      border-radius: var(--radius-md);
+      padding: 8px;
+    }
+    .geo-cta__form input { padding: 14px 16px; width: 100%; }
+    .geo-cta__form button { width: 100%; padding: 14px; border-radius: 10px; }
+    .geo-cta__checks { flex-direction: column; gap: 8px; }
+  }
+</style>

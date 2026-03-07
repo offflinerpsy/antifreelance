@@ -117,7 +117,7 @@ Unlike traditional SEO, GEO doesn't have a standard rank tracker yet. Here's how
 3. **Brand mentions**: Google Alerts for your business name
 4. **Traffic from AI referrers**: Check Google Analytics for referrals from perplexity.ai, chat.openai.com, etc.
 
-## The BotStudio GEO Strategy
+## The Override GEO Strategy
 
 For AI bot development businesses, the highest-opportunity queries are:
 - "best Telegram bot developer for [industry]"

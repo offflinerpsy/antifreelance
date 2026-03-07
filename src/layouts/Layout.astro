@@ -28,7 +28,7 @@ const canonical = `${SITE}${Astro.url.pathname}`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="telegram bot, ai bot, business automation, bot development, AI chatbot for business, small business automation, AI assistant" />
+    <meta name="keywords" content="AI visibility optimization, GEO, generative engine optimization, AI chatbot for business, make AI recommend your business, ChatGPT optimization, Perplexity optimization, small business automation" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Aliaksei Y." />
     <meta name="geo.region" content="US" />
@@ -49,7 +49,7 @@ const canonical = `${SITE}${Astro.url.pathname}`;
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="ru_RU" />
-    <meta property="og:site_name" content="BotStudio" />
+    <meta property="og:site_name" content="Override" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -77,11 +77,10 @@ const canonical = `${SITE}${Astro.url.pathname}`;
       // ─── Translations ─────────────────────────────────
       window.__TRANS = {
         en: {
-          'nav.features': 'Features',
-          'nav.cases': "Who It's For",
-          'nav.services': 'Services',
-          'nav.portfolio': 'Case Studies',
-          'nav.kb': 'Knowledge Base',
+          'nav.how': 'How It Works',
+          'nav.bots': 'AI Chatbots',
+          'nav.cases': 'Case Studies',
+          'nav.pricing': 'Pricing',
           'nav.contact': 'Contact',
           'nav.mobile_cta': 'Get in Touch',
 
@@ -154,11 +153,82 @@ const canonical = `${SITE}${Astro.url.pathname}`;
           'cf.opt7': 'Beauty / Salon / Spa', 'cf.opt8': 'Education / Coaching',
           'cf.opt9': 'Other',
 
-          'ft.tagline': 'AI Chatbots & Business Automation',
-          'chat.status': 'BotStudio AI Assistant',
-          'chat.greeting': "Hey there! 👋 I'm Bot, your AI assistant at BotStudio.\n\nWhat brings you here today?",
-          'chat.qr.1': 'I need a chatbot', 'chat.qr.2': 'Website help',
-          'chat.qr.3': 'Full automation', 'chat.qr.4': 'Just browsing',
+          'ft.tagline': 'Make AI Recommend Your Business',
+          'chat.status': 'Override AI Assistant',
+          'chat.greeting': "Hey there! 👋 I'm your AI assistant at Override.\n\nWhat brings you here today?",
+          'chat.qr.1': 'AI visibility scan', 'chat.qr.2': 'I need a chatbot',
+          'chat.qr.3': 'Pricing info', 'chat.qr.4': 'Just browsing',
+
+          // GEO Homepage
+          'geo.hero.tag': 'AI Visibility for Local Business · 2026',
+          'geo.hero.h1': 'Your customers are asking AI.<br>Are you the answer?',
+          'geo.hero.sub': "59% of local searches now happen through AI — not Google. We make ChatGPT, Gemini, Perplexity, Claude, and 7+ AI platforms recommend your business.",
+          'geo.hero.placeholder': 'Your business name or website',
+          'geo.hero.btn': 'Get Free AI Scan',
+          'geo.hero.trust': 'Free \u00b7 30 seconds \u00b7 Instant AI visibility report',
+          'geo.hero.platforms': 'Scanning across:',
+
+          'geo.blind.tag': 'The Blind Spot',
+          'geo.blind.h2': 'While you read this, your competitor got another AI referral',
+          'geo.blind.stat': '59%',
+          'geo.blind.stat_label': 'of local service searches now happen through AI assistants — not Google.',
+          'geo.blind.y1': '2023 — 15%', 'geo.blind.y2': '2024 — 38%', 'geo.blind.y3': '2025 — 59%',
+          'geo.blind.mini1_num': '4.4\u00d7', 'geo.blind.mini1_label': 'higher purchase intent from AI referrals vs. Google clicks',
+          'geo.blind.mini2_num': '$0', 'geo.blind.mini2_label': 'cost per AI recommendation once optimized',
+          'geo.blind.comp_title': 'Your competitor vs. You',
+          'geo.blind.comp_them': 'Your competitor', 'geo.blind.comp_you': 'You (right now)',
+
+          'geo.evidence.tag': 'The Evidence',
+          'geo.evidence.h2': "Here's what we found after scanning 2,400+ local businesses:",
+          'geo.evidence.s1_num': '87%', 'geo.evidence.s1_label': 'have zero AI visibility',
+          'geo.evidence.s2_num': '4%', 'geo.evidence.s2_label': 'have llms.txt configured',
+          'geo.evidence.s3_num': '4.4\u00d7', 'geo.evidence.s3_label': 'higher purchase intent from AI referrals',
+          'geo.evidence.p1': '7+ AI platforms', 'geo.evidence.p2': '30-day results',
+          'geo.evidence.p3': '$0 per click', 'geo.evidence.p4': '3\u20136\u00d7 ROI avg.',
+
+          'geo.how.tag': 'What We Do',
+          'geo.how.h2': 'Four steps to AI dominance',
+          'geo.how.s1_title': 'AI Visibility Audit',
+          'geo.how.s1_desc': 'We scan your business across ChatGPT, Gemini, Perplexity, Claude, Copilot, and more. You get a detailed report showing exactly where you stand — and where your competitors rank.',
+          'geo.how.s2_title': 'Review Engine',
+          'geo.how.s2_desc': 'We help your customers write reviews that contain the exact keywords AI uses to make recommendations. More relevant reviews = stronger AI signal.',
+          'geo.how.s3_title': 'Schema & Content',
+          'geo.how.s3_desc': 'We optimize your website\u2019s structured data, add llms.txt, and create content that AI platforms can easily parse, cite, and recommend.',
+          'geo.how.s4_title': 'Weekly Monitoring',
+          'geo.how.s4_desc': 'AI algorithms change constantly. We track your visibility across all platforms weekly and adapt your strategy in real-time.',
+
+          'geo.pricing.tag': 'Pricing',
+          'geo.pricing.h2': 'Simple, transparent pricing',
+          'geo.pricing.sub': 'No setup fees. No long-term contracts. 90-day money-back guarantee.',
+          'geo.pricing.t1_name': 'Starter', 'geo.pricing.t1_price': '$499', 'geo.pricing.t1_period': '/month',
+          'geo.pricing.t2_name': 'Growth', 'geo.pricing.t2_price': '$999', 'geo.pricing.t2_period': '/month', 'geo.pricing.t2_badge': 'Most Popular',
+          'geo.pricing.t3_name': 'Dominate', 'geo.pricing.t3_price': '$1,999', 'geo.pricing.t3_period': '/month',
+          'geo.pricing.cta': 'Get Started',
+          'geo.pricing.guarantee': '90-day money-back guarantee on all plans. If you don\u2019t see results, we keep working for free.',
+
+          'geo.social.tag': 'Real Results',
+          'geo.social.h2': 'Businesses like yours, already winning with AI',
+
+          'geo.faq.tag': 'Questions',
+          'geo.faq.h2': 'Still thinking it over?',
+          'geo.faq.sub': 'Here are the answers to the questions that usually stop people from getting started.',
+          'geo.faq.q1': 'How long until I see results?',
+          'geo.faq.a1': 'Most businesses see first AI mentions within 30\u201360 days. Technical optimizations (schema, llms.txt) take effect within weeks. Review Engine results build momentum over months.',
+          'geo.faq.q2': 'What if AI changes its algorithms?',
+          'geo.faq.a2': 'We monitor all 7+ AI platforms continuously. When algorithms shift, we adapt your strategy the same week.',
+          'geo.faq.q3': 'I already do SEO. Why do I need GEO?',
+          'geo.faq.a3': 'SEO gets you on Google\u2019s blue links. GEO gets you recommended by ChatGPT, Perplexity, Gemini, and Claude. 59% of local searches now happen through AI.',
+          'geo.faq.q4': 'What makes Override different from other agencies?',
+          'geo.faq.a4': 'Two things: price and our Review Engine. Most GEO agencies charge $3,000\u2013$12,000/month. We start at $499.',
+          'geo.faq.q5': 'Can I cancel anytime?',
+          'geo.faq.a5': 'We ask for a 90-day minimum because AI optimization takes time. After that, cancel with 30 days notice \u2014 no penalties.',
+
+          'geo.cta.tag': 'Free AI Scan',
+          'geo.cta.h2': 'Find out if AI recommends you.<br>30 seconds. Completely free.',
+          'geo.cta.sub': 'We\u2019ll scan ChatGPT, Gemini, Perplexity, Claude, and more \u2014 and show you exactly where you stand vs. your competitors.',
+          'geo.cta.placeholder': 'Your business name or website',
+          'geo.cta.btn': 'Get Free Report',
+          'geo.cta.c1': '\u2713 Takes 30 seconds', 'geo.cta.c2': '\u2713 No credit card', 'geo.cta.c3': '\u2713 Instant AI visibility report',
 
           'port.h1': 'Our', 'port.h1_accent': 'Work',
           'port.subtitle': 'Real results from real automation projects. See how AI bots transform businesses.',
@@ -200,11 +270,10 @@ const canonical = `${SITE}${Astro.url.pathname}`;
           'chat.input_ph': 'Type a message...',
         },
         ru: {
-          'nav.features': 'Возможности',
-          'nav.cases': 'Кому подходит',
-          'nav.services': 'Услуги',
-          'nav.portfolio': 'Кейсы',
-          'nav.kb': 'База знаний',
+          'nav.how': 'Как работает',
+          'nav.bots': 'AI-боты',
+          'nav.cases': 'Кейсы',
+          'nav.pricing': 'Цены',
           'nav.contact': 'Написать',
           'nav.mobile_cta': 'Связаться',
 
@@ -277,11 +346,82 @@ const canonical = `${SITE}${Astro.url.pathname}`;
           'cf.opt7': 'Красота / Салон / Спа', 'cf.opt8': 'Образование / Коучинг',
           'cf.opt9': 'Другое',
 
-          'ft.tagline': 'AI-боты и автоматизация бизнеса',
-          'chat.status': 'AI-ассистент BotStudio',
-          'chat.greeting': "Привет! 👋 Я Бот — AI-ассистент BotStudio.\n\nЧем могу помочь?",
-          'chat.qr.1': 'Нужен чат-бот', 'chat.qr.2': 'Помощь с сайтом',
-          'chat.qr.3': 'Полная автоматизация', 'chat.qr.4': 'Просто смотрю',
+          'ft.tagline': 'AI рекомендует ваш бизнес',
+          'chat.status': 'AI-ассистент Override',
+          'chat.greeting': "Привет! 👋 Я AI-ассистент Override.\n\nЧем могу помочь?",
+          'chat.qr.1': 'AI-видимость', 'chat.qr.2': 'Нужен чат-бот',
+          'chat.qr.3': 'Узнать цены', 'chat.qr.4': 'Просто смотрю',
+
+          // GEO Главная
+          'geo.hero.tag': 'AI-видимость для локального бизнеса \u00b7 2026',
+          'geo.hero.h1': 'Ваши клиенты спрашивают AI.<br>Вы \u2014 ответ?',
+          'geo.hero.sub': '59% локальных поисковых запросов теперь проходят через AI \u2014 не Google. Мы делаем так, чтобы ChatGPT, Gemini, Perplexity, Claude и 7+ AI-платформ рекомендовали ваш бизнес.',
+          'geo.hero.placeholder': 'Название вашего бизнеса или сайт',
+          'geo.hero.btn': 'Бесплатный AI-скан',
+          'geo.hero.trust': 'Бесплатно \u00b7 30 секунд \u00b7 Мгновенный отчёт по AI-видимости',
+          'geo.hero.platforms': 'Сканируем:',
+
+          'geo.blind.tag': 'Слепая зона',
+          'geo.blind.h2': 'Пока вы читаете это, ваш конкурент получил ещё одну AI-рекомендацию',
+          'geo.blind.stat': '59%',
+          'geo.blind.stat_label': 'локальных запросов на услуги теперь проходят через AI-ассистентов \u2014 не Google.',
+          'geo.blind.y1': '2023 \u2014 15%', 'geo.blind.y2': '2024 \u2014 38%', 'geo.blind.y3': '2025 \u2014 59%',
+          'geo.blind.mini1_num': '4,4\u00d7', 'geo.blind.mini1_label': 'выше намерение покупки через AI vs. Google',
+          'geo.blind.mini2_num': '$0', 'geo.blind.mini2_label': 'стоимость AI-рекомендации после оптимизации',
+          'geo.blind.comp_title': 'Ваш конкурент vs. Вы',
+          'geo.blind.comp_them': 'Ваш конкурент', 'geo.blind.comp_you': 'Вы (сейчас)',
+
+          'geo.evidence.tag': 'Факты',
+          'geo.evidence.h2': 'Что мы нашли, просканировав 2 400+ локальных бизнесов:',
+          'geo.evidence.s1_num': '87%', 'geo.evidence.s1_label': 'имеют нулевую AI-видимость',
+          'geo.evidence.s2_num': '4%', 'geo.evidence.s2_label': 'настроили llms.txt',
+          'geo.evidence.s3_num': '4,4\u00d7', 'geo.evidence.s3_label': 'выше конверсия через AI-рекомендации',
+          'geo.evidence.p1': '7+ AI-платформ', 'geo.evidence.p2': 'Результат за 30 дней',
+          'geo.evidence.p3': '$0 за клик', 'geo.evidence.p4': '3\u20136\u00d7 ROI',
+
+          'geo.how.tag': 'Что мы делаем',
+          'geo.how.h2': 'Четыре шага к AI-доминированию',
+          'geo.how.s1_title': 'AI-аудит видимости',
+          'geo.how.s1_desc': 'Сканируем ваш бизнес в ChatGPT, Gemini, Perplexity, Claude, Copilot и других. Детальный отчёт: где вы стоите и где ваши конкуренты.',
+          'geo.how.s2_title': 'Движок отзывов',
+          'geo.how.s2_desc': 'Помогаем вашим клиентам писать отзывы с ключевыми словами, которые AI использует для рекомендаций.',
+          'geo.how.s3_title': 'Схема и контент',
+          'geo.how.s3_desc': 'Оптимизируем структурированные данные, добавляем llms.txt и создаём контент, который AI-платформы могут легко цитировать.',
+          'geo.how.s4_title': 'Еженедельный мониторинг',
+          'geo.how.s4_desc': 'Алгоритмы AI меняются постоянно. Мы отслеживаем видимость еженедельно и адаптируем стратегию.',
+
+          'geo.pricing.tag': '\u0426\u0435\u043d\u044b',
+          'geo.pricing.h2': 'Простые и прозрачные цены',
+          'geo.pricing.sub': 'Без setup-платежей. Без долгосрочных контрактов. 90-дневная гарантия возврата.',
+          'geo.pricing.t1_name': 'Старт', 'geo.pricing.t1_price': '$499', 'geo.pricing.t1_period': '/мес',
+          'geo.pricing.t2_name': 'Рост', 'geo.pricing.t2_price': '$999', 'geo.pricing.t2_period': '/мес', 'geo.pricing.t2_badge': 'Популярный',
+          'geo.pricing.t3_name': 'Доминирование', 'geo.pricing.t3_price': '$1 999', 'geo.pricing.t3_period': '/мес',
+          'geo.pricing.cta': 'Начать',
+          'geo.pricing.guarantee': '90-дневная гарантия на все тарифы. Нет результатов \u2014 работаем бесплатно.',
+
+          'geo.social.tag': 'Реальные результаты',
+          'geo.social.h2': 'Бизнесы как ваш, уже побеждают с AI',
+
+          'geo.faq.tag': 'Вопросы',
+          'geo.faq.h2': 'Ещё думаете?',
+          'geo.faq.sub': 'Ответы на вопросы, которые обычно мешают начать.',
+          'geo.faq.q1': 'Как быстро будут результаты?',
+          'geo.faq.a1': 'Большинство бизнесов видят первые AI-упоминания через 30\u201360 дней. Технические оптимизации работают за недели.',
+          'geo.faq.q2': 'Что если AI изменит алгоритмы?',
+          'geo.faq.a2': 'Мы мониторим 7+ AI-платформ постоянно. Алгоритм меняется \u2014 мы адаптируем стратегию на той же неделе.',
+          'geo.faq.q3': 'У меня уже есть SEO. Зачем GEO?',
+          'geo.faq.a3': 'SEO \u2014 это ссылки в Google. GEO \u2014 рекомендации от ChatGPT, Perplexity, Gemini и Claude. 59% запросов идут через AI.',
+          'geo.faq.q4': 'Чем Override отличается от других агентств?',
+          'geo.faq.a4': 'Цена и Движок отзывов. Большинство GEO-агентств берут $3 000\u2013$12 000/мес. Мы начинаем с $499.',
+          'geo.faq.q5': 'Можно отменить в любой момент?',
+          'geo.faq.a5': 'Минимум 90 дней \u2014 AI-оптимизация требует времени. После \u2014 отмена за 30 дней без штрафов.',
+
+          'geo.cta.tag': 'Бесплатный AI-скан',
+          'geo.cta.h2': 'Узнайте, рекомендует ли AI вас.<br>30 секунд. Полностью бесплатно.',
+          'geo.cta.sub': 'Просканируем ChatGPT, Gemini, Perplexity, Claude и другие \u2014 покажем вашу позицию vs. конкуренты.',
+          'geo.cta.placeholder': 'Название бизнеса или сайт',
+          'geo.cta.btn': 'Получить отчёт',
+          'geo.cta.c1': '\u2713 Займёт 30 секунд', 'geo.cta.c2': '\u2713 Без карты', 'geo.cta.c3': '\u2713 Мгновенный отчёт',
 
           'port.h1': 'Наши', 'port.h1_accent': 'работы',
           'port.subtitle': 'Реальные результаты реальных проектов. Как AI-боты преображают бизнес.',

@@ -4,7 +4,7 @@ description: "AI chatbot for barbershops. Enable 24/7 booking, cut no-shows by 5
 industry: "Barbershop"
 icon: "✂️"
 heroHeadline: "Keep Every Chair Busy — AI That Runs Your Barbershop Booking"
-heroSub: "Barbershops using BotStudio AI convert 35% of walk-ins into newsletter subscribers, cut no-shows in half, and let clients book their fade at 2 AM"
+heroSub: "Barbershops using Override AI convert 35% of walk-ins into newsletter subscribers, cut no-shows in half, and let clients book their fade at 2 AM"
 stats:
   - value: "35%"
     label: "Newsletter conversion rate"
@@ -42,7 +42,7 @@ Most barbershops still run on phone calls and walk-ins. The barber is mid-fade, 
 
 Walk-in-only models create a different problem: clients show up, see a 45-minute wait, and leave. You never had a chance to serve them, and they may never come back. There is no way to follow up because you never captured their contact information.
 
-## How BotStudio AI Modernizes Your Barbershop
+## How Override AI Modernizes Your Barbershop
 
 The bot bridges the gap between old-school barbershop culture and modern client expectations:
 
@@ -55,7 +55,7 @@ The bot bridges the gap between old-school barbershop culture and modern client 
 
 The biggest long-term value is the client database. Most barbershops have zero digital relationship with their clients — no emails, no phone numbers, no visit history. When a barber leaves, their clients leave with them because the shop has no way to reach out.
 
-BotStudio AI builds a complete client database organically. Every booking, every walk-in interaction, every loyalty check-in adds data. You know who your top 50 clients are by revenue, who has not visited in a while, and which barber has the highest retention rate.
+Override AI builds a complete client database organically. Every booking, every walk-in interaction, every loyalty check-in adds data. You know who your top 50 clients are by revenue, who has not visited in a while, and which barber has the highest retention rate.
 
 Newsletter conversion rates hit 35% because the bot asks at the right moment — right after a great haircut — and the signup takes one tap. Your monthly newsletter with new styles, product drops, and flash promotions actually reaches people who care.
 

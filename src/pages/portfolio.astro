@@ -7,15 +7,23 @@ import TechStack from '../components/TechStack.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
 
 const casestudies = await getCollection('casestudies');
-const featured = casestudies.find(c => c.data.featured);
+const isGeo = (c: any) => c.data.tags?.includes('GEO');
+const geoFeatured = casestudies.filter(c => isGeo(c) && c.data.featured).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const botFeatured = casestudies.filter(c => !isGeo(c) && c.data.featured).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const featured = geoFeatured[0] || botFeatured[0];
 const others = casestudies
-  .filter(c => !c.data.featured)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+  .filter(c => c !== featured)
+  .sort((a, b) => {
+    // GEO cases first, then by date
+    if (isGeo(a) && !isGeo(b)) return -1;
+    if (!isGeo(a) && isGeo(b)) return 1;
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  });
 ---
 
 <Layout
-  title="Case Studies | BotStudio — Real AI Bot Results"
-  description="See how AI bots transform real businesses: +47% bookings, -82% no-shows, -60% support tickets. Real case studies from BotStudio."
+  title="Case Studies | Override — Real AI Visibility & Chatbot Results"
+  description="See how Override helps businesses get recommended by AI: 12x citation growth, 340% visibility increase, 8x more reservations. Real case studies."
   page="portfolio"
 >
   <div class="portfolio-page">

@@ -13,7 +13,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={`${entry.data.title} | BotStudio`} description={entry.data.description} page="knowledge" articleTitle={entry.data.title} articleDescription={entry.data.description} articleDate={entry.data.pubDate.toISOString().split('T')[0]}>
+<Layout title={`${entry.data.title} | Override`} description={entry.data.description} page="knowledge" articleTitle={entry.data.title} articleDescription={entry.data.description} articleDate={entry.data.pubDate.toISOString().split('T')[0]}>
   <article class="kb-article">
     <div class="kb-article-header reveal">
       <!-- RU: ← Назад в Базу знаний -->
